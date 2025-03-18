@@ -43,7 +43,7 @@ export function ThemeSwitcher() {
       {/* Removed hover-based descriptor */}
       <button
         aria-label="Toggle theme"
-        className="inline-flex rounded-md border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-[background-color]  p-2 theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline"
+        className="inline-flex rounded-md hover:bg-accent hover:text-accent-foreground transition-[background-color]  p-2 theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline"
         onClick={(ev) => {
           ev.preventDefault();
           // Toggle strictly between dark and light

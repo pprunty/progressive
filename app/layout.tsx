@@ -1,9 +1,10 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
+import type React from "react"
+import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono } from "next/font/google"
 import { themeEffect } from "@/components/theme-effect"
 import config from "@/app/config";
+import { doge } from './doge';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,13 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  userScalable: true,
+  themeColor: 'transparent',
+};
 
 export const metadata: Metadata = {
 title: `${config.companyName}`,
@@ -66,11 +74,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
      <head>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `(${themeEffect.toString()})();`,
-              }}
-            />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
+          }}
+        />
             <link rel="icon" href="/icons/32x32.png" sizes="any" />
           </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>

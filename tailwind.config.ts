@@ -1,8 +1,9 @@
 import type { Config } from "tailwindcss"
 import tailwindAnimate from "tailwindcss-animate"
+import plugin from 'tailwindcss/plugin';
 
 export default {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -60,5 +61,18 @@ export default {
       },
     },
   },
-  plugins: [tailwindAnimate],
+  plugins: [
+  tailwindAnimate,
+  plugin(function ({
+        addVariant,
+      }: {
+        addVariant: (name: string, rule: string) => void;
+      }) {
+        // Adding theme-system variant
+        addVariant('theme-system', '.theme-system &');
+      }),
+  ],
+  future: {
+      hoverOnlyWhenSupported: true,
+    },
 } satisfies Config
