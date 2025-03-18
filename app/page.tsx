@@ -1,58 +1,53 @@
-import * as React from "react"
-import { OpenInV0Button } from "@/components/open-in-v0-button"
-import { HelloWorld } from "@/registry/new-york/hello-world/hello-world"
-import { ExampleForm } from "@/registry/new-york/example-form/example-form"
-import PokemonPage from "@/registry/new-york/complex-component/page"
+import Link from "next/link"
+import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
+import { Badge } from "@/components/badge"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { getCategories, getRegistryInfo } from "@/lib/registry"
 
-// This page displays items from the custom registry.
-// You are free to implement this with your own design as needed.
+export default async function Home() {
+  const categories = await getCategories()
+  const registryInfo = getRegistryInfo()
+  const GITHUB_REPO_URL = registryInfo.homepage || "https://github.com/your-username/your-registry-repo"
 
-export default function Home() {
   return (
-    <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
-      <header className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight">Custom Registry</h1>
-        <p className="text-muted-foreground">
-          A custom registry for distribution code using shadcn.
-        </p>
+    <div className="max-w-7xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
+      <header className="flex items-center justify-between gap-1">
+        <div className="flex flex-col gap-1">
+          <Link href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="group w-fit">
+            <div className="flex items-center gap-1 hover:text-primary transition-colors">
+              <h1 className="text-md font-bold tracking-tight">{registryInfo.name} Registry</h1>
+              <ArrowSquareOut className="h-3 w-3" weight="bold" />
+            </div>
+          </Link>
+          <p className="text-md text-muted-foreground">
+            A collection of open source and progressively-styled reusable components for distribution by shadcn.
+          </p>
+        </div>
+        <ThemeToggle />
       </header>
-      <main className="flex flex-col flex-1 gap-8">
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A simple hello world component
-            </h2>
-            <OpenInV0Button name="hello-world" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <HelloWorld />
-          </div>
-        </div>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A contact form with Zod validation.
-            </h2>
-            <OpenInV0Button name="example-form" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[500px] relative">
-            <ExampleForm />
-          </div>
-        </div>
+      <main className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        {categories.map((category) => (
+          <div key={category.title} className="flex flex-col gap-4">
+            <h2 className="textx-md font-serif font-medium italic text-foreground/80">{category.title}</h2>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A complex component showing hooks, libs and components.
-            </h2>
-            <OpenInV0Button name="complex-component" className="w-fit" />
+            <div className="flex flex-col space-y-2">
+              {category.items.map((item) => (
+                <div key={item.name} className="flex items-center gap-2">
+                  <Link
+                    href={`/docs/${item.name}`}
+                    className="text-md decoration-1 font-medium underline underline-offset-2 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary hover:text-primary"
+                  >
+                    {item.title}
+                  </Link>
+                  {item.badge && <Badge variant={item.badge as "new" | "beta"}>{item.badge}</Badge>}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <PokemonPage />
-          </div>
-        </div>
+        ))}
       </main>
     </div>
   )
 }
+
