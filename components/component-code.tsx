@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button"
 import { Check, Copy } from "lucide-react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
+// Simple client-side cache for component codes
+const codeCache = new Map<string, string>()
+
 export function ComponentCode({ component }: { component: ComponentType }) {
   const [fileContents, setFileContents] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
@@ -15,21 +18,44 @@ export function ComponentCode({ component }: { component: ComponentType }) {
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    // Fetch all component files
+    // Fetch all component files with client-side caching
     const fetchFiles = async () => {
       setLoading(true)
       const contents: Record<string, string> = {}
 
       try {
-        for (const file of component.files) {
-          const response = await fetch(`/api/component-code?path=${file.path}`)
-          if (response.ok) {
-            const data = await response.json()
-            contents[file.path] = data.code
-          } else {
-            contents[file.path] = `// Error loading file: ${file.path}`
-          }
-        }
+        // Process files in parallel for faster loading
+        await Promise.all(
+          component.files.map(async (file) => {
+            const filePath = file.path
+
+            // Check client-side cache first
+            if (codeCache.has(filePath)) {
+              contents[filePath] = codeCache.get(filePath)!
+              return
+            }
+
+            try {
+              const response = await fetch(`/api/component-code?path=${filePath}`, {
+                // Use cache: 'force-cache' to leverage browser's HTTP cache
+                cache: 'force-cache'
+              })
+
+              if (response.ok) {
+                const data = await response.json()
+                contents[filePath] = data.code
+
+                // Store in client-side cache
+                codeCache.set(filePath, data.code)
+              } else {
+                contents[filePath] = `// Error loading file: ${filePath}`
+              }
+            } catch (error) {
+              console.error(`Error loading file ${filePath}:`, error)
+              contents[filePath] = `// Error loading file: ${filePath}`
+            }
+          })
+        )
 
         setFileContents(contents)
 
@@ -52,6 +78,23 @@ export function ComponentCode({ component }: { component: ComponentType }) {
       navigator.clipboard.writeText(fileContents[activeFile])
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  // Determine language for syntax highlighting
+  const getLanguage = (filePath: string) => {
+    const extension = filePath.split('.').pop()?.toLowerCase() || ''
+
+    switch (extension) {
+      case 'tsx': return 'tsx'
+      case 'ts': return 'typescript'
+      case 'jsx': return 'jsx'
+      case 'js': return 'javascript'
+      case 'css': return 'css'
+      case 'scss': return 'scss'
+      case 'json': return 'json'
+      case 'md': return 'markdown'
+      default: return 'javascript'
     }
   }
 
@@ -79,7 +122,7 @@ export function ComponentCode({ component }: { component: ComponentType }) {
         </Tabs>
       )}
 
-      <div className="relative h-[320px] overflow-auto">
+      <div className="relative min-h-[400px] overflow-auto">
         <Button variant="outline" size="icon" className="absolute right-5 top-2 z-10" onClick={copyToClipboard}>
           {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
           <span className="sr-only">Copy code</span>
@@ -87,7 +130,7 @@ export function ComponentCode({ component }: { component: ComponentType }) {
 
         {activeFile && (
           <SyntaxHighlighter
-            language={activeFile.endsWith(".tsx") ? "tsx" : activeFile.endsWith(".ts") ? "typescript" : "javascript"}
+            language={getLanguage(activeFile)}
             style={vscDarkPlus}
             customStyle={{
               borderRadius: "0.5rem",
@@ -104,4 +147,3 @@ export function ComponentCode({ component }: { component: ComponentType }) {
     </div>
   )
 }
-

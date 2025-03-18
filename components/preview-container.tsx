@@ -31,10 +31,9 @@ export function PreviewContainer({ children, openInV0Url }: PreviewContainerProp
             </div>
           }
         >
-          <div className="flex items-center justify-center w-full max-w-full overflow-auto">
-            {/* Use the key to force remount when restarting */}
-            <div key={key}>{children}</div>
-          </div>
+          <div className="h-full w-full flex items-center justify-center py-8">
+                <div key={key} className="flex items-center justify-center w-full h-full max-w-full overflow-auto">{children}</div>
+              </div>
         </React.Suspense>
       </div>
     </div>

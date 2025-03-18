@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "registry:add:component": "node scripts/add.js component",
+    "registry:add:page": "node scripts/add.js page",
+    "registry:add:lib": "node scripts/add.js lib",
+    "registry:add:hook": "node scripts/add.js hook",
+    "registry:remove": "node scripts/rm.js"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",

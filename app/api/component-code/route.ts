@@ -3,6 +3,9 @@ import fs from "fs/promises"
 import path from "path"
 import { getComponentByName } from "@/lib/registry"
 
+// Cache duration in seconds (1 day)
+const CACHE_MAX_AGE = 60 * 60 * 24
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const name = searchParams.get("name")
@@ -40,10 +43,15 @@ export async function GET(request: NextRequest) {
     // Read the component code
     const code = await fs.readFile(componentPath, "utf-8")
 
-    return NextResponse.json({ code })
+    // Create response with cache headers
+    const response = NextResponse.json({ code })
+
+    // Set cache control headers
+    response.headers.set('Cache-Control', `public, max-age=${CACHE_MAX_AGE}, s-maxage=${CACHE_MAX_AGE}, stale-while-revalidate=${CACHE_MAX_AGE}`);
+
+    return response
   } catch (error) {
     console.error(`Error fetching component code:`, error)
     return NextResponse.json({ error: "Failed to fetch component code" }, { status: 500 })
   }
 }
-

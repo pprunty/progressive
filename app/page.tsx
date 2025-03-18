@@ -7,7 +7,7 @@ import { getCategories, getRegistryInfo } from "@/lib/registry"
 export default async function Home() {
   const categories = await getCategories()
   const registryInfo = getRegistryInfo()
-  const GITHUB_REPO_URL = registryInfo.homepage || "https://github.com/your-username/your-registry-repo"
+  const GITHUB_REPO_URL = "https://github.com/pprunty/astrik.dev"
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">

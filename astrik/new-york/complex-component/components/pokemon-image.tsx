@@ -1,7 +1,7 @@
 "use client"
 
 /* eslint-disable @next/next/no-img-element */
-import { usePokemonImage } from "@/registry/new-york/complex-component/hooks/use-pokemon"
+import { usePokemonImage } from "@/astrik/new-york/complex-component/hooks/use-pokemon"
 
 export function PokemonImage({
   name,

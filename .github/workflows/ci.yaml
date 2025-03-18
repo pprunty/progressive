@@ -1,0 +1,53 @@
+name: frontend-CI 💎
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  setup:
+    name: 'Setup: Installing dependencies 🛒'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code 🛒
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 📦
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21.x'
+
+      - name: Install Dependencies 🧹
+        run: npm install --force
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+  lint:
+    name: 'Linting: Running eslint against application 🧹'
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code 🛒
+        uses: actions/checkout@v2
+
+      - name: Restore Cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Run Linter 🛀🏻
+        run: npm run lint
