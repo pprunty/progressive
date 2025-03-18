@@ -2,14 +2,15 @@ import type React from "react"
 // This file will serve as our component registry
 
 // Import components directly
-import { HelloWorld } from "@/astrik/new-york/hello-world/hello-world"
-import { ExampleForm } from "@/astrik/new-york/example-form/example-form"
-import PokemonPage from "@/astrik/new-york/complex-component/page"
-import { Tabs } from "@/astrik/components/tabs/tabs"
-import AdmonitionDemo from "@/astrik/components/admonition-demo"
-import { ModalDemo } from "@/astrik/components/modal-demo"
-import ScrambleInDemo from "@/astrik/open-sourced-inspired-collection/scramble-in-demo"
-import NeobrutalismCardDemo from "@/astrik/open-sourced-inspired-collection/neobrutalism-card-demo"
+import { HelloWorld } from "@/delta/new-york/hello-world/hello-world"
+import { ExampleForm } from "@/delta/new-york/example-form/example-form"
+import PokemonPage from "@/delta/new-york/complex-component/page"
+import { Tabs } from "@/delta/components/tabs/tabs"
+import AdmonitionDemo from "@/delta/components/admonition-demo"
+import { ModalDemo } from "@/delta/components/modal-demo"
+import ScrambleInDemo from "@/delta/open-sourced-inspired-collection/scramble-in-demo"
+import NeobrutalismCardDemo from "@/delta/open-sourced-inspired-collection/neobrutalism-card-demo"
+import UseHQImageDemo from "@/delta/hooks/use-hq-image-demo";
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -37,5 +38,9 @@ export const registry: Record<string, { component: React.ComponentType }> = {
   },
   "neobrutalism-card": {
     component: NeobrutalismCardDemo,
-  },}
+  },
+  "use-hq-image": {
+    component: UseHQImageDemo
+  }
+  }
 

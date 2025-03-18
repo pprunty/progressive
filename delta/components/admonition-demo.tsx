@@ -1,4 +1,4 @@
-import { Admonition } from "@/astrik/components/admonition"
+import { Admonition } from "@/delta/components/admonition"
 
 export default function Preview() {
   return (

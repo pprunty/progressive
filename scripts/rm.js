@@ -34,8 +34,8 @@ let category = 'new-york'; // Default
 if (componentFiles.length > 0) {
   const filePath = componentFiles[0].path;
   const pathParts = filePath.split(path.sep);
-  // New path pattern is typically: astrik/{category}/{component-name}.tsx
-  if (pathParts.length >= 3 && pathParts[0] === 'astrik') {
+  // New path pattern is typically: delta/{category}/{component-name}.tsx
+  if (pathParts.length >= 3 && pathParts[0] === 'delta') {
     category = pathParts[1];
   }
 }
@@ -98,31 +98,31 @@ if (componentFiles.length > 0) {
 
   // Also try to remove potential demo file if not in the componentFiles list
   if (componentType === 'component') {
-    const demoFilePath = path.join('astrik', category, `${componentName}-demo.tsx`);
+    const demoFilePath = path.join('delta', category, `${componentName}-demo.tsx`);
     if (fs.existsSync(demoFilePath)) {
       fs.unlinkSync(demoFilePath);
       console.log(`Deleted file: ${demoFilePath}`);
     }
 
-    const componentFilePath = path.join('astrik', category, `${componentName}.tsx`);
+    const componentFilePath = path.join('delta', category, `${componentName}.tsx`);
     if (fs.existsSync(componentFilePath)) {
       fs.unlinkSync(componentFilePath);
       console.log(`Deleted file: ${componentFilePath}`);
     }
   } else if (componentType === 'page') {
-    const pageFilePath = path.join('astrik', category, `${componentName}-page.tsx`);
+    const pageFilePath = path.join('delta', category, `${componentName}-page.tsx`);
     if (fs.existsSync(pageFilePath)) {
       fs.unlinkSync(pageFilePath);
       console.log(`Deleted file: ${pageFilePath}`);
     }
   } else if (componentType === 'lib') {
-    const libFilePath = path.join('astrik', category, `${componentName}.ts`);
+    const libFilePath = path.join('delta', category, `${componentName}.ts`);
     if (fs.existsSync(libFilePath)) {
       fs.unlinkSync(libFilePath);
       console.log(`Deleted file: ${libFilePath}`);
     }
   } else if (componentType === 'hook') {
-    const hookFilePath = path.join('astrik', category, `use-${componentName}.ts`);
+    const hookFilePath = path.join('delta', category, `use-${componentName}.ts`);
     if (fs.existsSync(hookFilePath)) {
       fs.unlinkSync(hookFilePath);
       console.log(`Deleted file: ${hookFilePath}`);

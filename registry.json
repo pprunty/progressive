@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "Astrik",
-  "homepage": "https://astrik.dev",
+  "name": "Delta",
+  "homepage": "https://deltacomponents.dev",
   "items": [
     {
       "name": "hello-world",
@@ -13,7 +13,7 @@
       ],
       "files": [
         {
-          "path": "astrik/new-york/hello-world/hello-world.tsx",
+          "path": "delta/new-york/hello-world/hello-world.tsx",
           "type": "registry:component"
         }
       ]
@@ -35,7 +35,7 @@
       ],
       "files": [
         {
-          "path": "astrik/new-york/example-form/example-form.tsx",
+          "path": "delta/new-york/example-form/example-form.tsx",
           "type": "registry:component"
         }
       ]
@@ -50,24 +50,24 @@
       ],
       "files": [
         {
-          "path": "astrik/new-york/complex-component/page.tsx",
+          "path": "delta/new-york/complex-component/page.tsx",
           "type": "registry:page",
           "target": "app/pokemon/page.tsx"
         },
         {
-          "path": "astrik/new-york/complex-component/components/pokemon-card.tsx",
+          "path": "delta/new-york/complex-component/components/pokemon-card.tsx",
           "type": "registry:component"
         },
         {
-          "path": "astrik/new-york/complex-component/components/pokemon-image.tsx",
+          "path": "delta/new-york/complex-component/components/pokemon-image.tsx",
           "type": "registry:component"
         },
         {
-          "path": "astrik/new-york/complex-component/lib/pokemon.ts",
+          "path": "delta/new-york/complex-component/lib/pokemon.ts",
           "type": "registry:lib"
         },
         {
-          "path": "astrik/new-york/complex-component/hooks/use-pokemon.ts",
+          "path": "delta/new-york/complex-component/hooks/use-pokemon.ts",
           "type": "registry:hook"
         }
       ]
@@ -81,7 +81,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "astrik/components/tabs/tabs.tsx",
+          "path": "delta/components/tabs/tabs.tsx",
           "type": "registry:component"
         }
       ]
@@ -95,14 +95,14 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "astrik/components/admonition.tsx",
+          "path": "delta/components/admonition.tsx",
           "type": "registry:component",
-          "target": "astrik/components/admonition.tsx"
+          "target": "delta/components/admonition.tsx"
         },
         {
-          "path": "astrik/components/admonition-demo.tsx",
+          "path": "delta/components/admonition-demo.tsx",
           "type": "registry:component",
-          "target": "astrik/components/admonition-demo.tsx"
+          "target": "delta/components/admonition-demo.tsx"
         }
       ]
     },
@@ -120,14 +120,14 @@
       ],
       "files": [
         {
-          "path": "astrik/components/modal.tsx",
+          "path": "delta/components/modal.tsx",
           "type": "registry:component",
-          "target": "astrik/components/modal.tsx"
+          "target": "delta/components/modal.tsx"
         },
         {
-          "path": "astrik/components/modal-demo.tsx",
+          "path": "delta/components/modal-demo.tsx",
           "type": "registry:component",
-          "target": "astrik/components/modal-demo.tsx"
+          "target": "delta/components/modal-demo.tsx"
         }
       ]
     },
@@ -140,14 +140,14 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "astrik/open-sourced-inspired-collection/scramble-in.tsx",
+          "path": "delta/open-sourced-inspired-collection/scramble-in.tsx",
           "type": "registry:component",
-          "target": "astrik/open-sourced-inspired-collection/scramble-in.tsx"
+          "target": "delta/open-sourced-inspired-collection/scramble-in.tsx"
         },
         {
-          "path": "astrik/open-sourced-inspired-collection/scramble-in-demo.tsx",
+          "path": "delta/open-sourced-inspired-collection/scramble-in-demo.tsx",
           "type": "registry:component",
-          "target": "astrik/open-sourced-inspired-collection/scramble-in-demo.tsx"
+          "target": "delta/open-sourced-inspired-collection/scramble-in-demo.tsx"
         }
       ]
     },
@@ -160,14 +160,29 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "astrik/open-sourced-inspired-collection/neobrutalism-card.tsx",
+          "path": "delta/open-sourced-inspired-collection/neobrutalism-card.tsx",
           "type": "registry:component",
-          "target": "astrik/open-sourced-inspired-collection/neobrutalism-card.tsx"
+          "target": "delta/open-sourced-inspired-collection/neobrutalism-card.tsx"
         },
         {
-          "path": "astrik/open-sourced-inspired-collection/neobrutalism-card-demo.tsx",
+          "path": "delta/open-sourced-inspired-collection/neobrutalism-card-demo.tsx",
           "type": "registry:component",
-          "target": "astrik/open-sourced-inspired-collection/neobrutalism-card-demo.tsx"
+          "target": "delta/open-sourced-inspired-collection/neobrutalism-card-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "use-hq-image",
+      "type": "registry:hook",
+      "title": "useHqImage",
+      "description": "A hook for use-hq-image",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/hooks/use-hq-image.ts",
+          "type": "registry:hook",
+          "target": "delta/hooks/use-hq-image.ts"
         }
       ]
     }

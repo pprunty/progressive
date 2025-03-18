@@ -7,7 +7,7 @@ import { getCategories, getRegistryInfo } from "@/lib/registry"
 export default async function Home() {
   const categories = await getCategories()
   const registryInfo = getRegistryInfo()
-  const GITHUB_REPO_URL = "https://github.com/pprunty/astrik.dev"
+  const GITHUB_REPO_URL = "https://github.com/pprunty/delta.dev"
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
@@ -15,7 +15,7 @@ export default async function Home() {
         <div className="flex flex-col gap-1">
           <Link href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="group w-fit">
             <div className="flex items-center gap-1 hover:text-primary transition-colors">
-              <h1 className="text-md font-bold tracking-tight">{registryInfo.name} Registry</h1>
+              <h1 className="text-lg font-bold tracking-tight">{registryInfo.name} Registry</h1>
               <ArrowSquareOut className="h-3 w-3" weight="bold" />
             </div>
           </Link>

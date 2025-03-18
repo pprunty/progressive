@@ -8,7 +8,7 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "astrik/components/tabs/tabs.tsx",
+      "path": "delta/components/tabs/tabs.tsx",
       "content": "export function Tabs() {\n  return (\n    <div className=\"p-4 border rounded\">\n      <h2 className=\"text-lg font-medium\">Tabs</h2>\n      <p>Your component content here</p>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }

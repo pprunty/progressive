@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Card,
   CardHeader,
@@ -6,15 +5,16 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/astrik/open-sourced-inspired-collection/neobrutalism-card"
+} from "@/delta/open-sourced-inspired-collection/neobrutalism-card"
 
 // Demo component with multiple color variants
 const ColorVariantsDemo = () => {
   return (
-    <div className="space-y-8 p-4">
-      <h1 className="text-3xl font-bold mb-4">Neobrutalism Card Variants</h1>
+    <div className="container mx-auto max-w-7xl px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">Neobrutalism Card Variants</h1>
 
-      <div className="flex flex-wrap gap-6">
+      {/* Card grid - centered with justify-center */}
+      <div className="flex flex-wrap gap-6 justify-center">
         <Card color="blue" className="w-64">
           <CardHeader>
             <CardTitle>Blue Card</CardTitle>
@@ -76,10 +76,10 @@ const ColorVariantsDemo = () => {
         </Card>
       </div>
 
-      {/* Full example card that matches your reference */}
-      <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Complete Example</h2>
-        <Card color="blue" className="w-80">
+      {/* Full example card - centered with flex */}
+      <div className="mt-16 flex flex-col items-center">
+        <h2 className="text-2xl font-bold mb-6 text-center">Complete Example</h2>
+        <Card color="blue" className="w-full max-w-md">
           <CardHeader>
             <CardTitle>Create project</CardTitle>
             <CardDescription>Deploy your new project in one-click.</CardDescription>
@@ -87,7 +87,9 @@ const ColorVariantsDemo = () => {
           <CardContent>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
-                <label htmlFor="name" className="text-sm font-medium">Name</label>
+                <label htmlFor="name" className="text-sm font-medium">
+                  Name
+                </label>
                 <input
                   id="name"
                   placeholder="Name of your project"
@@ -95,7 +97,9 @@ const ColorVariantsDemo = () => {
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
-                <label htmlFor="framework" className="text-sm font-medium">Framework</label>
+                <label htmlFor="framework" className="text-sm font-medium">
+                  Framework
+                </label>
                 <div className="relative">
                   <select
                     id="framework"
@@ -104,7 +108,17 @@ const ColorVariantsDemo = () => {
                     <option>Select</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </div>
@@ -123,7 +137,8 @@ const ColorVariantsDemo = () => {
         </Card>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ColorVariantsDemo;
+export default ColorVariantsDemo
+

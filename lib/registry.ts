@@ -85,7 +85,7 @@ function categorizeComponents(items: ComponentType[]): CategoryType[] {
       const parts = path.split("/")
 
       // Use the directory after "registry" as the category
-      if (parts.length >= 3 && parts[0] === "astrik") {
+      if (parts.length >= 3 && parts[0] === "delta") {
         // Apply formatting to the category name
         category = formatCategoryName(parts[1])
       }

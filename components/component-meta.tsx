@@ -10,7 +10,7 @@ import { Check, Copy } from "lucide-react"
 export function ComponentMeta({ component }: { component: ComponentType }) {
   const [copied, setCopied] = useState(false)
 
-  const installCommand = `npx shadcn@latest add "https://astrik.dev/r/${component.name}.json"`
+  const installCommand = `npx shadcn@latest add "https://deltacomponents.dev/r/${component.name}.json"`
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(installCommand)

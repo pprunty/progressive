@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
-    registry: ["./astrik/**/*"],
+    registry: ["./delta/**/*"],
   },
   /* config options here */
 };

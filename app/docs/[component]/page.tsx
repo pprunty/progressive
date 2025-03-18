@@ -36,7 +36,7 @@ export default async function ComponentPage({ params }: PageProps) {
         {/* Back button with UI text */}
         <div className="absolute top-0 left-0 lg:relative lg:top-auto lg:left-auto lg:h-8 lg:ml-[-7rem] lg:mt-[-0.25rem] lg:mb-0 flex items-center">
           <Link href="/">
-            <Button variant="ghost" size="icon" className={cn("ml-[-10px]")}>
+            <Button variant="ghost" size="icon" className={cn("")}>
               <ArrowBendUpLeft className="h-4 w-4" />
             </Button>
           </Link>

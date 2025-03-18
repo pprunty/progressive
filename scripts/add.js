@@ -27,7 +27,7 @@ if (!fs.existsSync(libDir)) {
 }
 
 // Create category directory path (without component subdirectory)
-const categoryPath = path.join('astrik', category);
+const categoryPath = path.join('delta', category);
 fs.mkdirSync(categoryPath, { recursive: true });
 console.log(`Using category: ${category}`);
 
@@ -180,10 +180,10 @@ let componentEntry = '';
 
 // Different handling based on component type
 if (componentType === 'component') {
-  importStatement = `import { ${pascalCaseName}Demo } from "@/astrik/${category}/${componentName}-demo"`;
+  importStatement = `import { ${pascalCaseName}Demo } from "@/delta/${category}/${componentName}-demo"`;
   componentEntry = `  "${componentName}": {\n    component: ${pascalCaseName}Demo,\n  },`;
 } else if (componentType === 'page') {
-  importStatement = `import ${pascalCaseName}Page from "@/astrik/${category}/${componentName}-page"`;
+  importStatement = `import ${pascalCaseName}Page from "@/delta/${category}/${componentName}-page"`;
   componentEntry = `  "${componentName}": {\n    component: ${pascalCaseName}Page,\n  },`;
 } else if (componentType === 'lib') {
   // For libs, we don't add to registry components typically
