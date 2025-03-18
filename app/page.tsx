@@ -17,10 +17,10 @@ export default async function Home() {
             <div className="flex items-center gap-2 hover:text-primary transition-colors">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="28"
+                height="28"
                 viewBox="0 0 400 400"
-                className="fill-foreground dark:fill-foreground transition-colors"
+                className="fill-foreground dark:fill-foreground rounded-2xl transition-colors"
               >
                 <path d="m87.347 290.6 112.65-256.99h6.2996l106.35 256.99zm181.02-15.749-75.04-184.54-81.155 184.54z" />
               </svg>

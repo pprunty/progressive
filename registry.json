@@ -142,12 +142,12 @@
         {
           "path": "delta/open-sourced-inspired-collection/scramble-in.tsx",
           "type": "registry:component",
-          "target": "delta/open-sourced-inspired-collection/scramble-in.tsx"
+          "target": "delta/components/scramble-in.tsx"
         },
         {
           "path": "delta/open-sourced-inspired-collection/scramble-in-demo.tsx",
           "type": "registry:component",
-          "target": "delta/open-sourced-inspired-collection/scramble-in-demo.tsx"
+          "target": "delta/components/scramble-in-demo.tsx"
         }
       ]
     },
@@ -162,18 +162,19 @@
         {
           "path": "delta/open-sourced-inspired-collection/neobrutalism-card.tsx",
           "type": "registry:component",
-          "target": "delta/open-sourced-inspired-collection/neobrutalism-card.tsx"
+          "target": "delta/components/neobrutalism-card.tsx"
         },
         {
           "path": "delta/open-sourced-inspired-collection/neobrutalism-card-demo.tsx",
           "type": "registry:component",
-          "target": "delta/open-sourced-inspired-collection/neobrutalism-card-demo.tsx"
+          "target": "delta/components/neobrutalism-card-demo.tsx"
         }
       ]
     },
     {
       "name": "use-hq-image",
       "type": "registry:hook",
+      "badge": "new",
       "title": "useHqImage",
       "description": "A hook for use-hq-image",
       "dependencies": [],

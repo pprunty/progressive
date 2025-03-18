@@ -6,6 +6,7 @@ export function ComponentPreview({ component }: { component: ComponentType }) {
   // Generate a URL for the OpenInV0Button that points to your API
   const openInV0Url = encodeURIComponent(`https://deltacomponents.dev/r/${component.name}.json`)
 
+  console.log(encodeURIComponent(`https://deltacomponents.dev/r/${component.name}.json`))
   // Get the component from the registry
   const Component = registry[component.name]?.component
 

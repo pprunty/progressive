@@ -46,17 +46,7 @@ export default async function ComponentPage({ params }: PageProps) {
         {/* Title and badge container - positioned to the left */}
         <div className="flex items-center gap-2 pl-0">
           <h1 className="text-lg font-bold mt-10 md:mt-[-30]">{componentName.title}</h1>
-          {componentName.badge && (
-            <div className="ml-2">
-              <span
-                className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
-                  componentName.badge === "new" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"
-                }`}
-              >
-                {componentName.badge}
-              </span>
-            </div>
-          )}
+
         </div>
       </div>
 

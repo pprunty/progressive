@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run registry:build && next build",
     "start": "next start",
     "lint": "next lint",
     "registry:build": "shadcn build",
@@ -12,7 +12,9 @@
     "registry:add:page": "node scripts/add.js page",
     "registry:add:lib": "node scripts/add.js lib",
     "registry:add:hook": "node scripts/add.js hook",
-    "registry:remove": "node scripts/rm.js"
+    "registry:remove": "node scripts/rm.js",
+    "pwa": "node scripts/pwa.js",
+    "postbuild": "npm run pwa"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
