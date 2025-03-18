@@ -12,30 +12,31 @@ export default async function Home() {
   return (
     <div className="max-w-7xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
       <header className="flex items-center justify-between gap-1">
-        <div className="flex flex-col gap-1">
-          <Link href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="group w-fit">
-            <div className="flex items-center gap-2 hover:text-primary transition-colors">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 400 400"
-                className="fill-foreground dark:fill-foreground rounded-2xl transition-colors"
-              >
-                <path d="m87.347 290.6 112.65-256.99h6.2996l106.35 256.99zm181.02-15.749-75.04-184.54-81.155 184.54z" />
-              </svg>
-              <h1 className="text-lg font-bold tracking-tight">{registryInfo.name} Registry</h1>
-              <ArrowSquareOut className="h-3 w-3" weight="bold" />
-            </div>
-          </Link>
-          <p className="text-md text-muted-foreground">
-            A collection of open source and progressively-styled reusable components for distribution by shadcn.
-          </p>
-        </div>
-        <div className="mx-2">
-          <ThemeSwitcher />
-        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="34"
+          viewBox="0 0 400 400"
+          className="fill-foreground dark:fill-foreground rounded-2xl transition-colors"
+        >
+          <path d="m87.347 290.6 112.65-256.99h6.2996l106.35 256.99zm181.02-15.749-75.04-184.54-81.155 184.54z" />
+        </svg>
+        <ThemeSwitcher />
       </header>
+
+      <div className="flex flex-col gap-1">
+        <Link href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="group w-fit">
+          <div className="flex items-center gap-2 hover:text-primary transition-colors">
+            <h1 className="text-lg font-bold tracking-tight underline decoration-1 underline-offset-4 decoration-muted-foreground/50 hover:decoration-primary transition-all duration-300">
+              {registryInfo.name} Registry
+            </h1>
+            <ArrowSquareOut className="h-3 w-3" weight="bold" />
+          </div>
+        </Link>
+        <p className="text-md text-muted-foreground">
+          A collection of open source and progressively-styled reusable components for distribution by shadcn.
+        </p>
+      </div>
 
       <main className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {categories.map((category) => (
@@ -47,7 +48,7 @@ export default async function Home() {
                 <div key={item.name} className="flex items-center gap-2">
                   <Link
                     href={`/docs/${item.name}`}
-                    className="text-md decoration-1 font-medium underline underline-offset-2 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary hover:text-primary"
+                    className="text-[15px] decoration-1 font-medium underline underline-offset-2 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary hover:text-primary"
                   >
                     {item.title}
                   </Link>
