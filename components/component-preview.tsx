@@ -3,8 +3,8 @@ import { PreviewContainer } from "./preview-container"
 import { registry } from "@/lib/registry-components"
 
 export function ComponentPreview({ component }: { component: ComponentType }) {
-  // Generate a URL for the OpenInV0Button
-  const openInV0Url = encodeURIComponent(`https://ui.shadcn.com/registry/${component.name}`)
+  // Generate a URL for the OpenInV0Button that points to your API
+  const openInV0Url = encodeURIComponent(`https://deltacomponents.dev/r/${component.name}.json`)
 
   // Get the component from the registry
   const Component = registry[component.name]?.component
@@ -25,3 +25,4 @@ export function ComponentPreview({ component }: { component: ComponentType }) {
     </PreviewContainer>
   )
 }
+

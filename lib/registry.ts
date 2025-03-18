@@ -6,16 +6,15 @@ export interface RegistryFile {
   target?: string
 }
 
-export interface ComponentType {
+export type ComponentType = {
   name: string
-  type: string
   title: string
   description: string
-  dependencies?: string[]
-  registryDependencies?: string[]
-  files: RegistryFile[]
-  badge?: "new" | "beta"
-  category?: string
+  files: {
+    path: string
+    content: string
+    type: "registry:component" | "registry:example" | "registry:dependency"
+  }[]
 }
 
 export interface CategoryType {
