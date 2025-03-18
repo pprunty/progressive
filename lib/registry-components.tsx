@@ -7,6 +7,7 @@ import { ExampleForm } from "@/astrik/new-york/example-form/example-form"
 import PokemonPage from "@/astrik/new-york/complex-component/page"
 import { Tabs } from "@/astrik/components/tabs/tabs"
 import AdmonitionDemo from "@/astrik/components/admonition-demo"
+import { ModalDemo } from "@/astrik/components/modal-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -24,7 +25,10 @@ export const registry: Record<string, { component: React.ComponentType }> = {
     component: Tabs
   },
   "admonition": {
-    component: AdmonitionDemo,
+    component: AdmonitionDemo
+  },
+  "modal": {
+    component: ModalDemo,
   },
 }
 

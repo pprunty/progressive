@@ -1,6 +1,23 @@
+"use client"
+
+import { useState } from "react"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import type { ComponentType } from "@/lib/registry"
+import { Button } from "@/components/ui/button"
+import { Check, Copy } from "lucide-react"
 
 export function ComponentMeta({ component }: { component: ComponentType }) {
+  const [copied, setCopied] = useState(false)
+
+  const installCommand = `npx shadcn@latest add "https://astrik.dev/r/${component.name}.json"`
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(installCommand)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -36,8 +53,28 @@ export function ComponentMeta({ component }: { component: ComponentType }) {
 
       <div>
         <h3 className="text-lg font-medium">Installation</h3>
-        <div className="mt-2 rounded-md bg-muted p-4">
-          <code className="text-sm">npx shadcn@latest add {component.name}</code>
+        <div className="mt-2 relative">
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-5 top-2 z-10"
+            onClick={copyToClipboard}
+          >
+            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+            <span className="sr-only">Copy installation command</span>
+          </Button>
+          <SyntaxHighlighter
+            language="bash"
+            style={vscDarkPlus}
+            customStyle={{
+              borderRadius: "0.5rem",
+              padding: "1.5rem",
+              fontSize: "0.875rem",
+              margin: 0,
+            }}
+          >
+            {installCommand}
+          </SyntaxHighlighter>
         </div>
       </div>
 
@@ -55,4 +92,3 @@ export function ComponentMeta({ component }: { component: ComponentType }) {
     </div>
   )
 }
-

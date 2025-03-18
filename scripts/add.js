@@ -26,21 +26,30 @@ if (!fs.existsSync(libDir)) {
   fs.mkdirSync(libDir, { recursive: true });
 }
 
-// Create directory path with specified category
-const basePath = path.join('registry', category, componentName);
-fs.mkdirSync(basePath, { recursive: true });
+// Create category directory path (without component subdirectory)
+const categoryPath = path.join('astrik', category);
+fs.mkdirSync(categoryPath, { recursive: true });
 console.log(`Using category: ${category}`);
 
 // Create component file based on type
 let filePath = '';
+let demoFilePath = '';
 let fileContent = '';
+let demoFileContent = '';
 let registryType = '';
+
+// Generate proper component name for import
+const pascalCaseName = componentName
+  .split('-')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join('');
 
 switch (componentType) {
   case 'component':
-    filePath = path.join(basePath, `${componentName}.tsx`);
+    filePath = path.join(categoryPath, `${componentName}.tsx`);
+    demoFilePath = path.join(categoryPath, `${componentName}-demo.tsx`);
     registryType = 'registry:component';
-    fileContent = `export function ${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('')}() {
+    fileContent = `export function ${pascalCaseName}() {
   return (
     <div className="p-4 border rounded">
       <h2 className="text-lg font-medium">${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</h2>
@@ -49,11 +58,24 @@ switch (componentType) {
   );
 }
 `;
+    demoFileContent = `import { ${pascalCaseName} } from "./${componentName}";
+
+export function ${pascalCaseName}Demo() {
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-medium">Demo: ${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</h3>
+      <div className="p-6 border rounded-lg bg-slate-50 dark:bg-slate-900">
+        <${pascalCaseName} />
+      </div>
+    </div>
+  );
+}
+`;
     break;
   case 'page':
-    filePath = path.join(basePath, 'page.tsx');
+    filePath = path.join(categoryPath, `${componentName}-page.tsx`);
     registryType = 'registry:page';
-    fileContent = `export default function ${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('')}Page() {
+    fileContent = `export default function ${pascalCaseName}Page() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-4">${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Page</h1>
@@ -66,7 +88,7 @@ switch (componentType) {
 `;
     break;
   case 'lib':
-    filePath = path.join(basePath, `${componentName}.ts`);
+    filePath = path.join(categoryPath, `${componentName}.ts`);
     registryType = 'registry:lib';
     fileContent = `// Utility functions for ${componentName}
 
@@ -80,13 +102,13 @@ export function anotherFunction(param: string) {
 `;
     break;
   case 'hook':
-    filePath = path.join(basePath, `use-${componentName}.ts`);
+    filePath = path.join(categoryPath, `use-${componentName}.ts`);
     registryType = 'registry:hook';
     fileContent = `"use client"
 
 import { useState, useEffect } from 'react';
 
-export function use${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('')}() {
+export function use${pascalCaseName}() {
   const [state, setState] = useState(null);
 
   useEffect(() => {
@@ -104,9 +126,33 @@ export function use${componentName.split('-').map(word => word.charAt(0).toUpper
 fs.writeFileSync(filePath, fileContent);
 console.log(`Created: ${filePath}`);
 
+// Create demo file for components
+if (componentType === 'component') {
+  fs.writeFileSync(demoFilePath, demoFileContent);
+  console.log(`Created: ${demoFilePath}`);
+}
+
 // Update registry.json
 const registryPath = path.join('registry.json');
 const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+
+// Create files array for registry
+let files = [
+  {
+    path: filePath,
+    type: registryType,
+    target: filePath
+  }
+];
+
+// Add demo file to registry files if it's a component
+if (componentType === 'component') {
+  files.push({
+    path: demoFilePath,
+    type: registryType,
+    target: demoFilePath
+  });
+}
 
 // Create new item
 const newItem = {
@@ -116,12 +162,7 @@ const newItem = {
   description: `A ${componentType} for ${componentName}`,
   dependencies: [],
   registryDependencies: [],
-  files: [
-    {
-      path: filePath,
-      type: registryType
-    }
-  ]
+  files: files
 };
 
 // Add to registry
@@ -137,18 +178,12 @@ let registryComponentsContent = '';
 let importStatement = '';
 let componentEntry = '';
 
-// Generate proper component name for import
-const pascalCaseName = componentName
-  .split('-')
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-  .join('');
-
 // Different handling based on component type
 if (componentType === 'component') {
-  importStatement = `import { ${pascalCaseName} } from "@/registry/${category}/${componentName}/${componentName}"`;
-  componentEntry = `  "${componentName}": {\n    component: ${pascalCaseName},\n  },`;
+  importStatement = `import { ${pascalCaseName}Demo } from "@/astrik/${category}/${componentName}-demo"`;
+  componentEntry = `  "${componentName}": {\n    component: ${pascalCaseName}Demo,\n  },`;
 } else if (componentType === 'page') {
-  importStatement = `import ${pascalCaseName}Page from "@/registry/${category}/${componentName}/page"`;
+  importStatement = `import ${pascalCaseName}Page from "@/astrik/${category}/${componentName}-page"`;
   componentEntry = `  "${componentName}": {\n    component: ${pascalCaseName}Page,\n  },`;
 } else if (componentType === 'lib') {
   // For libs, we don't add to registry components typically
@@ -222,7 +257,8 @@ console.log(`
 ✅ ${componentType} "${componentName}" has been added to the registry in category "${category}"!
 
 Next steps:
-1. Edit the component file: ${filePath}
-2. Update dependencies in registry.json if needed
-3. Run: npm run registry:build
+1. Edit the component file: ${filePath}${componentType === 'component' ? `
+2. Edit the demo file: ${demoFilePath}` : ''}
+${componentType !== 'component' ? '2.' : '3.'} Update dependencies in registry.json if needed
+${componentType !== 'component' ? '3.' : '4.'} Run: npm run registry:build
 `);

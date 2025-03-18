@@ -34,8 +34,8 @@ let category = 'new-york'; // Default
 if (componentFiles.length > 0) {
   const filePath = componentFiles[0].path;
   const pathParts = filePath.split(path.sep);
-  // Registry path pattern is typically: registry/{category}/{component-name}/...
-  if (pathParts.length >= 3 && pathParts[0] === 'registry') {
+  // New path pattern is typically: astrik/{category}/{component-name}.tsx
+  if (pathParts.length >= 3 && pathParts[0] === 'astrik') {
     category = pathParts[1];
   }
 }
@@ -58,12 +58,13 @@ if (fs.existsSync(registryComponentsPath)) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join('');
 
-  // Remove import statement
+  // Remove import statement based on component type and new path structure
   let importPattern;
   if (componentType === 'component') {
-    importPattern = new RegExp(`import\\s+\\{\\s*${pascalCaseName}\\s*\\}\\s+from\\s+["']@/registry/${category}/${componentName}/${componentName}["'].*?\n`, 'g');
+    // Now imports demo component
+    importPattern = new RegExp(`import\\s+\\{\\s*${pascalCaseName}Demo\\s*\\}\\s+from\\s+["']@/registry/${category}/${componentName}-demo["'].*?\n`, 'g');
   } else if (componentType === 'page') {
-    importPattern = new RegExp(`import\\s+${pascalCaseName}Page\\s+from\\s+["']@/registry/${category}/${componentName}/page["'].*?\n`, 'g');
+    importPattern = new RegExp(`import\\s+${pascalCaseName}Page\\s+from\\s+["']@/registry/${category}/${componentName}-page["'].*?\n`, 'g');
   }
 
   if (importPattern) {
@@ -81,42 +82,51 @@ if (fs.existsSync(registryComponentsPath)) {
   console.log(`Removed "${componentName}" from registry-components.tsx`);
 }
 
-// Remove component files
+// Remove component files based on the new file structure
 if (componentFiles.length > 0) {
-  const componentDir = path.join('registry', category, componentName);
+  // Delete each file in the component files array
+  componentFiles.forEach(fileObj => {
+    const filePath = fileObj.path;
 
-  if (fs.existsSync(componentDir)) {
-    // Read directory to get all files
-    const files = fs.readdirSync(componentDir, { withFileTypes: true });
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      console.log(`Deleted file: ${filePath}`);
+    } else {
+      console.warn(`File not found: ${filePath}`);
+    }
+  });
 
-    // Delete each file in the directory
-    files.forEach(file => {
-      if (file.isFile()) {
-        fs.unlinkSync(path.join(componentDir, file.name));
-        console.log(`Deleted file: ${path.join(componentDir, file.name)}`);
-      } else if (file.isDirectory()) {
-        // Handle subdirectories (like components, hooks, lib)
-        const subDir = path.join(componentDir, file.name);
-        const subFiles = fs.readdirSync(subDir, { withFileTypes: true });
+  // Also try to remove potential demo file if not in the componentFiles list
+  if (componentType === 'component') {
+    const demoFilePath = path.join('astrik', category, `${componentName}-demo.tsx`);
+    if (fs.existsSync(demoFilePath)) {
+      fs.unlinkSync(demoFilePath);
+      console.log(`Deleted file: ${demoFilePath}`);
+    }
 
-        subFiles.forEach(subFile => {
-          if (subFile.isFile()) {
-            fs.unlinkSync(path.join(subDir, subFile.name));
-            console.log(`Deleted file: ${path.join(subDir, subFile.name)}`);
-          }
-        });
-
-        // Remove subdirectory after files are deleted
-        fs.rmdirSync(subDir);
-        console.log(`Removed subdirectory: ${subDir}`);
-      }
-    });
-
-    // Remove component directory after all files are deleted
-    fs.rmdirSync(componentDir);
-    console.log(`Removed component directory: ${componentDir}`);
-  } else {
-    console.warn(`Component directory not found: ${componentDir}`);
+    const componentFilePath = path.join('astrik', category, `${componentName}.tsx`);
+    if (fs.existsSync(componentFilePath)) {
+      fs.unlinkSync(componentFilePath);
+      console.log(`Deleted file: ${componentFilePath}`);
+    }
+  } else if (componentType === 'page') {
+    const pageFilePath = path.join('astrik', category, `${componentName}-page.tsx`);
+    if (fs.existsSync(pageFilePath)) {
+      fs.unlinkSync(pageFilePath);
+      console.log(`Deleted file: ${pageFilePath}`);
+    }
+  } else if (componentType === 'lib') {
+    const libFilePath = path.join('astrik', category, `${componentName}.ts`);
+    if (fs.existsSync(libFilePath)) {
+      fs.unlinkSync(libFilePath);
+      console.log(`Deleted file: ${libFilePath}`);
+    }
+  } else if (componentType === 'hook') {
+    const hookFilePath = path.join('astrik', category, `use-${componentName}.ts`);
+    if (fs.existsSync(hookFilePath)) {
+      fs.unlinkSync(hookFilePath);
+      console.log(`Deleted file: ${hookFilePath}`);
+    }
   }
 }
 

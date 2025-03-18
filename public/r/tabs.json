@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:component",
+  "title": "Tabs",
+  "description": "A component for tabs",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "astrik/components/tabs/tabs.tsx",
+      "content": "export function Tabs() {\n  return (\n    <div className=\"p-4 border rounded\">\n      <h2 className=\"text-lg font-medium\">Tabs</h2>\n      <p>Your component content here</p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -105,6 +105,31 @@
           "target": "astrik/components/admonition-demo.tsx"
         }
       ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:component",
+      "title": "Modal",
+      "description": "A customizable modal component with animations and various style options",
+      "dependencies": [
+        "framer-motion",
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "astrik/components/modal.tsx",
+          "type": "registry:component",
+          "target": "astrik/components/modal.tsx"
+        },
+        {
+          "path": "astrik/components/modal-demo.tsx",
+          "type": "registry:component",
+          "target": "astrik/components/modal-demo.tsx"
+        }
+      ]
     }
   ]
 }
