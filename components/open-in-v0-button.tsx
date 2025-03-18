@@ -12,6 +12,7 @@ export function OpenInV0Button({ url }: { url: string }) {
         href={`https://v0.dev/chat/api/open?url=${url}`}
         target="_blank"
         rel="noreferrer"
+        className="no-after"
       >
         Open in{" "}
         <svg

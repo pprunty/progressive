@@ -22,27 +22,8 @@ export default function UseHQImageDemo() {
       </div>
 
       <div className="text-center">
-        <h3 className="text-lg font-medium text-foreground">{image.title}</h3>
-        <p className="text-sm text-muted-foreground">By {image.author}</p>
-        <a
-          href={image.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-primary hover:underline mt-1 inline-block"
-        >
-          View on Unsplash
-        </a>
-      </div>
-
-      <button
-        onClick={() => {
-          setLoading(true)
-          refreshImage()
-        }}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
-      >
-        Get New Image
-      </button>
+        <p className="text-sm text-muted-foreground">Click the refresh button to get a new image.</p>
+    </div>
     </div>
   )
 }

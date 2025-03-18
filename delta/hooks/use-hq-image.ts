@@ -2,6 +2,45 @@
 
 import { useState, useCallback } from "react"
 
+export type HqImage = {
+  url: string
+  author: string
+  link: string
+  title: string
+}
+
+/**
+ * A hook that returns a random high-quality image from a curated collection
+ * @param initialIndex Optional specific index to use instead of random selection
+ * @returns An object containing the selected image and a function to refresh it
+ */
+export function useHqImage(initialIndex?: number) {
+  // Get a random image from the collection
+  const getRandomImage = useCallback((): HqImage => {
+    const randomIndex = Math.floor(Math.random() * exampleImages.length)
+    return exampleImages[randomIndex]
+  }, [])
+
+  // Initialize state with either the specified image or a random one
+  const [image, setImage] = useState<HqImage>(() => {
+    if (initialIndex !== undefined && initialIndex >= 0 && initialIndex < exampleImages.length) {
+      return exampleImages[initialIndex]
+    }
+    return getRandomImage()
+  })
+
+  // Function to refresh the image with a new random one
+  const refreshImage = useCallback(() => {
+    setImage(getRandomImage())
+  }, [getRandomImage])
+
+  return {
+    image,
+    refreshImage,
+    allImages: exampleImages,
+  }
+}
+
 // Hardcoded image collection
 export const exampleImages = [
   {
@@ -53,42 +92,3 @@ export const exampleImages = [
     title: "A Table Topped with Two Wine Glasses and Plates",
   },
 ]
-
-export type HqImage = {
-  url: string
-  author: string
-  link: string
-  title: string
-}
-
-/**
- * A hook that returns a random high-quality image from a curated collection
- * @param initialIndex Optional specific index to use instead of random selection
- * @returns An object containing the selected image and a function to refresh it
- */
-export function useHqImage(initialIndex?: number) {
-  // Get a random image from the collection
-  const getRandomImage = useCallback((): HqImage => {
-    const randomIndex = Math.floor(Math.random() * exampleImages.length)
-    return exampleImages[randomIndex]
-  }, [])
-
-  // Initialize state with either the specified image or a random one
-  const [image, setImage] = useState<HqImage>(() => {
-    if (initialIndex !== undefined && initialIndex >= 0 && initialIndex < exampleImages.length) {
-      return exampleImages[initialIndex]
-    }
-    return getRandomImage()
-  })
-
-  // Function to refresh the image with a new random one
-  const refreshImage = useCallback(() => {
-    setImage(getRandomImage())
-  }, [getRandomImage])
-
-  return {
-    image,
-    refreshImage,
-    allImages: exampleImages,
-  }
-}

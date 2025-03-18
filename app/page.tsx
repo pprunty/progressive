@@ -28,7 +28,7 @@ export default async function Home() {
       <main className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {categories.map((category) => (
           <div key={category.title} className="flex flex-col gap-4">
-            <h2 className="textx-md font-serif font-medium italic text-foreground/80">{category.title}</h2>
+            <h2 className="text-md font-serif font-normal italic text-muted-foreground">{category.title}</h2>
 
             <div className="flex flex-col space-y-2">
               {category.items.map((item) => (

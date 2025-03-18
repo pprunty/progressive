@@ -11,6 +11,9 @@ import { ModalDemo } from "@/delta/components/modal-demo"
 import ScrambleInDemo from "@/delta/open-source-inspired-collection/scramble-in-demo"
 import NeobrutalismCardDemo from "@/delta/open-source-inspired-collection/neobrutalism-card-demo"
 import UseHQImageDemo from "@/delta/hooks/use-hq-image-demo";
+import { IosScreenDemo } from "@/delta/other/ios-screen-demo"
+import { IosScreenPreviewDemo } from "@/delta/other/ios-screen-preview-demo"
+import BottomBarDemo from "@/delta/layout/bottom-bar-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -31,16 +34,22 @@ export const registry: Record<string, { component: React.ComponentType }> = {
     component: AdmonitionDemo
   },
   "modal": {
-    component: ModalDemo,
+    component: ModalDemo
   },
   "scramble-in": {
-    component: ScrambleInDemo,
+    component: ScrambleInDemo
   },
   "neobrutalism-card": {
-    component: NeobrutalismCardDemo,
+    component: NeobrutalismCardDemo
   },
   "use-hq-image": {
     component: UseHQImageDemo
   }
-  }
+  ,
+  "ios-screen-preview": {
+    component: IosScreenPreviewDemo,
+  },
+  "bottom-bar": {
+    component: BottomBarDemo,
+  },}
 

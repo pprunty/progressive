@@ -45,7 +45,7 @@ export default async function ComponentPage({ params }: PageProps) {
 
         {/* Title and badge container - positioned to the left */}
         <div className="flex items-center gap-2 pl-0">
-          <h1 className="text-2xl font-bold mt-10 md:mt-[-30]">{componentName.title}</h1>
+          <h1 className="text-2xl font-bold mt-10 sm:mt-[-30]">{componentName.title}</h1>
 
         </div>
       </div>

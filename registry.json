@@ -186,6 +186,46 @@
           "target": "delta/hooks/use-hq-image.ts"
         }
       ]
+    },
+    {
+      "name": "ios-screen-preview",
+      "type": "registry:component",
+      "title": "iOS Screen Preview",
+      "description": "A component for ios-screen-preview",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/other/ios-screen-preview.tsx",
+          "type": "registry:component",
+          "target": "delta/other/ios-screen-preview.tsx"
+        },
+        {
+          "path": "delta/other/ios-screen-preview-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/other/ios-screen-preview-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bottom-bar",
+      "type": "registry:component",
+      "title": "Bottom Bar",
+      "description": "A component for bottom-bar",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/layout/bottom-bar.tsx",
+          "type": "registry:component",
+          "target": "delta/layout/bottom-bar.tsx"
+        },
+        {
+          "path": "delta/layout/bottom-bar-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/layout/bottom-bar-demo.tsx"
+        }
+      ]
     }
   ]
 }
