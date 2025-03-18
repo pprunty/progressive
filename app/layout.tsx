@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { themeEffect } from "@/components/theme-effect"
+import config from "@/app/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,46 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Delta Components",
-  description: "Progressively styled components for distribution by shadcn.",
+title: `${config.companyName}`,
+description: `${config.companyDescription}`,
+keywords: [],
+manifest:
+  process.env.NODE_ENV === 'production'
+    ? '/manifest.prod.json'
+    : '/manifest.json',
+openGraph: {
+  title: `${config.companyName}`,
+  description: `${config.companyDescription}`,
+  url: config.url,
+  siteName: config.companyName,
+  images: [
+    {
+      url: `${config.url}/icon.webp`,
+      alt: ``,
+    },
+  ],
+  type: 'website',
+},
+twitter: {
+  card: 'summary_large_image',
+  site: config.socials.twitter,
+  creator: config.socials.twitter,
+  images: [
+    {
+      url: `${config.url}/icon.webp`,
+      alt: `${config.companyName}`,
+    },
+  ],
+},
+icons: {
+  icon: [
+    { url: '/icons/192x192.png', sizes: '192x192', type: 'image/png' },
+  ],
+  apple: [
+    { url: '/icons/180x180.png', sizes: '180x180', type: 'image/png' },
+  ],
+},
+metadataBase: new URL(config.url),
 }
 
 export default function RootLayout({
