@@ -40,6 +40,7 @@ export function ComponentCode({ component }: { component: ComponentType }) {
                 // Use cache: 'force-cache' to leverage browser's HTTP cache
                 cache: 'force-cache'
               })
+              console.log(filePath)
 
               if (response.ok) {
                 const data = await response.json()

@@ -95,12 +95,12 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "astrik/components/admonition/admonition.tsx",
+          "path": "astrik/components/admonition.tsx",
           "type": "registry:component",
           "target": "astrik/components/admonition.tsx"
         },
         {
-          "path": "astrik/components/admonition/admonition-demo.tsx",
+          "path": "astrik/components/admonition-demo.tsx",
           "type": "registry:component",
           "target": "astrik/components/admonition-demo.tsx"
         }
