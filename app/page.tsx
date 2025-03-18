@@ -14,7 +14,16 @@ export default async function Home() {
       <header className="flex items-center justify-between gap-1">
         <div className="flex flex-col gap-1">
           <Link href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="group w-fit">
-            <div className="flex items-center gap-1 hover:text-primary transition-colors">
+            <div className="flex items-center gap-2 hover:text-primary transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 400 400"
+                className="fill-foreground dark:fill-foreground transition-colors"
+              >
+                <path d="m87.347 290.6 112.65-256.99h6.2996l106.35 256.99zm181.02-15.749-75.04-184.54-81.155 184.54z" />
+              </svg>
               <h1 className="text-lg font-bold tracking-tight">{registryInfo.name} Registry</h1>
               <ArrowSquareOut className="h-3 w-3" weight="bold" />
             </div>
@@ -24,7 +33,7 @@ export default async function Home() {
           </p>
         </div>
         <div className="mx-2">
-        <ThemeSwitcher />
+          <ThemeSwitcher />
         </div>
       </header>
 

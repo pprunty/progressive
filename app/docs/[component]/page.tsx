@@ -34,7 +34,7 @@ export default async function ComponentPage({ params }: PageProps) {
     <div className="container py-10">
       <div className="relative">
         {/* Back button with UI text */}
-        <div className="absolute top-0 left-0 lg:relative lg:top-auto lg:left-auto lg:h-8 lg:ml-[-7rem] lg:mt-[-0.25rem] lg:mb-0 flex items-center">
+        <div className="absolute top-0 left-0 lg:relative lg:top-auto lg:left-auto lg:h-8 lg:ml-[-7rem]  lg:mb-0 flex items-center">
           <Link href="/">
             <Button variant="ghost" size="icon" className={cn("")}>
               <ArrowBendUpLeft className="h-4 w-4" />
@@ -45,7 +45,7 @@ export default async function ComponentPage({ params }: PageProps) {
 
         {/* Title and badge container - positioned to the left */}
         <div className="flex items-center gap-2 pl-0">
-          <h1 className="text-lg font-bold mt-10 md:pt-0">{componentName.title}</h1>
+          <h1 className="text-lg font-bold mt-10 md:mt-[-30]">{componentName.title}</h1>
           {componentName.badge && (
             <div className="ml-2">
               <span

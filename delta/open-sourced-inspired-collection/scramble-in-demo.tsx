@@ -35,7 +35,7 @@ const ScrambleInDemo = () => {
       {/* First Section - Basic Example */}
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
         <h2 className="text-2xl font-bold mb-6">Basic ScrambleIn</h2>
-        <div className="text-xl">
+        <div className="text-md">
           <ScrambleIn
             text="This text will scramble in when it comes into view!"
             autoStart={false}
@@ -49,7 +49,7 @@ const ScrambleInDemo = () => {
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
         <h2 className="text-2xl font-bold mb-6">Speed Variations</h2>
         <div className="space-y-6">
-          <div className="text-xl">
+          <div className="text-md">
             <ScrambleIn
               text="Fast scramble effect (25ms)"
               scrambleSpeed={25}
@@ -59,7 +59,7 @@ const ScrambleInDemo = () => {
               scrambledClassName="text-primary"
             />
           </div>
-          <div className="text-xl">
+          <div className="text-md">
             <ScrambleIn
               text="Slow scramble effect (100ms)"
               scrambleSpeed={100}
@@ -76,7 +76,7 @@ const ScrambleInDemo = () => {
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
         <h2 className="text-2xl font-bold mb-6">Custom Characters</h2>
         <div className="space-y-6">
-          <div className="text-xl">
+          <div className="text-md">
             <ScrambleIn
               text="Using numbers for scrambling"
               scrambleSpeed={50}
@@ -87,7 +87,7 @@ const ScrambleInDemo = () => {
               scrambledClassName="text-primary font-mono"
             />
           </div>
-          <div className="text-xl">
+          <div className="text-md">
             <ScrambleIn
               text="Using symbols for scrambling"
               scrambleSpeed={40}
@@ -107,7 +107,7 @@ const ScrambleInDemo = () => {
         <h2 className="text-2xl font-bold mb-6">Retrigger on Intersection</h2>
         <p className="mb-4 text-muted-foreground">This text will re-scramble each time you scroll back to it.</p>
         <div className="space-y-6">
-          <div className="text-xl">
+          <div className="text-md">
             <ScrambleIn
               text="I will scramble again each time you see me!"
               scrambleSpeed={30}
@@ -118,7 +118,7 @@ const ScrambleInDemo = () => {
               scrambledClassName="text-accent-foreground"
             />
           </div>
-          <div className="text-xl mt-8">
+          <div className="text-md mt-8">
             <ScrambleIn
               text="Me too! Watch me scramble again when you come back."
               scrambleSpeed={40}
