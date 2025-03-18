@@ -1,40 +1,27 @@
 import Link from "next/link"
-import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
 import { Badge } from "@/components/badge"
-import { ThemeSwitcher } from "@/components/theme-switcher"
 import { getCategories, getRegistryInfo } from "@/lib/registry"
 
 export default async function Home() {
   const categories = await getCategories()
   const registryInfo = getRegistryInfo()
-  const GITHUB_REPO_URL = "https://github.com/pprunty/delta.dev"
+  const GITHUB_REPO_URL = "https://github.com/pprunty/deltacomponents.dev"
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
-      <header className="flex items-center justify-between gap-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="34"
-          height="34"
-          viewBox="0 0 400 400"
-          className="fill-foreground dark:fill-foreground rounded-2xl transition-colors"
-        >
-          <path d="m87.347 290.6 112.65-256.99h6.2996l106.35 256.99zm181.02-15.749-75.04-184.54-81.155 184.54z" />
-        </svg>
-        <ThemeSwitcher />
-      </header>
-
+    <div className="max-w-7xl mx-auto flex flex-col min-h-svh py-8 gap-8">
       <div className="flex flex-col gap-1">
-        <Link href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="group w-fit">
-          <div className="flex items-center gap-2 hover:text-primary transition-colors">
-            <h1 className="text-lg font-bold tracking-tight underline decoration-1 underline-offset-4 decoration-muted-foreground/50 hover:decoration-primary transition-all duration-300">
-              {registryInfo.name} Registry
-            </h1>
-            <ArrowSquareOut className="h-3 w-3" weight="bold" />
-          </div>
+        <Link
+          href={GITHUB_REPO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group w-fit flex"
+        >
+          <h1 className="text-2xl font-bold tracking-tight underline decoration-1 underline-offset-4 decoration-muted-foreground/50 hover:decoration-primary transition-all duration-300">
+            {registryInfo.name} Registry
+          </h1>
         </Link>
         <p className="text-md text-muted-foreground">
-          A collection of open source and progressively-styled reusable components for distribution by shadcn.
+          A collection of open source, progressively-styled and reusable components for distribution by shadcn.
         </p>
       </div>
 

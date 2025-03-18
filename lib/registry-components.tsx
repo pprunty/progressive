@@ -8,8 +8,8 @@ import PokemonPage from "@/delta/new-york/complex-component/page"
 import { Tabs } from "@/delta/components/tabs/tabs"
 import AdmonitionDemo from "@/delta/components/admonition-demo"
 import { ModalDemo } from "@/delta/components/modal-demo"
-import ScrambleInDemo from "@/delta/open-sourced-inspired-collection/scramble-in-demo"
-import NeobrutalismCardDemo from "@/delta/open-sourced-inspired-collection/neobrutalism-card-demo"
+import ScrambleInDemo from "@/delta/open-source-inspired-collection/scramble-in-demo"
+import NeobrutalismCardDemo from "@/delta/open-source-inspired-collection/neobrutalism-card-demo"
 import UseHQImageDemo from "@/delta/hooks/use-hq-image-demo";
 
 // Create a registry object that maps component names to their implementations

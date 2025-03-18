@@ -137,7 +137,7 @@ const ScrambleInDemo = () => {
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
         <h2 className="text-2xl font-bold mb-6">Album Tracks with Intersection Observer</h2>
         <p className="mb-4 text-muted-foreground">Each track uses built-in intersection observer with cascading timing:</p>
-        <div className="space-y-3 text-left font-mono">
+        <div className="space-y-3 text-left">
           {titles.map((track, index) => (
             <div key={index}>
               <ScrambleIn

@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/delta/open-sourced-inspired-collection/neobrutalism-card"
+} from "@/delta/open-source-inspired-collection/neobrutalism-card"
 
 // Demo component with multiple color variants
 const ColorVariantsDemo = () => {
@@ -93,7 +93,7 @@ const ColorVariantsDemo = () => {
                 <input
                   id="name"
                   placeholder="Name of your project"
-                  className="flex h-10 w-full rounded-md border-2 border-black bg-white px-3 py-2 text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)]"
+                  className="flex h-10 w-full rounded-md border-2 border-black bg-white px-3 py-2 text-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)]"
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
@@ -103,7 +103,7 @@ const ColorVariantsDemo = () => {
                 <div className="relative">
                   <select
                     id="framework"
-                    className="flex h-10 w-full appearance-none rounded-md border-2 border-black bg-white px-3 py-2 text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)]"
+                    className="flex h-10 w-full appearance-none rounded-md border-2 border-black bg-white px-3 py-2 text-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)]"
                   >
                     <option>Select</option>
                   </select>
@@ -127,12 +127,12 @@ const ColorVariantsDemo = () => {
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <button className="inline-flex items-center justify-center rounded-md border-2 border-black bg-white px-4 py-2 text-sm font-medium shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all">
-              Cancel
-            </button>
-            <button className="inline-flex items-center justify-center rounded-md border-2 border-black bg-black text-white px-4 py-2 text-sm font-medium shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all">
-              Deploy
-            </button>
+            <button className="inline-flex items-center justify-center rounded-md border-2 border-black bg-white px-4 py-2 text-sm font-medium shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none active:translate-y-1 active:translate-x-1 active:shadow-none transition-all">
+                    Cancel
+                  </button>
+                  <button className="inline-flex items-center justify-center rounded-md border-2 border-black bg-black text-white px-4 py-2 text-sm font-medium shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none active:translate-y-1 active:translate-x-1 active:shadow-none transition-all">
+                    Deploy
+                  </button>
           </CardFooter>
         </Card>
       </div>

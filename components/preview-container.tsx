@@ -23,7 +23,7 @@ export function PreviewContainer({ children, openInV0Url }: PreviewContainerProp
         <RestartButton onRestart={handleRestart} />
       </div>
 
-      <div className="h-full flex items-center justify-center p-8">
+      <div className="h-full flex items-center justify-center py-8">
         <React.Suspense
           fallback={
             <div className="flex items-center justify-center h-[320px]">
