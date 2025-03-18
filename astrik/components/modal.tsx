@@ -120,7 +120,7 @@ const Modal: React.FC<ModalProps> = ({
 
   const getModalClasses = () => {
     const baseClasses =
-      'w-auto bg-card text-card-foreground md:max-w-xl rounded-2xl shadow-lg m-4 relative';
+      'w-auto bg-card text-card-foreground max-w-[90%] sm:max-w-xl rounded-2xl shadow-lg m-4 relative';
     return type === 'overlay'
       ? baseClasses
       : `${baseClasses} border border-border`;

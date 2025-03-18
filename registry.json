@@ -130,6 +130,46 @@
           "target": "astrik/components/modal-demo.tsx"
         }
       ]
+    },
+    {
+      "name": "scramble-in",
+      "type": "registry:component",
+      "title": "Scramble In (fancycomponents.dev)",
+      "description": "A component for scramble-in",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "astrik/open-sourced-inspired-collection/scramble-in.tsx",
+          "type": "registry:component",
+          "target": "astrik/open-sourced-inspired-collection/scramble-in.tsx"
+        },
+        {
+          "path": "astrik/open-sourced-inspired-collection/scramble-in-demo.tsx",
+          "type": "registry:component",
+          "target": "astrik/open-sourced-inspired-collection/scramble-in-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "neobrutalism-card",
+      "type": "registry:component",
+      "title": "Neobrutalism Card",
+      "description": "A component for neobrutalism-card",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "astrik/open-sourced-inspired-collection/neobrutalism-card.tsx",
+          "type": "registry:component",
+          "target": "astrik/open-sourced-inspired-collection/neobrutalism-card.tsx"
+        },
+        {
+          "path": "astrik/open-sourced-inspired-collection/neobrutalism-card-demo.tsx",
+          "type": "registry:component",
+          "target": "astrik/open-sourced-inspired-collection/neobrutalism-card-demo.tsx"
+        }
+      ]
     }
   ]
 }

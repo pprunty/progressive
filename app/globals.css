@@ -3,6 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+
+  :root {
+    /* Font setup */
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
+    @apply bg-[#FFFEFC];
+    @apply text-[#111];
+    --scrollbar-width: 12px;
+    --webkit-overflow-scrolling: touch;
+  }
+
+  /* Dark mode settings */
+  :root.dark {
+    color-scheme: dark;
+    @apply bg-[#171717];
+    @apply text-[#FFFEFC];
+  }
+
+  /* Prevent transition delays */
+  :root.pause-transitions * {
+    transition-duration: 0ms !important;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -39,7 +63,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 240 10% 3.9%;
+    --background: #171717;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;

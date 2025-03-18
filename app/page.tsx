@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
 import { Badge } from "@/components/badge"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 import { getCategories, getRegistryInfo } from "@/lib/registry"
 
 export default async function Home() {
@@ -23,7 +23,9 @@ export default async function Home() {
             A collection of open source and progressively-styled reusable components for distribution by shadcn.
           </p>
         </div>
-        <ThemeToggle />
+        <div className="mx-2">
+        <ThemeSwitcher />
+        </div>
       </header>
 
       <main className="grid grid-cols-2 md:grid-cols-3 gap-6">
