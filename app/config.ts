@@ -5,7 +5,7 @@ const config = {
       : 'https://deltacomponents.dev',
   companyName: 'Delta Components',
   companyDescription:
-    '',
+    'Components that make the difference.',
   socials: {
     twitter: 'https://x.com/pprunty_',
     strava: 'https://www.strava.com/athletes/72636452',

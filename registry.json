@@ -154,7 +154,7 @@
     {
       "name": "neobrutalism-card",
       "type": "registry:component",
-      "title": "Neobrutalism Card",
+      "title": "Neobrutalism Card (neobrutalism.dev)",
       "description": "A component for neobrutalism-card",
       "dependencies": [],
       "registryDependencies": [],
