@@ -21,7 +21,14 @@ export default async function Home() {
           </h1>
         </Link>
         <p className="text-md text-muted-foreground">
-A comprehensive collection of open-source, progressively-styled UI elements. Plug-and-play with shadcn and v0, Delta Components combine modern aesthetics with exceptional performance and make the difference in your users&lsquo; experience.
+A comprehensive collection of open-source, progressively-styled UI elements. Plug-and-play with  {' '}
+                                                                                                        <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer" className="border-b font-semibold border-gray-300 transition-[border-color] hover:border-gray-600 text-primary border-primary">
+                                                                                                        shadcn
+                                                                                                        </a>
+                                                                                                        {' '} and {' '}
+                                                                                                        <a href="https://v0.dev/chat" target="_blank" rel="noopener noreferrer" className="border-b font-semibold border-gray-300 transition-[border-color] hover:border-gray-600 text-primary border-primary">
+                                                                                                        v0
+                                                                                                        </a>, Delta Components combine modern aesthetics with exceptional performance and make the difference in your users&lsquo; experience.
         </p>
       </div>
 
