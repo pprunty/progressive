@@ -3,18 +3,19 @@ import { cn } from "@/lib/utils"
 
 type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   color?: "blue" | "pink" | "green" | "yellow" | "purple" | "gray"
+  hover?: boolean
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, color = "blue", children, ...props }, ref) => {
+  ({ className, color = "blue", hover = false, children, ...props }, ref) => {
     const colorStyles = {
       blue: "bg-blue-300",
       pink: "bg-pink-300",
       green: "bg-green-300",
       yellow: "bg-yellow-300",
       purple: "bg-purple-300",
-      gray: "bg-gray-300"
-    };
+      gray: "bg-gray-300",
+    }
 
     return (
       <div
@@ -23,15 +24,17 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           "rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.8)] border-2 border-black",
           colorStyles[color],
           "text-black",
-          className
+          hover &&
+            "transition-all duration-200 hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] dark:hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.8)] active:translate-y-1 active:translate-x-1 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] dark:active:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.8)]",
+          className,
         )}
         {...props}
       >
         {children}
       </div>
-    );
-  }
-);
+    )
+  },
+)
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -48,16 +51,9 @@ const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HT
 )
 CardTitle.displayName = "CardTitle"
 
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={cn("text-sm text-black/80 mt-2", className)}
-    {...props}
-  />
-));
+const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  ({ className, ...props }, ref) => <p ref={ref} className={cn("text-sm text-black/80 mt-2", className)} {...props} />,
+)
 CardDescription.displayName = "CardDescription"
 
 const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -73,3 +69,4 @@ const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 CardFooter.displayName = "CardFooter"
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
+

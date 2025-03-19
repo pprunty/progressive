@@ -11,7 +11,6 @@ import { ModalDemo } from "@/delta/components/modal-demo"
 import ScrambleInDemo from "@/delta/open-source-inspired-collection/scramble-in-demo"
 import NeobrutalismCardDemo from "@/delta/open-source-inspired-collection/neobrutalism-card-demo"
 import UseHQImageDemo from "@/delta/hooks/use-hq-image-demo";
-import { IosScreenDemo } from "@/delta/other/ios-screen-demo"
 import { IosScreenPreviewDemo } from "@/delta/other/ios-screen-preview-demo"
 import BottomBarDemo from "@/delta/layout/bottom-bar-demo"
 
