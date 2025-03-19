@@ -77,7 +77,7 @@ export default function RootLayout({
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main className="max-w-3xl mx-auto px-4 sm:px-6 mt-4 sm:mt-8 min-h-screen">
+        <main className="max-w-3xl mx-auto px-5 justify-center sm:px-6 mt-4 sm:mt-8 min-h-screen">
           <Header />
           {children}
         </main>

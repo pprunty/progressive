@@ -21,7 +21,8 @@ export default async function Home() {
           </h1>
         </Link>
         <p className="text-md text-muted-foreground">
-Components that make the difference. Delta Components is a comprehensive collection of open-source, progressively-styled UI elements designed for seamless integration with shadcn and v0. Combining modern aesthetics with exceptional performance.</p>
+A comprehensive collection of open-source, progressively-styled UI elements. Plug-and-play with shadcn and v0, Delta Components combine modern aesthetics with performance and make the difference in your users' experience.
+        </p>
       </div>
 
       <main className="grid grid-cols-2 md:grid-cols-3 gap-6">
