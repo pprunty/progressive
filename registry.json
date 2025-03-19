@@ -226,6 +226,46 @@
           "target": "delta/layout/bottom-bar-demo.tsx"
         }
       ]
+    },
+    {
+      "name": "tweet",
+      "type": "registry:component",
+      "title": "Tweet",
+      "description": "A component for tweet",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/components/tweet.tsx",
+          "type": "registry:component",
+          "target": "delta/components/tweet.tsx"
+        },
+        {
+          "path": "delta/components/tweet-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/components/tweet-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "full-bleed-section",
+      "type": "registry:component",
+      "title": "Full Bleed Section",
+      "description": "A component for full-bleed-section",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/components/full-bleed-section.tsx",
+          "type": "registry:component",
+          "target": "delta/components/full-bleed-section.tsx"
+        },
+        {
+          "path": "delta/components/full-bleed-section-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/components/full-bleed-section-demo.tsx"
+        }
+      ]
     }
   ]
 }
