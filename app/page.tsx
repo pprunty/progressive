@@ -21,7 +21,7 @@ export default async function Home() {
           </h1>
         </Link>
         <p className="text-md text-muted-foreground">
-A comprehensive collection of open-source, progressively-styled UI elements. Plug-and-play with shadcn and v0, Delta Components combine modern aesthetics with performance and make the difference in your users&lsquo; experience.
+A comprehensive collection of open-source, progressively-styled UI elements. Plug-and-play with shadcn and v0, Delta Components combine modern aesthetics with exceptional performance and make the difference in your users&lsquo; experience.
         </p>
       </div>
 
