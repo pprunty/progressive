@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ios-screen-preview",
+  "type": "registry:component",
+  "title": "iOS Screen Preview",
+  "description": "A component for ios-screen-preview",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "delta/other/ios-screen-preview.tsx",
+      "content": "export function IosScreenPreview() {\n  return (\n    <div className=\"p-4 border rounded\">\n      <h2 className=\"text-lg font-medium\">Ios Screen Preview</h2>\n      <p>Your component content here</p>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "delta/other/ios-screen-preview.tsx"
+    },
+    {
+      "path": "delta/other/ios-screen-preview-demo.tsx",
+      "content": "import { IosScreenPreview } from \"./ios-screen-preview\";\n\nexport function IosScreenPreviewDemo() {\n  return (\n    <div className=\"space-y-4\">\n      <h3 className=\"text-lg font-medium\">Demo: Ios Screen Preview</h3>\n      <div className=\"p-6 border rounded-lg bg-slate-50 dark:bg-slate-900\">\n        <IosScreenPreview />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "delta/other/ios-screen-preview-demo.tsx"
+    }
+  ]
+}

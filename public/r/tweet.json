@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tweet",
+  "type": "registry:component",
+  "title": "Tweet",
+  "description": "A component for tweet",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "delta/components/tweet.tsx",
+      "content": "export function Tweet() {\n  return (\n    <div className=\"p-4 border rounded\">\n      <h2 className=\"text-lg font-medium\">Tweet</h2>\n      <p>Your component content here</p>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "delta/components/tweet.tsx"
+    },
+    {
+      "path": "delta/components/tweet-demo.tsx",
+      "content": "import { Tweet } from \"./tweet\";\n\nexport function TweetDemo() {\n  return (\n    <div className=\"space-y-4\">\n      <h3 className=\"text-lg font-medium\">Demo: Tweet</h3>\n      <div className=\"p-6 border rounded-lg bg-slate-50 dark:bg-slate-900\">\n        <Tweet />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "delta/components/tweet-demo.tsx"
+    }
+  ]
+}

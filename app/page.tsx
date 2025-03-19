@@ -16,7 +16,7 @@ export default async function Home() {
           rel="noopener noreferrer"
           className="group w-fit flex"
         >
-          <h1 className="text-2xl font-bold tracking-tight underline decoration-1 underline-offset-4 decoration-muted-foreground/50 hover:decoration-primary transition-all duration-300">
+          <h1 className="text-lg font-bold tracking-tight underline decoration-1 underline-offset-4 decoration-muted-foreground/50 hover:decoration-primary transition-all duration-300">
             {registryInfo.name} Registry
           </h1>
         </Link>
