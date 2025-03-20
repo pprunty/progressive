@@ -19,5 +19,4 @@ This is a template for creating a custom registry using Next.js.
 
 Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
 
-
 - npx shadcn@latest add https://delta.dev/r/admonition.json

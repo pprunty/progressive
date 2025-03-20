@@ -44,13 +44,7 @@
   --tweet-font-color-secondary: theme('colors.gray.400');
 
   /* Add dark mode skeleton gradient */
-  --tweet-skeleton-gradient: linear-gradient(
-    270deg,
-    #333,
-    #444,
-    #444,
-    #333
-  );
+  --tweet-skeleton-gradient: linear-gradient(270deg, #333, #444, #444, #333);
 }
 
 .tweet .react-tweet-theme p {

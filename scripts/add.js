@@ -4,10 +4,12 @@ const path = require('path');
 
 const componentType = process.argv[2]; // component, page, lib, hook
 const componentName = process.argv[3];
-const category = process.argv[4] || 'new-york'; // Default to "new-york" if no category provided
+const category = process.argv[4] || 'components'; // Default to "new-york" if no category provided
 
 if (!componentType || !componentName) {
-  console.error('Usage: node add-component.js [component|page|lib|hook] [name] [category]');
+  console.error(
+    'Usage: node add-component.js [component|page|lib|hook] [name] [category]',
+  );
   console.error('Example: node add-component.js component button custom-theme');
   console.error('If category is omitted, "new-york" will be used as default');
   process.exit(1);
@@ -41,7 +43,7 @@ let registryType = '';
 // Generate proper component name for import
 const pascalCaseName = componentName
   .split('-')
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join('');
 
 switch (componentType) {
@@ -52,7 +54,10 @@ switch (componentType) {
     fileContent = `export function ${pascalCaseName}() {
   return (
     <div className="p-4 border rounded">
-      <h2 className="text-lg font-medium">${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</h2>
+      <h2 className="text-lg font-medium">${componentName
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')}</h2>
       <p>Your component content here</p>
     </div>
   );
@@ -63,7 +68,10 @@ switch (componentType) {
 export function ${pascalCaseName}Demo() {
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-medium">Demo: ${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</h3>
+      <h3 className="text-lg font-medium">Demo: ${componentName
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')}</h3>
       <div className="p-6 border rounded-lg bg-slate-50 dark:bg-slate-900">
         <${pascalCaseName} />
       </div>
@@ -78,7 +86,10 @@ export function ${pascalCaseName}Demo() {
     fileContent = `export default function ${pascalCaseName}Page() {
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">${componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Page</h1>
+      <h1 className="text-2xl font-bold mb-4">${componentName
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')} Page</h1>
       <div className="p-4 border rounded">
         <p>Your page content here</p>
       </div>
@@ -141,8 +152,8 @@ let files = [
   {
     path: filePath,
     type: registryType,
-    target: filePath
-  }
+    target: filePath,
+  },
 ];
 
 // Add demo file to registry files if it's a component
@@ -150,7 +161,7 @@ if (componentType === 'component') {
   files.push({
     path: demoFilePath,
     type: registryType,
-    target: demoFilePath
+    target: demoFilePath,
   });
 }
 
@@ -158,11 +169,14 @@ if (componentType === 'component') {
 const newItem = {
   name: componentName,
   type: registryType,
-  title: componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+  title: componentName
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' '),
   description: `A ${componentType} for ${componentName}`,
   dependencies: [],
   registryDependencies: [],
-  files: files
+  files: files,
 };
 
 // Add to registry
@@ -206,29 +220,43 @@ if (componentType === 'component' || componentType === 'page') {
     if (lastImportIndex !== -1) {
       updatedContent =
         content.slice(0, lastImportEndIndex + 1) +
-        importStatement + '\n' +
+        importStatement +
+        '\n' +
         content.slice(lastImportEndIndex + 1);
     }
 
     // Add component to registry object
     const registryStartIndex = updatedContent.indexOf('export const registry');
-    const registryOpenBraceIndex = updatedContent.indexOf('{', registryStartIndex);
+    const registryOpenBraceIndex = updatedContent.indexOf(
+      '{',
+      registryStartIndex,
+    );
     const registryCloseBraceIndex = updatedContent.lastIndexOf('}');
 
-    if (registryStartIndex !== -1 && registryOpenBraceIndex !== -1 && registryCloseBraceIndex !== -1) {
+    if (
+      registryStartIndex !== -1 &&
+      registryOpenBraceIndex !== -1 &&
+      registryCloseBraceIndex !== -1
+    ) {
       // Check if registry is empty
-      const isEmptyRegistry = updatedContent.substring(registryOpenBraceIndex + 1, registryCloseBraceIndex).trim() === '';
+      const isEmptyRegistry =
+        updatedContent
+          .substring(registryOpenBraceIndex + 1, registryCloseBraceIndex)
+          .trim() === '';
 
       if (isEmptyRegistry) {
         updatedContent =
           updatedContent.slice(0, registryOpenBraceIndex + 1) +
-          '\n' + componentEntry + '\n' +
+          '\n' +
+          componentEntry +
+          '\n' +
           updatedContent.slice(registryCloseBraceIndex);
       } else {
         updatedContent =
           updatedContent.slice(0, registryCloseBraceIndex) +
           (updatedContent[registryCloseBraceIndex - 1] === ',' ? '' : ',') +
-          '\n' + componentEntry +
+          '\n' +
+          componentEntry +
           updatedContent.slice(registryCloseBraceIndex);
       }
     }
@@ -257,8 +285,12 @@ console.log(`
 ✅ ${componentType} "${componentName}" has been added to the registry in category "${category}"!
 
 Next steps:
-1. Edit the component file: ${filePath}${componentType === 'component' ? `
-2. Edit the demo file: ${demoFilePath}` : ''}
+1. Edit the component file: ${filePath}${
+  componentType === 'component'
+    ? `
+2. Edit the demo file: ${demoFilePath}`
+    : ''
+}
 ${componentType !== 'component' ? '2.' : '3.'} Update dependencies in registry.json if needed
 ${componentType !== 'component' ? '3.' : '4.'} Run: npm run registry:build
 `);

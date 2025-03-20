@@ -153,22 +153,26 @@ const Modal: React.FC<ModalProps> = ({
           >
             {title ? (
               // When there is a title, show the title bar with optional close button
-              <div className={cn(
-                "flex justify-between p-6",
-                (borderBottom && "border-b border-border"),
-                subtitle ? "flex-col items-start gap-1" : "items-center"
-              )}>
+              <div
+                className={cn(
+                  'flex justify-between p-6',
+                  borderBottom && 'border-b border-border',
+                  subtitle ? 'flex-col items-start gap-1' : 'items-center',
+                )}
+              >
                 <div>
                   <h2 className="text-xl font-semibold">{title}</h2>
                   {subtitle && (
-                    <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {subtitle}
+                    </p>
                   )}
                 </div>
                 {showCloseButton && (
                   <button
                     className={cn(
-                      "p-1 rounded-md hover:bg-muted transition-colors",
-                      subtitle && "absolute top-4 right-4"
+                      'p-1 rounded-md hover:bg-muted transition-colors',
+                      subtitle && 'absolute top-4 right-4',
                     )}
                     onClick={onClose}
                     aria-label="Close modal"

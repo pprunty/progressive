@@ -1,15 +1,15 @@
-import { cache } from "react"
-import { getPokemon } from "@/delta/new-york/complex-component/lib/pokemon"
-import { Card, CardContent } from "@/components/ui/card"
-import { PokemonImage } from "@/delta/new-york/complex-component/components/pokemon-image"
+import { cache } from 'react';
+import { getPokemon } from '@/delta/new-york/complex-component/lib/pokemon';
+import { Card, CardContent } from '@/components/ui/card';
+import { PokemonImage } from '@/delta/new-york/complex-component/components/pokemon-image';
 
-const cachedGetPokemon = cache(getPokemon)
+const cachedGetPokemon = cache(getPokemon);
 
 export async function PokemonCard({ name }: { name: string }) {
-  const pokemon = await cachedGetPokemon(name)
+  const pokemon = await cachedGetPokemon(name);
 
   if (!pokemon) {
-    return null
+    return null;
   }
 
   return (
@@ -21,5 +21,5 @@ export async function PokemonCard({ name }: { name: string }) {
         <div className="text-center font-medium">{pokemon.name}</div>
       </CardContent>
     </Card>
-  )
+  );
 }

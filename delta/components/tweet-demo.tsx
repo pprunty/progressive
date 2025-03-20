@@ -1,4 +1,4 @@
-import {Tweet} from "@/delta/components/tweet"
+import { Tweet } from '@/delta/components/tweet';
 
 export default function TweetDemo() {
   return (
@@ -25,6 +25,5 @@ export default function TweetDemo() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

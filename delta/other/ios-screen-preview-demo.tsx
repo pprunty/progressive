@@ -1,4 +1,4 @@
-import { IosScreenPreview } from "./ios-screen-preview";
+import { IosScreenPreview } from './ios-screen-preview';
 
 export function IosScreenPreviewDemo() {
   return (

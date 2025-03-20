@@ -1,20 +1,23 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import { OpenInV0Button } from "./open-in-v0-button"
-import { RestartButton } from "./restart-button"
+import * as React from 'react';
+import { OpenInV0Button } from './open-in-v0-button';
+import { RestartButton } from './restart-button';
 
 interface PreviewContainerProps {
-  children: React.ReactNode
-  openInV0Url: string
+  children: React.ReactNode;
+  openInV0Url: string;
 }
 
-export function PreviewContainer({ children, openInV0Url }: PreviewContainerProps) {
-  const [key, setKey] = React.useState(0)
+export function PreviewContainer({
+  children,
+  openInV0Url,
+}: PreviewContainerProps) {
+  const [key, setKey] = React.useState(0);
 
   const handleRestart = React.useCallback(() => {
-    setKey((prev) => prev + 1)
-  }, [])
+    setKey((prev) => prev + 1);
+  }, []);
 
   return (
     <div className="preview-container h-full relative">
@@ -32,11 +35,15 @@ export function PreviewContainer({ children, openInV0Url }: PreviewContainerProp
           }
         >
           <div className="h-full w-full flex items-center justify-center py-8">
-                <div key={key} className="flex items-center justify-center w-full h-full max-w-full overflow-auto">{children}</div>
-              </div>
+            <div
+              key={key}
+              className="flex items-center justify-center w-full h-full max-w-full overflow-auto"
+            >
+              {children}
+            </div>
+          </div>
         </React.Suspense>
       </div>
     </div>
-  )
+  );
 }
-

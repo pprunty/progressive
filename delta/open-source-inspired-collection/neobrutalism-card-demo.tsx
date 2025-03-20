@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import {
   Card,
@@ -7,13 +7,15 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/delta/open-source-inspired-collection/neobrutalism-card"
+} from '@/delta/open-source-inspired-collection/neobrutalism-card';
 
 // Demo component with multiple color variants
 const ColorVariantsDemo = () => {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Neobrutalism Card Variants</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">
+        Neobrutalism Card Variants
+      </h1>
 
       {/* Card grid - centered with justify-center */}
       <div className="flex flex-wrap gap-6 justify-center">
@@ -23,7 +25,9 @@ const ColorVariantsDemo = () => {
             <CardDescription>Default blue variant</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>This card has hover and active states. Click to see active state.</p>
+            <p>
+              This card has hover and active states. Click to see active state.
+            </p>
           </CardContent>
         </Card>
 
@@ -80,11 +84,15 @@ const ColorVariantsDemo = () => {
 
       {/* Full example card - centered with flex */}
       <div className="mt-16 flex flex-col items-center">
-        <h2 className="text-2xl font-bold mb-6 text-center">Complete Example</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Complete Example
+        </h2>
         <Card color="blue" className="w-full max-w-sm" hover={false}>
           <CardHeader>
             <CardTitle>Create project</CardTitle>
-            <CardDescription>Deploy your new project in one-click.</CardDescription>
+            <CardDescription>
+              Deploy your new project in one-click.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid w-full items-center gap-4">
@@ -139,8 +147,7 @@ const ColorVariantsDemo = () => {
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ColorVariantsDemo
-
+export default ColorVariantsDemo;

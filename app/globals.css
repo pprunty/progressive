@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-
   :root {
     /* Font setup */
     font-family: 'Inter', sans-serif;
@@ -61,9 +60,9 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-        --scrollbar: #c1c1c1;
-        --scrollbar-hover: rgba(255, 254, 252, 0.3);
-        --scrollbar-track: #fafafa; /* New variable for scrollbar track in dark mode */
+    --scrollbar: #c1c1c1;
+    --scrollbar-hover: rgba(255, 254, 252, 0.3);
+    --scrollbar-track: #fafafa; /* New variable for scrollbar track in dark mode */
   }
   .dark {
     --background: #171717;
@@ -98,36 +97,36 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-        --scrollbar: #a1a1a1;
-        --scrollbar-hover: rgba(255, 254, 252, 0.3);
-        --scrollbar-track: rgba(255, 254, 252, 0.1);
+    --scrollbar: #a1a1a1;
+    --scrollbar-hover: rgba(255, 254, 252, 0.3);
+    --scrollbar-track: rgba(255, 254, 252, 0.1);
   }
 
   * {
-      /* Firefox */
-      scrollbar-width: var(--scrollbar-width);
-      scrollbar-color: var(--scrollbar) var(--scrollbar-track);
-    }
+    /* Firefox */
+    scrollbar-width: var(--scrollbar-width);
+    scrollbar-color: var(--scrollbar) var(--scrollbar-track);
+  }
 
-    /* Chrome, Edge, and Safari */
-    *::-webkit-scrollbar {
-      width: var(--scrollbar-width);
-      height: var(--scrollbar-width); /* For horizontal scrollbars */
-    }
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width); /* For horizontal scrollbars */
+  }
 
-    *::-webkit-scrollbar-track {
-      background: var(--scrollbar-track);
-      border-radius: calc(var(--scrollbar-width) / 2);
-    }
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: calc(var(--scrollbar-width) / 2);
+  }
 
-    *::-webkit-scrollbar-thumb {
-      background: var(--scrollbar);
-      border-radius: calc(var(--scrollbar-width) / 2);
-    }
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: calc(var(--scrollbar-width) / 2);
+  }
 
-    *::-webkit-scrollbar-thumb:hover {
-      background: var(--scrollbar-hover);
-    }
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-hover);
+  }
 }
 
 @layer base {

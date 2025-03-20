@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { ThemeSwitcher } from "@/components/theme-switcher"
+import Link from 'next/link';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 
 export function Header() {
   return (
@@ -17,6 +17,5 @@ export function Header() {
       </Link>
       <ThemeSwitcher />
     </header>
-  )
+  );
 }
-

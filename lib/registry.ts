@@ -1,4 +1,4 @@
-import registryData from "@/registry.json";
+import registryData from '@/registry.json';
 
 export interface RegistryFile {
   path: string;
@@ -35,35 +35,35 @@ function formatCategoryName(category: string): string {
 
   // 2. Split by hyphens and capitalize each word
   formattedCategory = formattedCategory
-    .split("-")
+    .split('-')
     .map((word) => {
       // Check if word contains parentheses
-      if (word.includes("(")) {
+      if (word.includes('(')) {
         // Split at the opening parenthesis
         const parts = word.split(/($$[^)]*$$)/);
         return parts
           .map(
             (part) =>
-              part.startsWith("(")
+              part.startsWith('(')
                 ? part // Keep parentheses sections as is (already processed)
-                : part.charAt(0).toUpperCase() + part.slice(1) // Capitalize other parts
+                : part.charAt(0).toUpperCase() + part.slice(1), // Capitalize other parts
           )
-          .join("");
+          .join('');
       }
       // Normal word capitalization
       return word.charAt(0).toUpperCase() + word.slice(1);
     })
-    .join(" ");
+    .join(' ');
 
   // 3. Additional specific rules can be added using regex patterns
   formattedCategory = formattedCategory
     // Handle specific acronyms: UI, API, etc.
-    .replace(/\bUi\b/g, "UI")
-    .replace(/\bApi\b/g, "API")
-    .replace(/\bCss\b/g, "CSS")
-    .replace(/\bHtml\b/g, "HTML")
-    .replace(/\bJs\b/g, "JS")
-    .replace(/\bTs\b/g, "TS");
+    .replace(/\bUi\b/g, 'UI')
+    .replace(/\bApi\b/g, 'API')
+    .replace(/\bCss\b/g, 'CSS')
+    .replace(/\bHtml\b/g, 'HTML')
+    .replace(/\bJs\b/g, 'JS')
+    .replace(/\bTs\b/g, 'TS');
   // Handle specific lowercase words like "and", "or", "the" if needed
   // .replace(/\bAnd\b/g, 'and')
   // .replace(/\bOr\b/g, 'or')
@@ -79,12 +79,12 @@ function categorizeComponents(items: ComponentType[]): CategoryType[] {
 
   for (const item of items) {
     // Try to determine category from the first file path
-    let category = "Components";
+    let category = 'Components';
     if (item.files && item.files.length > 0) {
       const path = item.files[0].path;
-      const parts = path.split("/");
+      const parts = path.split('/');
       // Use the directory after "registry" as the category
-      if (parts.length >= 3 && parts[0] === "delta") {
+      if (parts.length >= 3 && parts[0] === 'delta') {
         // Apply formatting to the category name
         category = formatCategoryName(parts[1]);
       }
@@ -97,7 +97,8 @@ function categorizeComponents(items: ComponentType[]): CategoryType[] {
     // Ensure the badge is of the correct type
     const typedItem: ComponentType = {
       ...item,
-      badge: (item.badge === "new" || item.badge === "beta") ? item.badge : undefined
+      badge:
+        item.badge === 'new' || item.badge === 'beta' ? item.badge : undefined,
     };
 
     categories[category].push(typedItem);
@@ -116,27 +117,35 @@ export async function getCategories(): Promise<CategoryType[]> {
   try {
     return categorizeComponents(registryData.items);
   } catch (error) {
-    console.error("Error getting categories:", error);
+    console.error('Error getting categories:', error);
     return [];
   }
 }
 
 export async function getAllComponents(): Promise<ComponentType[]> {
   // Cast the items to ComponentType[] after validating/transforming the badge property
-  return registryData.items.map(item => ({
+  return registryData.items.map((item) => ({
     ...item,
-    badge: (item.badge === "new" || item.badge === "beta") ? item.badge : undefined
+    badge:
+      item.badge === 'new' || item.badge === 'beta' ? item.badge : undefined,
   })) as ComponentType[];
 }
 
-export async function getComponentByName(name: string): Promise<ComponentType | null> {
-  const component = registryData.items.find((component) => component.name === name);
+export async function getComponentByName(
+  name: string,
+): Promise<ComponentType | null> {
+  const component = registryData.items.find(
+    (component) => component.name === name,
+  );
   if (!component) return null;
 
   // Ensure the badge is of the correct type
   return {
     ...component,
-    badge: (component.badge === "new" || component.badge === "beta") ? component.badge : undefined
+    badge:
+      component.badge === 'new' || component.badge === 'beta'
+        ? component.badge
+        : undefined,
   } as ComponentType;
 }
 

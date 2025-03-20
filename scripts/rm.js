@@ -17,7 +17,9 @@ if (!fs.existsSync(registryPath)) {
 }
 
 const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
-const componentIndex = registry.items.findIndex(item => item.name === componentName);
+const componentIndex = registry.items.findIndex(
+  (item) => item.name === componentName,
+);
 
 if (componentIndex === -1) {
   console.error(`Component "${componentName}" not found in registry.json`);
@@ -30,7 +32,7 @@ const componentType = component.type.replace('registry:', '');
 const componentFiles = component.files || [];
 
 // Determine the category/directory from the file path
-let category = 'new-york'; // Default
+let category = 'components'; // Default
 if (componentFiles.length > 0) {
   const filePath = componentFiles[0].path;
   const pathParts = filePath.split(path.sep);
@@ -55,16 +57,22 @@ if (fs.existsSync(registryComponentsPath)) {
   // Generate proper component name for import
   const pascalCaseName = componentName
     .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join('');
 
   // Remove import statement based on component type and new path structure
   let importPattern;
   if (componentType === 'component') {
     // Now imports demo component
-    importPattern = new RegExp(`import\\s+\\{\\s*${pascalCaseName}Demo\\s*\\}\\s+from\\s+["']@/registry/${category}/${componentName}-demo["'].*?\n`, 'g');
+    importPattern = new RegExp(
+      `import\\s+\\{\\s*${pascalCaseName}Demo\\s*\\}\\s+from\\s+["']@/registry/${category}/${componentName}-demo["'].*?\n`,
+      'g',
+    );
   } else if (componentType === 'page') {
-    importPattern = new RegExp(`import\\s+${pascalCaseName}Page\\s+from\\s+["']@/registry/${category}/${componentName}-page["'].*?\n`, 'g');
+    importPattern = new RegExp(
+      `import\\s+${pascalCaseName}Page\\s+from\\s+["']@/registry/${category}/${componentName}-page["'].*?\n`,
+      'g',
+    );
   }
 
   if (importPattern) {
@@ -72,7 +80,10 @@ if (fs.existsSync(registryComponentsPath)) {
   }
 
   // Remove component from registry object
-  const componentEntryPattern = new RegExp(`\\s*"${componentName}":\\s*\\{[^}]*\\},?`, 'g');
+  const componentEntryPattern = new RegExp(
+    `\\s*"${componentName}":\\s*\\{[^}]*\\},?`,
+    'g',
+  );
   content = content.replace(componentEntryPattern, '');
 
   // Fix trailing commas
@@ -85,7 +96,7 @@ if (fs.existsSync(registryComponentsPath)) {
 // Remove component files based on the new file structure
 if (componentFiles.length > 0) {
   // Delete each file in the component files array
-  componentFiles.forEach(fileObj => {
+  componentFiles.forEach((fileObj) => {
     const filePath = fileObj.path;
 
     if (fs.existsSync(filePath)) {
@@ -98,19 +109,31 @@ if (componentFiles.length > 0) {
 
   // Also try to remove potential demo file if not in the componentFiles list
   if (componentType === 'component') {
-    const demoFilePath = path.join('delta', category, `${componentName}-demo.tsx`);
+    const demoFilePath = path.join(
+      'delta',
+      category,
+      `${componentName}-demo.tsx`,
+    );
     if (fs.existsSync(demoFilePath)) {
       fs.unlinkSync(demoFilePath);
       console.log(`Deleted file: ${demoFilePath}`);
     }
 
-    const componentFilePath = path.join('delta', category, `${componentName}.tsx`);
+    const componentFilePath = path.join(
+      'delta',
+      category,
+      `${componentName}.tsx`,
+    );
     if (fs.existsSync(componentFilePath)) {
       fs.unlinkSync(componentFilePath);
       console.log(`Deleted file: ${componentFilePath}`);
     }
   } else if (componentType === 'page') {
-    const pageFilePath = path.join('delta', category, `${componentName}-page.tsx`);
+    const pageFilePath = path.join(
+      'delta',
+      category,
+      `${componentName}-page.tsx`,
+    );
     if (fs.existsSync(pageFilePath)) {
       fs.unlinkSync(pageFilePath);
       console.log(`Deleted file: ${pageFilePath}`);
@@ -122,7 +145,11 @@ if (componentFiles.length > 0) {
       console.log(`Deleted file: ${libFilePath}`);
     }
   } else if (componentType === 'hook') {
-    const hookFilePath = path.join('delta', category, `use-${componentName}.ts`);
+    const hookFilePath = path.join(
+      'delta',
+      category,
+      `use-${componentName}.ts`,
+    );
     if (fs.existsSync(hookFilePath)) {
       fs.unlinkSync(hookFilePath);
       console.log(`Deleted file: ${hookFilePath}`);

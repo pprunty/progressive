@@ -1,10 +1,14 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  outputFileTracingIncludes: {
-    registry: ["./delta/**/*"],
+  reactStrictMode: true,
+  experimental: {
+    mdxRs: true,
   },
-  /* config options here */
+  outputFileTracingIncludes: {
+    registry: ['./delta/**/*'],
+  },
+  pageExtensions: ['ts', 'tsx', 'mdx'],
 };
 
 export default nextConfig;

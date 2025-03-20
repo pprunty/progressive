@@ -1,9 +1,9 @@
-import * as React from "react"
-import { RotateCcw } from "lucide-react"
-import { Button } from "./ui/button"
+import * as React from 'react';
+import { RotateCcw } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface RestartButtonProps {
-  onRestart: () => void
+  onRestart: () => void;
 }
 
 export function RestartButton({ onRestart }: RestartButtonProps) {
@@ -17,5 +17,5 @@ export function RestartButton({ onRestart }: RestartButtonProps) {
       <RotateCcw className="h-4 w-4" />
       <span className="sr-only">Restart preview</span>
     </Button>
-  )
-} 
+  );
+}

@@ -25,7 +25,8 @@ export function ModalDemo() {
       <div className="flex flex-col space-y-3">
         <h3 className="text-lg font-medium">Modal Component</h3>
         <p className="text-muted-foreground">
-          A versatile modal component with multiple style options and configurations.
+          A versatile modal component with multiple style options and
+          configurations.
         </p>
       </div>
 
@@ -33,59 +34,95 @@ export function ModalDemo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Basic Modal</h4>
-            <p className="text-sm text-muted-foreground">A simple modal with overlay background.</p>
-            <Button onClick={() => setIsBasicOpen(true)}>Open Basic Modal</Button>
+            <p className="text-sm text-muted-foreground">
+              A simple modal with overlay background.
+            </p>
+            <Button onClick={() => setIsBasicOpen(true)}>
+              Open Basic Modal
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Modal with Title</h4>
-            <p className="text-sm text-muted-foreground">Shows a header with title and close button.</p>
-            <Button onClick={() => setIsWithTitleOpen(true)}>Open Modal with Title</Button>
+            <p className="text-sm text-muted-foreground">
+              Shows a header with title and close button.
+            </p>
+            <Button onClick={() => setIsWithTitleOpen(true)}>
+              Open Modal with Title
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Modal with Subtitle</h4>
-            <p className="text-sm text-muted-foreground">Shows a header with title, subtitle and close button.</p>
-            <Button onClick={() => setIsWithSubtitleOpen(true)}>Open Modal with Subtitle</Button>
+            <p className="text-sm text-muted-foreground">
+              Shows a header with title, subtitle and close button.
+            </p>
+            <Button onClick={() => setIsWithSubtitleOpen(true)}>
+              Open Modal with Subtitle
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Modal without Border</h4>
-            <p className="text-sm text-muted-foreground">Header without bottom border separation.</p>
-            <Button onClick={() => setIsNoBorderOpen(true)}>Open Borderless Modal</Button>
+            <p className="text-sm text-muted-foreground">
+              Header without bottom border separation.
+            </p>
+            <Button onClick={() => setIsNoBorderOpen(true)}>
+              Open Borderless Modal
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Blur Background Modal</h4>
-            <p className="text-sm text-muted-foreground">Uses a blur effect on the background.</p>
+            <p className="text-sm text-muted-foreground">
+              Uses a blur effect on the background.
+            </p>
             <Button onClick={() => setIsBlurOpen(true)}>Open Blur Modal</Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Without Close Button</h4>
-            <p className="text-sm text-muted-foreground">Modal without the close button.</p>
-            <Button onClick={() => setIsWithoutCloseOpen(true)}>Open No-Close Modal</Button>
+            <p className="text-sm text-muted-foreground">
+              Modal without the close button.
+            </p>
+            <Button onClick={() => setIsWithoutCloseOpen(true)}>
+              Open No-Close Modal
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">No Overlay Close</h4>
-            <p className="text-sm text-muted-foreground">Modal won't close when clicking overlay.</p>
-            <Button onClick={() => setIsNoOverlayCloseOpen(true)}>Open Modal</Button>
+            <p className="text-sm text-muted-foreground">
+              Modal won't close when clicking overlay.
+            </p>
+            <Button onClick={() => setIsNoOverlayCloseOpen(true)}>
+              Open Modal
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Custom Styled Modal</h4>
-            <p className="text-sm text-muted-foreground">Using className to customize modal appearance.</p>
-            <Button onClick={() => setIsCustomClassOpen(true)}>Open Custom Modal</Button>
+            <p className="text-sm text-muted-foreground">
+              Using className to customize modal appearance.
+            </p>
+            <Button onClick={() => setIsCustomClassOpen(true)}>
+              Open Custom Modal
+            </Button>
           </div>
 
           <div className="border rounded-lg p-4 flex flex-col space-y-4">
             <h4 className="font-medium">Forced Action Modal</h4>
-            <p className="text-sm text-muted-foreground">User must accept terms to dismiss modal.</p>
-            <Button onClick={() => {
-              resetAgreement();
-              setIsForcedActionOpen(true);
-            }}>Open Forced Action Modal</Button>
+            <p className="text-sm text-muted-foreground">
+              User must accept terms to dismiss modal.
+            </p>
+            <Button
+              onClick={() => {
+                resetAgreement();
+                setIsForcedActionOpen(true);
+              }}
+            >
+              Open Forced Action Modal
+            </Button>
           </div>
         </div>
       </div>
@@ -123,7 +160,10 @@ export function ModalDemo() {
       >
         <div className="space-y-4 min-w-[350px]">
           <p>This modal displays both a title and a subtitle in the header.</p>
-          <p>The subtitle can be used to provide additional context or instructions.</p>
+          <p>
+            The subtitle can be used to provide additional context or
+            instructions.
+          </p>
           <div className="flex justify-end">
             <Button onClick={() => setIsWithSubtitleOpen(false)}>Close</Button>
           </div>
@@ -184,7 +224,9 @@ export function ModalDemo() {
           <p>This modal doesn't close when you click on the overlay.</p>
           <p>You must use the close button.</p>
           <div className="flex justify-end">
-            <Button onClick={() => setIsNoOverlayCloseOpen(false)}>Close</Button>
+            <Button onClick={() => setIsNoOverlayCloseOpen(false)}>
+              Close
+            </Button>
           </div>
         </div>
       </Modal>
@@ -196,7 +238,9 @@ export function ModalDemo() {
         title="Custom Styled Modal"
       >
         <div className="space-y-4 min-w-[300px]">
-          <p>This modal uses a custom className to override the default styling.</p>
+          <p>
+            This modal uses a custom className to override the default styling.
+          </p>
           <p>You can customize colors, width, border radius, and more.</p>
           <div className="flex justify-end">
             <Button
@@ -219,9 +263,21 @@ export function ModalDemo() {
       >
         <div className="space-y-4 min-w-[350px]">
           <div className="max-h-40 overflow-y-auto border rounded p-3 text-sm">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies ultricies, nisl nisl ultricies nisl, eget ultricies nisl nisl eget.</p>
-            <p className="mt-2">Praesent euismod, nisl eget ultricies ultricies, nisl nisl ultricies nisl, eget ultricies nisl nisl eget. Nullam auctor, nisl eget ultricies ultricies.</p>
-            <p className="mt-2">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              auctor, nisl eget ultricies ultricies, nisl nisl ultricies nisl,
+              eget ultricies nisl nisl eget.
+            </p>
+            <p className="mt-2">
+              Praesent euismod, nisl eget ultricies ultricies, nisl nisl
+              ultricies nisl, eget ultricies nisl nisl eget. Nullam auctor, nisl
+              eget ultricies ultricies.
+            </p>
+            <p className="mt-2">
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris.
+            </p>
           </div>
           <p className="text-sm text-muted-foreground">
             You cannot close this modal without agreeing to the terms.

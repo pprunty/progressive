@@ -1,12 +1,12 @@
-import "./globals.css"
-import type React from "react"
-import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { themeEffect } from "@/components/theme-effect"
-import config from "@/app/config"
-import { doge } from "./doge"
-import { Header } from "./header"
-import Footer from "./footer"
+import './globals.css';
+import type React from 'react';
+import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import { themeEffect } from '@/components/theme-effect';
+import config from '@/app/config';
+import { doge } from './doge';
+import { Header } from './header';
+import Footer from './footer';
 import { Libre_Baskerville } from 'next/font/google';
 
 // Initialize the font with italic subset
@@ -18,27 +18,30 @@ const baskerville = Libre_Baskerville({
 });
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
   userScalable: true,
-  themeColor: "transparent",
-}
+  themeColor: 'transparent',
+};
 
 export const metadata: Metadata = {
   title: `${config.companyName}`,
   description: `${config.companyDescription}`,
   keywords: [],
-  manifest: process.env.NODE_ENV === "production" ? "/manifest.prod.json" : "/manifest.json",
+  manifest:
+    process.env.NODE_ENV === 'production'
+      ? '/manifest.prod.json'
+      : '/manifest.json',
   openGraph: {
     title: `${config.companyName}`,
     description: `${config.companyDescription}`,
@@ -50,10 +53,10 @@ export const metadata: Metadata = {
         alt: ``,
       },
     ],
-    type: "website",
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     site: config.socials.twitter,
     creator: config.socials.twitter,
     images: [
@@ -64,16 +67,16 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: [{ url: "/icons/192x192.png", sizes: "192x192", type: "image/png" }],
-    apple: [{ url: "/icons/180x180.png", sizes: "180x180", type: "image/png" }],
+    icon: [{ url: '/icons/192x192.png', sizes: '192x192', type: 'image/png' }],
+    apple: [{ url: '/icons/180x180.png', sizes: '180x180', type: 'image/png' }],
   },
   metadataBase: new URL(config.url),
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -85,14 +88,15 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${baskerville.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${baskerville.variable} antialiased`}
+      >
         <main className="max-w-3xl mx-auto px-5 justify-center sm:px-12 mt-4 sm:mt-8 min-h-screen">
           <Header />
           {children}
         </main>
-        <Footer/>
+        <Footer />
       </body>
     </html>
-  )
+  );
 }
-

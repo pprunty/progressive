@@ -1,52 +1,54 @@
-"use client"
+'use client';
 
-import { useHqImage } from "@/delta/hooks/use-hq-image"
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { RefreshCw, Grid, ImageIcon } from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useHqImage } from '@/delta/hooks/use-hq-image';
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { RefreshCw, Grid, ImageIcon } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function UseHQImageDemo() {
   // Single image state
-  const { image, refreshImage, getRandomImages } = useHqImage()
-  const [loading, setLoading] = useState(true)
+  const { image, refreshImage, getRandomImages } = useHqImage();
+  const [loading, setLoading] = useState(true);
 
   // Grid state
-  const [gridSize, setGridSize] = useState(6)
-  const [gridImages, setGridImages] = useState(getRandomImages(gridSize))
-  const [gridLoading, setGridLoading] = useState<boolean[]>(Array(gridSize).fill(true))
+  const [gridSize, setGridSize] = useState(6);
+  const [gridImages, setGridImages] = useState(getRandomImages(gridSize));
+  const [gridLoading, setGridLoading] = useState<boolean[]>(
+    Array(gridSize).fill(true),
+  );
 
   // Refresh grid images
   const refreshGridImages = () => {
-    setGridLoading(Array(gridSize).fill(true))
-    setGridImages(getRandomImages(gridSize))
-  }
+    setGridLoading(Array(gridSize).fill(true));
+    setGridImages(getRandomImages(gridSize));
+  };
 
   // Handle grid image load or error
   const handleGridImageLoad = (index: number) => {
     setGridLoading((prev) => {
-      const newLoading = [...prev]
-      newLoading[index] = false
-      return newLoading
-    })
-  }
+      const newLoading = [...prev];
+      newLoading[index] = false;
+      return newLoading;
+    });
+  };
 
   // Add timeout to prevent infinite loading states
   useEffect(() => {
     // Set a timeout to clear any hanging loading states after 10 seconds
     const timeout = setTimeout(() => {
-      setLoading(false)
-      setGridLoading((prev) => prev.map(() => false))
-    }, 10000)
+      setLoading(false);
+      setGridLoading((prev) => prev.map(() => false));
+    }, 10000);
 
-    return () => clearTimeout(timeout)
-  }, [image, gridImages])
+    return () => clearTimeout(timeout);
+  }, [image, gridImages]);
 
   // Update grid images when grid size changes
   useEffect(() => {
-    setGridLoading(Array(gridSize).fill(true))
-    setGridImages(getRandomImages(gridSize))
-  }, [gridSize, getRandomImages])
+    setGridLoading(Array(gridSize).fill(true));
+    setGridImages(getRandomImages(gridSize));
+  }, [gridSize, getRandomImages]);
 
   return (
     <div className="flex flex-col items-center max-w-4xl mx-auto p-4 space-y-6">
@@ -69,11 +71,13 @@ export default function UseHQImageDemo() {
         <TabsContent value="single" className="w-full">
           <div className="flex flex-col items-center space-y-6">
             <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border">
-              {loading && <div className="absolute inset-0 animate-pulse bg-muted/80"></div>}
+              {loading && (
+                <div className="absolute inset-0 animate-pulse bg-muted/80"></div>
+              )}
               <img
-                src={image.url || "/placeholder.svg"}
-                alt={"Random HQ Photo"}
-                className={`w-full h-full object-cover ${loading ? "opacity-0" : "opacity-100 transition-opacity duration-300"}`}
+                src={image.url || '/placeholder.svg'}
+                alt={'Random HQ Photo'}
+                className={`w-full h-full object-cover ${loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
                 onLoad={() => setLoading(false)}
                 onError={() => setLoading(false)} // Add error handling
               />
@@ -81,8 +85,8 @@ export default function UseHQImageDemo() {
 
             <Button
               onClick={() => {
-                setLoading(true)
-                refreshImage()
+                setLoading(true);
+                refreshImage();
               }}
               className="flex items-center gap-2"
             >
@@ -99,7 +103,7 @@ export default function UseHQImageDemo() {
               {[2, 4, 6, 9].map((size) => (
                 <Button
                   key={size}
-                  variant={gridSize === size ? "default" : "outline"}
+                  variant={gridSize === size ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setGridSize(size)}
                 >
@@ -114,11 +118,13 @@ export default function UseHQImageDemo() {
                   key={`${img.url}-${index}`}
                   className="relative aspect-video rounded-lg overflow-hidden border border-border"
                 >
-                  {gridLoading[index] && <div className="absolute inset-0 animate-pulse bg-muted/80"></div>}
+                  {gridLoading[index] && (
+                    <div className="absolute inset-0 animate-pulse bg-muted/80"></div>
+                  )}
                   <img
-                    src={img.url || "/placeholder.svg"}
+                    src={img.url || '/placeholder.svg'}
                     alt={`Random photo ${index + 1}`}
-                    className={`w-full h-full object-cover ${gridLoading[index] ? "opacity-0" : "opacity-100 transition-opacity duration-300"}`}
+                    className={`w-full h-full object-cover ${gridLoading[index] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
                     onLoad={() => handleGridImageLoad(index)}
                     onError={() => handleGridImageLoad(index)} // Add error handling
                   />
@@ -126,7 +132,10 @@ export default function UseHQImageDemo() {
               ))}
             </div>
 
-            <Button onClick={refreshGridImages} className="flex items-center gap-2">
+            <Button
+              onClick={refreshGridImages}
+              className="flex items-center gap-2"
+            >
               <RefreshCw className="h-4 w-4" />
               Refresh All Images
             </Button>
@@ -134,6 +143,5 @@ export default function UseHQImageDemo() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
-

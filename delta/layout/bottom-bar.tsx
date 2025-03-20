@@ -126,7 +126,10 @@ const CenterButton = memo(
             className={clsx('flex flex-col items-center', 'icon-pulse')}
           >
             <div className="icon-container p-3.5 rounded-full bg-primary shadow-lg hover:bg-primary-hover transition-colors">
-              <ButtonIcon weight="bold" className="w-6 h-6 text-primary-foreground" />
+              <ButtonIcon
+                weight="bold"
+                className="w-6 h-6 text-primary-foreground"
+              />
             </div>
             {showLabels && label && (
               <span className="text-[10px] leading-tight text-center mt-1.5 text-primary">
@@ -201,7 +204,12 @@ const BottomBar: FC<BottomBarProps> = memo(function BottomBar({
         }
       `}</style>
 
-      <nav className={clsx("block md:hidden fixed py-1 bottom-0 left-0 border-t border-border right-0 z-50 bg-background backdrop-blur-lg bg-opacity-95", className)}>
+      <nav
+        className={clsx(
+          'block md:hidden fixed py-1 bottom-0 left-0 border-t border-border right-0 z-50 bg-background backdrop-blur-lg bg-opacity-95',
+          className,
+        )}
+      >
         <ul className="flex justify-around items-center relative">
           {centerButton ? (
             <>

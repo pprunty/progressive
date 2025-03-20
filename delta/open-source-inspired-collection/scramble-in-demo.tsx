@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useRef, useEffect } from 'react';
 import ScrambleIn from './scramble-in'; // Update this path as needed
@@ -6,20 +6,20 @@ import ScrambleIn from './scramble-in'; // Update this path as needed
 const ScrambleInDemo = () => {
   // Album tracks data
   const titles = [
-    "1. One More Time (featuring Romanthony) - 5:20",
-    "2. Aerodynamic - 3:27",
-    "3. Digital Love - 4:58",
-    "4. Harder, Better, Faster, Stronger - 3:45",
-    "5. Crescendolls - 3:31",
-    "6. Nightvision - 1:44",
-    "7. Superheroes - 3:57",
-    "8. High Life - 3:22",
-    "9. Something About Us - 3:51",
-    "10. Voyager - 3:47",
-    "11. Veridis Quo - 5:44",
-    "12. Short Circuit - 3:26",
-    "13. Face to Face (featuring Todd Edwards) - 3:58",
-    "14. Too Long (featuring Romanthony) - 10:00",
+    '1. One More Time (featuring Romanthony) - 5:20',
+    '2. Aerodynamic - 3:27',
+    '3. Digital Love - 4:58',
+    '4. Harder, Better, Faster, Stronger - 3:45',
+    '5. Crescendolls - 3:31',
+    '6. Nightvision - 1:44',
+    '7. Superheroes - 3:57',
+    '8. High Life - 3:22',
+    '9. Something About Us - 3:51',
+    '10. Voyager - 3:47',
+    '11. Veridis Quo - 5:44',
+    '12. Short Circuit - 3:26',
+    '13. Face to Face (featuring Todd Edwards) - 3:58',
+    '14. Too Long (featuring Romanthony) - 10:00',
   ];
 
   // Initialize album tracks refs array
@@ -27,7 +27,10 @@ const ScrambleInDemo = () => {
 
   // Initialize album tracks refs array
   useEffect(() => {
-    scrambleTracksRefs.current = scrambleTracksRefs.current.slice(0, titles.length);
+    scrambleTracksRefs.current = scrambleTracksRefs.current.slice(
+      0,
+      titles.length,
+    );
   }, [titles.length]);
 
   return (
@@ -105,7 +108,9 @@ const ScrambleInDemo = () => {
       {/* Fourth Section - Retrigger on Intersection */}
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
         <h2 className="text-2xl font-bold mb-6">Retrigger on Intersection</h2>
-        <p className="mb-4 text-muted-foreground">This text will re-scramble each time you scroll back to it.</p>
+        <p className="mb-4 text-muted-foreground">
+          This text will re-scramble each time you scroll back to it.
+        </p>
         <div className="space-y-6">
           <div className="text-md">
             <ScrambleIn
@@ -135,14 +140,18 @@ const ScrambleInDemo = () => {
 
       {/* Fifth Section - Album Tracks with Intersection Observer */}
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
-        <h2 className="text-2xl font-bold mb-6">Album Tracks with Intersection Observer</h2>
-        <p className="mb-4 text-muted-foreground">Each track uses built-in intersection observer with cascading timing:</p>
+        <h2 className="text-2xl font-bold mb-6">
+          Album Tracks with Intersection Observer
+        </h2>
+        <p className="mb-4 text-muted-foreground">
+          Each track uses built-in intersection observer with cascading timing:
+        </p>
         <div className="space-y-3 text-left">
           {titles.map((track, index) => (
             <div key={index}>
               <ScrambleIn
                 text={track}
-                scrambleSpeed={25 + (index * 2)}
+                scrambleSpeed={25 + index * 2}
                 scrambledLetterCount={5}
                 autoStart={false}
                 useIntersectionObserver={true}
@@ -158,7 +167,9 @@ const ScrambleInDemo = () => {
       {/* Sixth Section - Album Tracks with Retrigger */}
       <section className="p-8 border border-border rounded-lg shadow-sm bg-background text-card-foreground">
         <h2 className="text-2xl font-bold mb-6">Album Tracks with Retrigger</h2>
-        <p className="mb-4 text-muted-foreground">These tracks will re-animate each time you scroll to them:</p>
+        <p className="mb-4 text-muted-foreground">
+          These tracks will re-animate each time you scroll to them:
+        </p>
         <div className="space-y-3 text-left font-mono">
           {titles.slice(0, 5).map((track, index) => (
             <div key={index}>
@@ -182,9 +193,17 @@ const ScrambleInDemo = () => {
         <h2 className="text-2xl font-bold mb-4">How to Test</h2>
         <p>Scroll up and down to see the different behaviors:</p>
         <ul className="text-left list-disc list-inside mt-4 text-muted-foreground">
-          <li>Regular sections only animate once when they enter the viewport</li>
-          <li>The "Retrigger on Intersection" section animates every time you scroll to it</li>
-          <li>Try scrolling fast past sections then back to see the intersection behaviors</li>
+          <li>
+            Regular sections only animate once when they enter the viewport
+          </li>
+          <li>
+            The "Retrigger on Intersection" section animates every time you
+            scroll to it
+          </li>
+          <li>
+            Try scrolling fast past sections then back to see the intersection
+            behaviors
+          </li>
         </ul>
       </section>
     </div>
