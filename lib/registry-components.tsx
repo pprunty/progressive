@@ -5,7 +5,6 @@ import type React from 'react';
 import { HelloWorld } from '@/delta/new-york/hello-world/hello-world';
 import { ExampleForm } from '@/delta/new-york/example-form/example-form';
 import PokemonPage from '@/delta/new-york/complex-component/page';
-import { Tabs } from '@/delta/components/tabs/tabs';
 import AdmonitionDemo from '@/delta/components/admonition-demo';
 import { ModalDemo } from '@/delta/components/modal-demo';
 import ScrambleInDemo from '@/delta/open-source-inspired-collection/scramble-in-demo';
@@ -16,49 +15,50 @@ import BottomBarDemo from '@/delta/layout/bottom-bar-demo';
 import FullBleedSectionDemo from '@/delta/components/full-bleed-section-demo';
 import TweetDemo from '@/delta/components/tweet-demo';
 import VideoPlayerDemo from '@/delta/components/video-player-demo';
+import TabsDemo from "@/delta/components/tabs-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
   'hello-world': {
-    component: HelloWorld,
+    component: HelloWorld
   },
   'example-form': {
-    component: ExampleForm,
+    component: ExampleForm
   },
   'complex-component': {
-    component: PokemonPage,
-  },
-  tabs: {
-    component: Tabs,
+    component: PokemonPage
   },
   admonition: {
-    component: AdmonitionDemo,
+    component: AdmonitionDemo
   },
   modal: {
-    component: ModalDemo,
+    component: ModalDemo
   },
   'scramble-in': {
-    component: ScrambleInDemo,
+    component: ScrambleInDemo
   },
   'neobrutalism-card': {
-    component: NeobrutalismCardDemo,
+    component: NeobrutalismCardDemo
   },
   'use-hq-image': {
-    component: UseHQImageDemo,
+    component: UseHQImageDemo
   },
   'ios-screen-preview': {
-    component: IosScreenPreviewDemo,
+    component: IosScreenPreviewDemo
   },
   'bottom-bar': {
-    component: BottomBarDemo,
+    component: BottomBarDemo
   },
   tweet: {
-    component: TweetDemo,
+    component: TweetDemo
   },
   'full-bleed-section': {
-    component: FullBleedSectionDemo,
+    component: FullBleedSectionDemo
   },
   'video-player': {
-    component: VideoPlayerDemo,
-  },
-};
+    component: VideoPlayerDemo
+  }
+,
+  "tabs": {
+    component: TabsDemo,
+  },};
