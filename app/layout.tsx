@@ -7,6 +7,15 @@ import config from "@/app/config"
 import { doge } from "./doge"
 import { Header } from "./header"
 import Footer from "./footer"
+import { Libre_Baskerville } from 'next/font/google';
+
+// Initialize the font with italic subset
+const baskerville = Libre_Baskerville({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-baskerville',
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,7 +85,7 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${baskerville.variable} antialiased`}>
         <main className="max-w-3xl mx-auto px-5 justify-center sm:px-12 mt-4 sm:mt-8 min-h-screen">
           <Header />
           {children}

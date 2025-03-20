@@ -12,6 +12,9 @@ export default {
   ],
   theme: {
     extend: {
+    fontFamily: {
+            baskerville: ['var(--font-baskerville)'],
+          },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

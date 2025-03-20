@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Badge } from "@/components/badge"
 import { getCategories, getRegistryInfo } from "@/lib/registry"
+import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 
 export default async function Home() {
   const categories = await getCategories()
@@ -16,12 +17,17 @@ export default async function Home() {
           rel="noopener noreferrer"
           className="group w-fit flex"
         >
-          <h1 className="text-lg font-bold tracking-tight underline decoration-1 underline-offset-4 decoration-muted-foreground/50 hover:decoration-primary transition-all duration-300">
+          <h1 className="text-lg font-bold font-serif italic tracking-tight underline underline underline-offset-4 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary flex items-center gap-1">
             {registryInfo.name} Registry
+                                <ArrowUpRight
+                                  size={14}
+                                  weight="bold"
+                                  className="text-muted-foreground"
+                                />
           </h1>
         </Link>
         <p className="text-md text-muted-foreground">
-Combining modern aesthetics with exceptional performance, Delta Components make the difference in your users&lsquo; experience.
+        Components that make the difference in your users&lsquo; experience.
         </p>
       </div>
 
@@ -35,7 +41,7 @@ Combining modern aesthetics with exceptional performance, Delta Components make 
                 <div key={item.name} className="flex items-center gap-2">
                   <Link
                     href={`/docs/${item.name}`}
-                    className="text-[15px] decoration-1 font-medium underline underline-offset-2 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary hover:text-primary"
+                    className="text-[15px] decoration-1 font-medium underline underline-offset-4 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary hover:text-primary"
                   >
                     {item.title}
                   </Link>

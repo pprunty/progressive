@@ -251,6 +251,7 @@
       "name": "tweet",
       "type": "registry:component",
       "title": "Tweet",
+      "badge": "new",
       "description": "A component for embedding and displaying tweets with server-side rendering",
       "dependencies": [
         "react-tweet"
