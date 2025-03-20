@@ -30,6 +30,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-syntax-highlighter": "^15.6.1",
+    "react-tweet": "^3.2.2",
     "shadcn": "2.4.0-canary.12",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",

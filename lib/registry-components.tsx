@@ -13,8 +13,8 @@ import NeobrutalismCardDemo from "@/delta/open-source-inspired-collection/neobru
 import UseHQImageDemo from "@/delta/hooks/use-hq-image-demo";
 import { IosScreenPreviewDemo } from "@/delta/other/ios-screen-preview-demo"
 import BottomBarDemo from "@/delta/layout/bottom-bar-demo"
-import { TweetDemo } from "@/delta/components/tweet-demo"
 import FullBleedSectionDemo from "@/delta/components/full-bleed-section-demo"
+import TweetDemo from "@/delta/components/tweet-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -58,5 +58,6 @@ export const registry: Record<string, { component: React.ComponentType }> = {
   },
   "full-bleed-section": {
     component: FullBleedSectionDemo,
-  },}
+  }
+}
 

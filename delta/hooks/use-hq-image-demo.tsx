@@ -15,7 +15,7 @@ export default function UseHQImageDemo() {
         {loading && <div className="absolute inset-0 animate-pulse bg-muted/80"></div>}
         <img
           src={image.url || "/placeholder.svg"}
-          alt={image.title}
+          alt={"Random HQ Photo"}
           className={`w-full h-full object-cover ${loading ? "opacity-0" : "opacity-100 transition-opacity duration-300"}`}
           onLoad={() => setLoading(false)}
         />

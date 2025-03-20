@@ -27,11 +27,6 @@
     transition-duration: 0ms !important;
   }
 
-    a:not(.social-link,.no-after,.tweet)[href*="//"]:not([href*="tmplate.xyz"]):after
-    {
-      content: '⌝';
-    }
-
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;

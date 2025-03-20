@@ -81,7 +81,7 @@ const ColorVariantsDemo = () => {
       {/* Full example card - centered with flex */}
       <div className="mt-16 flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-6 text-center">Complete Example</h2>
-        <Card color="blue" className="w-full max-w-md" hover={false}>
+        <Card color="blue" className="w-full max-w-sm" hover={false}>
           <CardHeader>
             <CardTitle>Create project</CardTitle>
             <CardDescription>Deploy your new project in one-click.</CardDescription>

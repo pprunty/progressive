@@ -228,26 +228,6 @@
       ]
     },
     {
-      "name": "tweet",
-      "type": "registry:component",
-      "title": "Tweet",
-      "description": "A component for tweet",
-      "dependencies": [],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "delta/components/tweet.tsx",
-          "type": "registry:component",
-          "target": "delta/components/tweet.tsx"
-        },
-        {
-          "path": "delta/components/tweet-demo.tsx",
-          "type": "registry:component",
-          "target": "delta/components/tweet-demo.tsx"
-        }
-      ]
-    },
-    {
       "name": "full-bleed-section",
       "type": "registry:component",
       "title": "Full Bleed Section",
@@ -264,6 +244,33 @@
           "path": "delta/components/full-bleed-section-demo.tsx",
           "type": "registry:component",
           "target": "delta/components/full-bleed-section-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tweet",
+      "type": "registry:component",
+      "title": "Tweet",
+      "description": "A component for embedding and displaying tweets with server-side rendering",
+      "dependencies": [
+        "react-tweet"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/components/tweet.tsx",
+          "type": "registry:component",
+          "target": "delta/components/tweet.tsx"
+        },
+        {
+          "path": "delta/components/tweet-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/components/tweet-demo.tsx"
+        },
+        {
+          "path": "delta/components/tweet.css",
+          "type": "registry:file",
+          "target": "delta/components/tweet.css"
         }
       ]
     }
