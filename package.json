@@ -56,7 +56,7 @@
     "react-syntax-highlighter": "^15.6.1",
     "react-tweet": "^3.2.2",
     "shadcn": "2.4.0-canary.12",
-    "tailwind-merge": "^2.6.0",
+    "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
   },
