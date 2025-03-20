@@ -15,6 +15,7 @@ import { IosScreenPreviewDemo } from '@/delta/other/ios-screen-preview-demo';
 import BottomBarDemo from '@/delta/layout/bottom-bar-demo';
 import FullBleedSectionDemo from '@/delta/components/full-bleed-section-demo';
 import TweetDemo from '@/delta/components/tweet-demo';
+import VideoPlayerDemo from "@/delta/components/video-player-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -57,4 +58,6 @@ export const registry: Record<string, { component: React.ComponentType }> = {
   'full-bleed-section': {
     component: FullBleedSectionDemo,
   },
-};
+  "video-player": {
+    component: VideoPlayerDemo,
+  },};

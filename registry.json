@@ -8,7 +8,9 @@
       "type": "registry:component",
       "title": "Hello World",
       "description": "A simple hello world component",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "delta/new-york/hello-world/hello-world.tsx",
@@ -21,8 +23,16 @@
       "type": "registry:component",
       "title": "Example Form",
       "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "textarea",
+        "card"
+      ],
       "files": [
         {
           "path": "delta/new-york/example-form/example-form.tsx",
@@ -35,7 +45,9 @@
       "type": "registry:component",
       "title": "Complex Component",
       "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
+      "registryDependencies": [
+        "card"
+      ],
       "files": [
         {
           "path": "delta/new-york/complex-component/page.tsx",
@@ -99,8 +111,13 @@
       "type": "registry:component",
       "title": "Modal",
       "description": "A customizable modal component with animations and various style options",
-      "dependencies": ["framer-motion", "@phosphor-icons/react"],
-      "registryDependencies": ["button"],
+      "dependencies": [
+        "framer-motion",
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "delta/components/modal.tsx",
@@ -236,7 +253,9 @@
       "title": "Tweet",
       "badge": "new",
       "description": "A component for embedding and displaying tweets with server-side rendering",
-      "dependencies": ["react-tweet"],
+      "dependencies": [
+        "react-tweet"
+      ],
       "registryDependencies": [],
       "files": [
         {
@@ -253,6 +272,26 @@
           "path": "delta/components/tweet.css",
           "type": "registry:file",
           "target": "delta/components/tweet.css"
+        }
+      ]
+    },
+    {
+      "name": "video-player",
+      "type": "registry:component",
+      "title": "Video Player",
+      "description": "A component for video-player",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/components/video-player.tsx",
+          "type": "registry:component",
+          "target": "delta/components/video-player.tsx"
+        },
+        {
+          "path": "delta/components/video-player-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/components/video-player-demo.tsx"
         }
       ]
     }

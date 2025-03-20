@@ -18,7 +18,7 @@ export function ComponentPreview({ component }: { component: ComponentType }) {
     return (
       <div className="flex items-center justify-center h-[320px] text-muted-foreground">
         Component{' '}
-        <code className="mx-1 px-1 bg-muted rounded">{component.name}</code> not
+        <code className="bg-muted rounded">{component.name}</code> not
         found in registry.
         <br />
         Make sure it&lsquo;s properly registered in lib/registry-components.tsx

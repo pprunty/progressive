@@ -10,6 +10,8 @@ import '@/delta/components/tweet.css';
 
 interface TweetArgs {
   id: string;
+  small?: boolean;
+  className?: string;
 }
 
 async function fetchTweetWithRetry(
@@ -59,10 +61,13 @@ export const ReactTweet = (props: TweetProps) => (
   </Suspense>
 );
 
-export async function Tweet({ id }: TweetArgs) {
+export async function Tweet({ id, small = false, className = '' }: TweetArgs) {
+  // Apply max-w-xs class only if small prop is true
+  const sizeClass = small ? 'max-w-xs' : '';
+
   return (
-    <div className="tweet my-6">
-      <div className={`flex justify-center`}>
+    <div className={`tweet my-6 ${sizeClass} ${className}`}>
+      <div className="flex justify-center">
         <ReactTweet id={id} />
       </div>
     </div>
