@@ -3,7 +3,7 @@ import { Admonition } from '@/delta/components/admonition';
 export default function Preview() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
-    <h1 className="text-3xl font-bold text-center mb-8">Admonition Demo</h1>
+      <h1 className="text-3xl font-bold text-center mb-8">Admonition Demo</h1>
       <Admonition type="note">
         <p>This is a simple note with default styling and title.</p>
       </Admonition>

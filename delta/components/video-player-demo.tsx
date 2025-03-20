@@ -1,4 +1,4 @@
-import { VideoPlayer } from "./video-player"
+import { VideoPlayer } from './video-player';
 
 export default function VideoPlayerDemo() {
   return (
@@ -7,6 +7,5 @@ export default function VideoPlayerDemo() {
       title="Big Buck Bunny - Sample Video"
       storageKey="demo-video-player-state"
     />
-  )
+  );
 }
-

@@ -52,7 +52,9 @@ export default function UseHQImageDemo() {
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
-         <h1 className="text-3xl font-bold text-center mb-8">Random High-Quality Images</h1>
+      <h1 className="text-3xl font-bold text-center mb-8">
+        Random High-Quality Images
+      </h1>
       <Tabs defaultValue="single" className="w-full">
         <div className="flex flex-col items-center space-y-2 mb-8">
           <TabsList>
