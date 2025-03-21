@@ -158,7 +158,7 @@ export function SelectInput({
         <label
           htmlFor={id}
           className={cn(
-            'text-md font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+            'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
             labelVariant === 'muted' && 'text-muted-foreground',
             labelClassName,
           )}
@@ -234,7 +234,7 @@ export function SelectInput({
       <label
         htmlFor={id}
         className={cn(
-          'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+          'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
           labelVariant === 'muted' && 'text-muted-foreground',
           labelClassName,
         )}
