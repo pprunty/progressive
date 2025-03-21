@@ -300,6 +300,26 @@
           "target": "delta/components/tabs-demo.tsx"
         }
       ]
+    },
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "A component for button",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "delta/components/button.tsx",
+          "type": "registry:component",
+          "target": "delta/components/button.tsx"
+        },
+        {
+          "path": "delta/components/button-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/components/button-demo.tsx"
+        }
+      ]
     }
   ]
 }

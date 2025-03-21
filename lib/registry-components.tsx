@@ -16,6 +16,7 @@ import FullBleedSectionDemo from '@/delta/components/full-bleed-section-demo';
 import TweetDemo from '@/delta/components/tweet-demo';
 import VideoPlayerDemo from '@/delta/components/video-player-demo';
 import TabsDemo from "@/delta/components/tabs-demo"
+import ButtonDemo from "@/delta/components/button-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -61,4 +62,8 @@ export const registry: Record<string, { component: React.ComponentType }> = {
 ,
   "tabs": {
     component: TabsDemo,
-  },};
+  },
+  "button": {
+    component: ButtonDemo,
+  },
+};

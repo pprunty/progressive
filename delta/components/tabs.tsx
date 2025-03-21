@@ -171,7 +171,7 @@ export function Tabs({
 
   // Active indicator classes
   const activeIndicatorClasses = {
-    default: 'bg-foreground dark:bg-white',
+    default: 'h-[4px] bg-foreground dark:bg-white',
     pills: 'hidden',
     underlined: 'h-[4px] bg-foreground dark:bg-white',
   };
