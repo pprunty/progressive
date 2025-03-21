@@ -35,9 +35,7 @@ export function BlueCardDemo() {
         <CardDescription>Default blue variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>
-          This card has hover and active states. Click to see active state.
-        </p>
+        <p>This card has hover and active states. Click to see active state.</p>
       </CardContent>
     </Card>
   );
@@ -118,9 +116,7 @@ export function CompleteExampleDemo() {
     <Card color="blue" className="w-full max-w-sm" hover={false}>
       <CardHeader>
         <CardTitle>Create project</CardTitle>
-        <CardDescription>
-          Deploy your new project in one-click.
-        </CardDescription>
+        <CardDescription>Deploy your new project in one-click.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid w-full items-center gap-4">

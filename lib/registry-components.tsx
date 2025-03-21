@@ -15,55 +15,90 @@ import BottomBarDemo from '@/delta/layout/bottom-bar-demo';
 import FullBleedSectionDemo from '@/delta/components/full-bleed-section-demo';
 import TweetDemo from '@/delta/components/tweet-demo';
 import VideoPlayerDemo from '@/delta/components/video-player-demo';
-import TabsDemo from "@/delta/components/tabs-demo"
-import ButtonDemo from "@/delta/components/button-demo"
+import TabsDemo from '@/delta/components/tabs-demo';
+import ButtonDemo from '@/delta/components/button-demo';
+import TextInputDemo from '@/delta/forms/text-input-demo';
+import CheckboxInputDemo from '@/delta/forms/checkbox-input-demo';
+import SelectInputDemo from '@/delta/forms/select-input-demo';
+import RadioInputDemo from '@/delta/forms/radio-input-demo';
+import SwitchInputDemo from '@/delta/forms/switch-input-demo';
+import TextareaInputDemo from '@/delta/forms/textarea-input-demo';
+import FileInputDemo from '@/delta/forms/file-input-demo';
+import DateInputDemo from '@/delta/forms/date-input-demo';
+import SmartFormDemo from '@/delta/forms/smart-form-demo';
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
   'hello-world': {
-    component: HelloWorld
+    component: HelloWorld,
   },
   'example-form': {
-    component: ExampleForm
+    component: ExampleForm,
   },
   'complex-component': {
-    component: PokemonPage
+    component: PokemonPage,
   },
   admonition: {
-    component: AdmonitionDemo
+    component: AdmonitionDemo,
   },
   modal: {
-    component: ModalDemo
+    component: ModalDemo,
   },
   'scramble-in': {
-    component: ScrambleInDemo
+    component: ScrambleInDemo,
   },
   'neobrutalism-card': {
-    component: NeobrutalismCardDemo
+    component: NeobrutalismCardDemo,
   },
   'use-hq-image': {
-    component: UseHQImageDemo
+    component: UseHQImageDemo,
   },
   'ios-screen-preview': {
-    component: IosScreenPreviewDemo
+    component: IosScreenPreviewDemo,
   },
   'bottom-bar': {
-    component: BottomBarDemo
+    component: BottomBarDemo,
   },
   tweet: {
-    component: TweetDemo
+    component: TweetDemo,
   },
   'full-bleed-section': {
-    component: FullBleedSectionDemo
+    component: FullBleedSectionDemo,
   },
   'video-player': {
-    component: VideoPlayerDemo
-  }
-,
-  "tabs": {
+    component: VideoPlayerDemo,
+  },
+  tabs: {
     component: TabsDemo,
   },
-  "button": {
+  button: {
     component: ButtonDemo,
+  },
+  'text-input': {
+    component: TextInputDemo,
+  },
+  'checkbox-input': {
+    component: CheckboxInputDemo,
+  },
+  'select-input': {
+    component: SelectInputDemo,
+  },
+  'radio-input': {
+    component: RadioInputDemo,
+  },
+  'switch-input': {
+    component: SwitchInputDemo,
+  },
+  'textarea-input': {
+    component: TextareaInputDemo,
+  },
+  'file-input': {
+    component: FileInputDemo,
+  },
+  'date-input': {
+    component: DateInputDemo,
+  },
+  'smart-form': {
+    component: SmartFormDemo,
   },
 };

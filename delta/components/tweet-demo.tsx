@@ -1,4 +1,4 @@
-import { Tweet } from "@/delta/components/tweet"
+import { Tweet } from '@/delta/components/tweet';
 
 export default function TweetDemo() {
   return (
@@ -7,7 +7,7 @@ export default function TweetDemo() {
       <StandardTweetDemo />
       <MultipleTweetsDemo />
     </div>
-  )
+  );
 }
 
 export function SmallTweetDemo() {
@@ -20,7 +20,7 @@ export function SmallTweetDemo() {
         Small tweets are more compact and work well on both mobile and desktop.
       </p>
     </div>
-  )
+  );
 }
 
 export function StandardTweetDemo() {
@@ -29,9 +29,11 @@ export function StandardTweetDemo() {
       <div className="flex justify-center">
         <Tweet id="1886192184808149383" />
       </div>
-      <p className="text-sm text-muted-foreground mt-2 text-center">Standard tweets appear large on desktop screens.</p>
+      <p className="text-sm text-muted-foreground mt-2 text-center">
+        Standard tweets appear large on desktop screens.
+      </p>
     </div>
-  )
+  );
 }
 
 export function MultipleTweetsDemo() {
@@ -42,10 +44,10 @@ export function MultipleTweetsDemo() {
         <Tweet id="1895566669281636846" small />
       </div>
       <p className="text-sm text-muted-foreground mt-2 text-center">
-        Note: Standard-sized tweets use default, responsive size on desktop but may require horizontal scrolling on
-        mobile devices, depending on parent container.
+        Note: Standard-sized tweets use default, responsive size on desktop but
+        may require horizontal scrolling on mobile devices, depending on parent
+        container.
       </p>
     </div>
-  )
+  );
 }
-

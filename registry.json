@@ -8,9 +8,7 @@
       "type": "registry:component",
       "title": "Hello World",
       "description": "A simple hello world component",
-      "registryDependencies": [
-        "button"
-      ],
+      "registryDependencies": ["button"],
       "files": [
         {
           "path": "delta/new-york/hello-world/hello-world.tsx",
@@ -23,16 +21,8 @@
       "type": "registry:component",
       "title": "Example Form",
       "description": "A contact form with Zod validation.",
-      "dependencies": [
-        "zod"
-      ],
-      "registryDependencies": [
-        "button",
-        "input",
-        "label",
-        "textarea",
-        "card"
-      ],
+      "dependencies": ["zod"],
+      "registryDependencies": ["button", "input", "label", "textarea", "card"],
       "files": [
         {
           "path": "delta/new-york/example-form/example-form.tsx",
@@ -45,9 +35,7 @@
       "type": "registry:component",
       "title": "Complex Component",
       "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": [
-        "card"
-      ],
+      "registryDependencies": ["card"],
       "files": [
         {
           "path": "delta/new-york/complex-component/page.tsx",
@@ -97,13 +85,8 @@
       "type": "registry:component",
       "title": "Modal",
       "description": "A customizable modal component with animations and various style options",
-      "dependencies": [
-        "framer-motion",
-        "@phosphor-icons/react"
-      ],
-      "registryDependencies": [
-        "button"
-      ],
+      "dependencies": ["framer-motion", "@phosphor-icons/react"],
+      "registryDependencies": ["button"],
       "files": [
         {
           "path": "delta/components/modal.tsx",
@@ -239,9 +222,7 @@
       "title": "Tweet",
       "badge": "new",
       "description": "A component for embedding and displaying tweets with server-side rendering",
-      "dependencies": [
-        "react-tweet"
-      ],
+      "dependencies": ["react-tweet"],
       "registryDependencies": [],
       "files": [
         {
@@ -318,6 +299,242 @@
           "path": "delta/components/button-demo.tsx",
           "type": "registry:component",
           "target": "delta/components/button-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "text-input",
+      "type": "registry:component",
+      "title": "Text Input",
+      "description": "A text input component with validation, error handling, and various styling options",
+      "dependencies": ["zod"],
+      "registryDependencies": ["input"],
+      "files": [
+        {
+          "path": "delta/forms/text-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/text-input.tsx"
+        },
+        {
+          "path": "delta/forms/text-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/text-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-input",
+      "type": "registry:component",
+      "title": "Checkbox Input",
+      "description": "A checkbox input component with validation, error handling, and label support",
+      "dependencies": ["zod"],
+      "registryDependencies": ["checkbox"],
+      "files": [
+        {
+          "path": "delta/forms/checkbox-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/checkbox-input.tsx"
+        },
+        {
+          "path": "delta/forms/checkbox-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/checkbox-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select-input",
+      "type": "registry:component",
+      "title": "Select Input",
+      "description": "A select input component with both native and shadcn/ui select variants",
+      "dependencies": ["zod", "lucide-react"],
+      "registryDependencies": ["select"],
+      "files": [
+        {
+          "path": "delta/forms/select-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/select-input.tsx"
+        },
+        {
+          "path": "delta/forms/select-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/select-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-input",
+      "type": "registry:component",
+      "title": "Radio Input",
+      "description": "A radio input group component with validation and description support",
+      "dependencies": ["zod"],
+      "registryDependencies": ["radio-group"],
+      "files": [
+        {
+          "path": "delta/forms/radio-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/radio-input.tsx"
+        },
+        {
+          "path": "delta/forms/radio-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/radio-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch-input",
+      "type": "registry:component",
+      "title": "Switch Input",
+      "description": "A switch toggle component with validation and label support",
+      "dependencies": ["zod"],
+      "registryDependencies": ["switch"],
+      "files": [
+        {
+          "path": "delta/forms/switch-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/switch-input.tsx"
+        },
+        {
+          "path": "delta/forms/switch-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/switch-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea-input",
+      "type": "registry:component",
+      "title": "Textarea Input",
+      "description": "A textarea component with validation, error handling, and various styling options",
+      "dependencies": ["zod"],
+      "registryDependencies": ["textarea"],
+      "files": [
+        {
+          "path": "delta/forms/textarea-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/textarea-input.tsx"
+        },
+        {
+          "path": "delta/forms/textarea-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/textarea-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-input",
+      "type": "registry:component",
+      "title": "Date Input",
+      "description": "A date picker component with validation, min/max date support, and formatting options",
+      "dependencies": ["zod", "date-fns", "lucide-react"],
+      "registryDependencies": ["button", "calendar", "popover"],
+      "files": [
+        {
+          "path": "delta/forms/date-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/date-input.tsx"
+        },
+        {
+          "path": "delta/forms/date-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/date-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-input",
+      "type": "registry:component",
+      "title": "File Input",
+      "description": "A file input component with drag and drop support, file previews, and validation",
+      "dependencies": ["zod", "@phosphor-icons/react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "delta/forms/file-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/file-input.tsx"
+        },
+        {
+          "path": "delta/forms/file-input-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/file-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "smart-form",
+      "type": "registry:component",
+      "title": "Smart Form",
+      "description": "A powerful abstraction for creating forms with minimal code. Supports various input types, layouts, validation, and conditional fields.",
+      "dependencies": [
+        "zod",
+        "date-fns",
+        "lucide-react",
+        "@phosphor-icons/react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "checkbox",
+        "select",
+        "radio-group",
+        "switch",
+        "textarea",
+        "calendar",
+        "popover",
+        "card"
+      ],
+      "files": [
+        {
+          "path": "delta/forms/smart-form.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/smart-form.tsx"
+        },
+        {
+          "path": "delta/forms/smart-form-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/smart-form-demo.tsx"
+        },
+        {
+          "path": "delta/forms/text-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/text-input.tsx"
+        },
+        {
+          "path": "delta/forms/checkbox-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/checkbox-input.tsx"
+        },
+        {
+          "path": "delta/forms/select-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/select-input.tsx"
+        },
+        {
+          "path": "delta/forms/radio-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/radio-input.tsx"
+        },
+        {
+          "path": "delta/forms/switch-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/switch-input.tsx"
+        },
+        {
+          "path": "delta/forms/textarea-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/textarea-input.tsx"
+        },
+        {
+          "path": "delta/forms/date-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/date-input.tsx"
+        },
+        {
+          "path": "delta/forms/file-input.tsx",
+          "type": "registry:component",
+          "target": "delta/forms/file-input.tsx"
         }
       ]
     }

@@ -1,17 +1,28 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState } from "react"
-import { Button } from "./button"
+import { useState } from 'react';
+import { Button } from './button';
 // Lucide React icons
-import { ArrowRight, Save, Trash, Download, Mail } from "lucide-react"
+import { ArrowRight, Save, Trash, Download, Mail } from 'lucide-react';
 // Phosphor icons
-import { ArrowRight as PhArrowRight, FloppyDisk, TrashSimple, DownloadSimple } from "@phosphor-icons/react"
+import {
+  ArrowRight as PhArrowRight,
+  FloppyDisk,
+  TrashSimple,
+  DownloadSimple,
+} from '@phosphor-icons/react';
 
 // OAuth Icons
 export const GoogleIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" height="19.2" viewBox="0 0 24 24" width="19.2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="19.2"
+    viewBox="0 0 24 24"
+    width="19.2"
+    {...props}
+  >
     <path
       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
       fill="#4285F4"
@@ -30,13 +41,19 @@ export const GoogleIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     />
     <path d="M1 1h22v22H1z" fill="none" />
   </svg>
-)
+);
 
 export const GitHubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg viewBox="0 0 24 24" width="19.2" height="19.2" fill="currentColor" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    width="19.2"
+    height="19.2"
+    fill="currentColor"
+    {...props}
+  >
     <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
   </svg>
-)
+);
 
 export default function ButtonDemo() {
   return (
@@ -49,7 +66,7 @@ export default function ButtonDemo() {
       <ButtonExtendedClickAreaDemo />
       <OAuthButtonsDemo />
     </div>
-  )
+  );
 }
 
 export function ButtonVariantsDemo() {
@@ -64,13 +81,17 @@ export function ButtonVariantsDemo() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-muted-foreground">Secondary</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">
+            Secondary
+          </h3>
           <Button title="Secondary Button" variant="secondary" />
           <Button title="Disabled" variant="secondary" disabled />
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-muted-foreground">Destructive</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">
+            Destructive
+          </h3>
           <Button title="Destructive Button" variant="destructive" />
           <Button title="Disabled" variant="destructive" disabled />
         </div>
@@ -82,41 +103,77 @@ export function ButtonVariantsDemo() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function ButtonWithLucideIconsDemo() {
   return (
     <section>
-      <h2 className="text-xl font-semibold mb-4">Buttons with Lucide React Icons</h2>
+      <h2 className="text-xl font-semibold mb-4">
+        Buttons with Lucide React Icons
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <Button title="Continue" variant="primary" icon={<ArrowRight className="w-4 h-4" />} />
+        <Button
+          title="Continue"
+          variant="primary"
+          icon={<ArrowRight className="w-4 h-4" />}
+        />
 
-        <Button title="Save Changes" variant="secondary" icon={<Save className="w-4 h-4" />} />
+        <Button
+          title="Save Changes"
+          variant="secondary"
+          icon={<Save className="w-4 h-4" />}
+        />
 
-        <Button title="Delete Item" variant="destructive" icon={<Trash className="w-4 h-4" />} />
+        <Button
+          title="Delete Item"
+          variant="destructive"
+          icon={<Trash className="w-4 h-4" />}
+        />
 
-        <Button title="Download" variant="action" icon={<Download className="w-4 h-4" />} />
+        <Button
+          title="Download"
+          variant="action"
+          icon={<Download className="w-4 h-4" />}
+        />
       </div>
     </section>
-  )
+  );
 }
 
 export function ButtonWithPhosphorIconsDemo() {
   return (
     <section>
-      <h2 className="text-xl font-semibold mb-4">Buttons with Phosphor Icons</h2>
+      <h2 className="text-xl font-semibold mb-4">
+        Buttons with Phosphor Icons
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <Button title="Continue" variant="primary" icon={<PhArrowRight weight="bold" className="w-4 h-4" />} />
+        <Button
+          title="Continue"
+          variant="primary"
+          icon={<PhArrowRight weight="bold" className="w-4 h-4" />}
+        />
 
-        <Button title="Save Changes" variant="secondary" icon={<FloppyDisk weight="bold" className="w-4 h-4" />} />
+        <Button
+          title="Save Changes"
+          variant="secondary"
+          icon={<FloppyDisk weight="bold" className="w-4 h-4" />}
+        />
 
-        <Button title="Delete Item" variant="destructive" icon={<TrashSimple weight="bold" className="w-4 h-4" />} />
+        <Button
+          title="Delete Item"
+          variant="destructive"
+          icon={<TrashSimple weight="bold" className="w-4 h-4" />}
+        />
 
-        <Button title="Download" variant="action" icon={<DownloadSimple weight="bold" className="w-4 h-4" />} />
+        <Button
+          title="Download"
+          variant="action"
+          icon={<DownloadSimple weight="bold" className="w-4 h-4" />}
+        />
       </div>
     </section>
-  )
+  );
 }
 
 export function ButtonLoadingStatesDemo() {
@@ -134,14 +191,29 @@ export function ButtonLoadingStatesDemo() {
       </div>
 
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <Button title="Custom Size Spinner" variant="primary" isLoading={true} spinnerSize={12} />
+        <Button
+          title="Custom Size Spinner"
+          variant="primary"
+          isLoading={true}
+          spinnerSize={12}
+        />
 
-        <Button title="Custom Color Spinner" variant="secondary" isLoading={true} spinnerColor="#ff5500" />
+        <Button
+          title="Custom Color Spinner"
+          variant="secondary"
+          isLoading={true}
+          spinnerColor="#ff5500"
+        />
 
-        <Button title="Large Spinner" variant="action" isLoading={true} spinnerSize={24} />
+        <Button
+          title="Large Spinner"
+          variant="action"
+          isLoading={true}
+          spinnerSize={24}
+        />
       </div>
     </section>
-  )
+  );
 }
 
 export function ButtonSizesDemo() {
@@ -156,7 +228,11 @@ export function ButtonSizesDemo() {
           icon={<PhArrowRight weight="bold" className="w-3 h-3" />}
         />
 
-        <Button title="Default Size" variant="primary" icon={<PhArrowRight weight="bold" className="w-4 h-4" />} />
+        <Button
+          title="Default Size"
+          variant="primary"
+          icon={<PhArrowRight weight="bold" className="w-4 h-4" />}
+        />
 
         <Button
           title="Large Button"
@@ -181,7 +257,7 @@ export function ButtonSizesDemo() {
         />
       </div>
     </section>
-  )
+  );
 }
 
 export function ButtonExtendedClickAreaDemo() {
@@ -189,8 +265,9 @@ export function ButtonExtendedClickAreaDemo() {
     <section>
       <h2 className="text-xl font-semibold mb-4">Extended Click Area</h2>
       <p className="text-muted-foreground mb-4">
-        The buttons below have an extended click area (invisible) that extends beyond their visible boundaries. This
-        makes them easier to click, especially on touch devices.
+        The buttons below have an extended click area (invisible) that extends
+        beyond their visible boundaries. This makes them easier to click,
+        especially on touch devices.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
@@ -214,20 +291,20 @@ export function ButtonExtendedClickAreaDemo() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function OAuthButtonsDemo() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailClick = () => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Simulate API call
     setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-  }
+      setIsLoading(false);
+    }, 2000);
+  };
 
   return (
     <section>
@@ -237,14 +314,12 @@ export function OAuthButtonsDemo() {
           title="Continue with Google"
           variant="secondary"
           icon={<GoogleIcon />}
-          className="border border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
         />
 
         <Button
           title="Continue with GitHub"
           variant="secondary"
           icon={<GitHubIcon />}
-          className="border border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
         />
 
         <div className="relative my-2">
@@ -257,8 +332,8 @@ export function OAuthButtonsDemo() {
         </div>
 
         <Button
-          title={isLoading ? "Signing in..." : "Continue with Email"}
-          variant="action"
+          title={isLoading ? 'Signing in...' : 'Continue with Email'}
+          variant="secondary"
           icon={!isLoading && <Mail className="w-4 h-4" />}
           isLoading={isLoading}
           onClick={handleEmailClick}
@@ -266,17 +341,16 @@ export function OAuthButtonsDemo() {
       </div>
 
       <div className="mt-4 text-center text-sm text-muted-foreground">
-        By clicking continue, you agree to our{" "}
+        By clicking continue, you agree to our{' '}
         <a href="#" className="underline hover:text-foreground">
           Terms of Service
-        </a>{" "}
-        and{" "}
+        </a>{' '}
+        and{' '}
         <a href="#" className="underline hover:text-foreground">
           Privacy Policy
         </a>
         .
       </div>
     </section>
-  )
+  );
 }
-
