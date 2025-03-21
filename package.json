@@ -63,7 +63,7 @@
     "react-spinners": "^0.15.0",
     "react-syntax-highlighter": "^15.6.1",
     "react-tweet": "^3.2.2",
-    "shadcn": "2.4.0-canary.12",
+    "shadcn": "2.4.0-canary.17",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
@@ -76,11 +76,11 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.1",
     "postcss": "^8",
     "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
