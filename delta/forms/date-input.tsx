@@ -155,7 +155,7 @@ export function DateInput({
       <label
         htmlFor={id}
         className={cn(
-          'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+          'text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
           labelVariant === 'muted' && 'text-muted-foreground',
           labelClassName,
         )}
@@ -175,6 +175,7 @@ export function DateInput({
             variant="outline"
             disabled={pending || disabled}
             className={cn(
+              'h-[46px] md:text-md text-md',
               'w-full justify-start text-left font-normal',
               !date && 'text-muted-foreground',
               // Default variant styling

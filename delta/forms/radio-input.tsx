@@ -127,7 +127,7 @@ export function RadioInput({
       <label
         id={`${id}-label`}
         className={cn(
-          'text-sm mb-2 font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+          'text-sm mb-2 font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
           labelVariant === 'muted' && 'text-muted-foreground',
           labelClassName,
         )}
@@ -170,7 +170,7 @@ export function RadioInput({
             <div className="grid gap-1 leading-none">
               <label
                 htmlFor={`${id}-${option.value}`}
-                className="text-xs font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-xs font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {option.label}
               </label>

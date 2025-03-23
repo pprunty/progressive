@@ -125,7 +125,7 @@ export function TextareaInput({
       <label
         htmlFor={id}
         className={cn(
-          'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+          'text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
           labelVariant === 'muted' && 'text-muted-foreground',
           labelClassName,
         )}
@@ -147,6 +147,7 @@ export function TextareaInput({
         aria-describedby={hint ? hintId : undefined}
         aria-required={required}
         className={cn(
+          'h-[46px] md:text-md text-md',
           // Default variant styling
           variant === 'default' &&
             'shadow-[0px_1px_1px_rgba(0,0,0,0.03),_0px_3px_6px_rgba(0,0,0,0.02)]',

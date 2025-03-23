@@ -158,7 +158,7 @@ export function SelectInput({
         <label
           htmlFor={id}
           className={cn(
-            'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+            'text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
             labelVariant === 'muted' && 'text-muted-foreground',
             labelClassName,
           )}
@@ -182,7 +182,8 @@ export function SelectInput({
             aria-describedby={hint ? hintId : undefined}
             aria-required={required}
             className={cn(
-              'bg-muted border-0 rounded-lg h-12 px-4 w-full pr-10',
+              'h-[46px] md:text-md text-md',
+              'bg-muted border-0 rounded-lg px-4 w-full pr-10',
               coloredBorder && 'border-2 border-primary',
               'text-foreground',
               'appearance-none',
@@ -234,7 +235,7 @@ export function SelectInput({
       <label
         htmlFor={id}
         className={cn(
-          'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
+          'text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
           labelVariant === 'muted' && 'text-muted-foreground',
           labelClassName,
         )}
@@ -256,6 +257,7 @@ export function SelectInput({
         <SelectTrigger
           id={id}
           className={cn(
+             'h-[46px] md:text-md text-md',
             'shadow-[0px_1px_1px_rgba(0,0,0,0.03),_0px_3px_6px_rgba(0,0,0,0.02)]',
             'group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive',
             selectClassName,
@@ -270,6 +272,7 @@ export function SelectInput({
         <SelectContent>
           {options.map((option) => (
             <SelectItem
+              className="h-[46px] md:text-md text-md"
               key={option.value}
               value={option.value}
               disabled={option.disabled}
