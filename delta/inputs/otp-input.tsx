@@ -297,41 +297,42 @@ export function OTPInput({
             <div className="flex items-center space-x-1.5 sm:space-x-2">
               {group.map((index) => (
                 <div key={`input-${index}`} className="relative">
-                  <input
-                    ref={(el: HTMLInputElement | null) => {
-                      if (inputRefs.current) {
-                        inputRefs.current[index] = el
-                      }
-                    }}
-                    id={index === 0 ? `${id}-0` : `${id}-${index}`}
-                    name={index === 0 ? name : `${name}-${index}`}
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    maxLength={1}
-                    value={mask && otpValue[index] ? maskChar : otpValue[index]}
-                    onChange={(e) => handleChange(index, e)}
-                    onKeyDown={(e) => handleKeyDown(index, e)}
-                    onFocus={handleFocus}
-                    disabled={pending || disabled}
-                    aria-invalid={hasError}
-                    aria-errormessage={hasError ? errorId : undefined}
-                    aria-describedby={hint ? hintId : undefined}
-                    aria-required={required}
-                    autoFocus={autoFocus && index === 0}
-                    className={cn(
-                      "w-9 h-10 sm:w-10 sm:h-12 text-center text-base sm:text-lg font-medium",
-                      "focus:outline-none focus:ring-2 focus:ring-[#4E90F9] dark:ring-offset-black ring-offset-white",
-                      // Default variant styling
-                      variant === "default" &&
-                        "border border-input rounded-md shadow-[0px_1px_1px_rgba(0,0,0,0.03),_0px_3px_6px_rgba(0,0,0,0.02)]",
-                      // Pill variant styling
-                      variant === "pill" && "bg-muted border-0 rounded-lg focus:ring-offset-2",
-                      variant === "pill" && coloredBorder && "border-2 border-primary",
-                      // Error styling for both variants
-                      "group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive",
-                    )}
-                  />
+                 <input
+                   ref={(el: HTMLInputElement | null) => {
+                     if (inputRefs.current) {
+                       inputRefs.current[index] = el
+                     }
+                   }}
+                   id={index === 0 ? `${id}-0` : `${id}-${index}`}
+                   name={index === 0 ? name : `${name}-${index}`}
+                   type="text"
+                   inputMode="numeric"
+                   pattern="[0-9]*"
+                   maxLength={1}
+                   autoComplete="off"  // Add this line to prevent browser from saving input
+                   value={mask && otpValue[index] ? maskChar : otpValue[index]}
+                   onChange={(e) => handleChange(index, e)}
+                   onKeyDown={(e) => handleKeyDown(index, e)}
+                   onFocus={handleFocus}
+                   disabled={pending || disabled}
+                   aria-invalid={hasError}
+                   aria-errormessage={hasError ? errorId : undefined}
+                   aria-describedby={hint ? hintId : undefined}
+                   aria-required={required}
+                   autoFocus={autoFocus && index === 0}
+                   className={cn(
+                     "w-9 h-10 sm:w-10 sm:h-12 text-center text-base sm:text-lg font-medium",
+                     "focus:outline-none focus:ring-2 focus:ring-[#4E90F9] dark:ring-offset-black ring-offset-white",
+                     // Default variant styling
+                     variant === "default" &&
+                       "border border-input rounded-md shadow-[0px_1px_1px_rgba(0,0,0,0.03),_0px_3px_6px_rgba(0,0,0,0.02)]",
+                     // Pill variant styling
+                     variant === "pill" && "bg-muted border-0 rounded-lg focus:ring-offset-2",
+                     variant === "pill" && coloredBorder && "border-2 border-primary",
+                     // Error styling for both variants
+                     "group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive",
+                   )}
+                 />
                   {/* Animated caret for empty inputs */}
                 </div>
               ))}
