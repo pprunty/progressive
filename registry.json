@@ -607,26 +607,6 @@
           "target": "delta/components/floating-button-demo.tsx"
         }
       ]
-    },
-    {
-      "name": "vertical-snap-scroll",
-      "type": "registry:component",
-      "title": "Vertical Snap Scroll",
-      "description": "A component for vertical-snap-scroll",
-      "dependencies": [],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "delta/layout/vertical-snap-scroll.tsx",
-          "type": "registry:component",
-          "target": "delta/layout/vertical-snap-scroll.tsx"
-        },
-        {
-          "path": "delta/layout/vertical-snap-scroll-demo.tsx",
-          "type": "registry:component",
-          "target": "delta/layout/vertical-snap-scroll-demo.tsx"
-        }
-      ]
     }
   ]
 }

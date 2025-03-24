@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import { z } from 'zod';
 import {
   Card,
@@ -7,7 +8,7 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card';
-import { SmartForm } from '@/delta/forms/smart-form';
+import { SmartForm, FieldDefinition, OTPFieldDefinition } from '@/delta/forms/smart-form';
 import { addDays } from 'date-fns';
 
 export default function SmartFormDemo() {

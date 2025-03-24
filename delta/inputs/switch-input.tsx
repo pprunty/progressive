@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, HTMLMotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
 import type { z } from "zod"
 
 // CustomSwitch component moved into this file
-interface CustomSwitchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface CustomSwitchProps extends Omit<HTMLMotionProps<"button">, "checked" | "defaultChecked" | "onChange"> {
   checked?: boolean
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean) => void
@@ -31,7 +31,7 @@ const CustomSwitch = React.forwardRef<HTMLButtonElement, CustomSwitchProps>(
       size = "default",
       activeColor,
       variant = "rectangular",
-      extendedClickArea = false, // Default to true for better mobile usability
+      extendedClickArea = false,
       ...props
     },
     ref,
@@ -64,7 +64,6 @@ const CustomSwitch = React.forwardRef<HTMLButtonElement, CustomSwitchProps>(
       return isChecked ? 20 : 2
     }
 
-    // Default size with positioning approach
     return (
       <motion.button
         type="button"
@@ -80,10 +79,10 @@ const CustomSwitch = React.forwardRef<HTMLButtonElement, CustomSwitchProps>(
           variant === "pill" ? "rounded-full" : "rounded-md",
           isChecked ? (activeColor ? "" : "bg-primary") : "bg-muted",
           size === "large" ? "h-[30px] w-[53px]" : "h-[24px] w-[44px]",
-          // Add extended click area styles
           extendedClickArea && "before:absolute before:-inset-10 before:block before:content-['']",
           className,
         )}
+        whileTap={{ scale: 0.95 }}
         {...props}
       >
         <motion.div

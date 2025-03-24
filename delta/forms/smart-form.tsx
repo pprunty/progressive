@@ -33,6 +33,10 @@ export type FieldType =
   | "otp"
   | "custom"
 
+// Variant types for different inputs
+type DefaultVariant = "default" | "pill"
+type SwitchVariant = "pill" | "rectangular"
+
 // Base field definition
 interface BaseFieldDefinition {
   name: string
@@ -43,7 +47,6 @@ interface BaseFieldDefinition {
   description?: string
   hint?: string
   labelVariant?: "default" | "muted"
-  variant?: "default" | "pill"
   className?: string
   hidden?: boolean | ((values: Record<string, any>) => boolean)
   // New properties for field grouping and layout
@@ -56,12 +59,14 @@ interface TextFieldDefinition extends BaseFieldDefinition {
   type: "text" | "email" | "password" | "number" | "tel" | "url"
   placeholder?: string
   defaultValue?: string
+  variant?: DefaultVariant
 }
 
 // Checkbox field definition
 interface CheckboxFieldDefinition extends BaseFieldDefinition {
   type: "checkbox"
   defaultChecked?: boolean
+  variant?: DefaultVariant
 }
 
 // Select field definition
@@ -70,6 +75,7 @@ interface SelectFieldDefinition extends BaseFieldDefinition {
   options: { value: string; label: string; disabled?: boolean }[]
   placeholder?: string
   defaultValue?: string
+  variant?: DefaultVariant
 }
 
 // Radio field definition
@@ -78,12 +84,14 @@ interface RadioFieldDefinition extends BaseFieldDefinition {
   options: { value: string; label: string; description?: string; disabled?: boolean }[]
   orientation?: "vertical" | "horizontal"
   defaultValue?: string
+  variant?: DefaultVariant
 }
 
 // Switch field definition
 interface SwitchFieldDefinition extends BaseFieldDefinition {
   type: "switch"
   defaultChecked?: boolean
+  variant?: SwitchVariant
 }
 
 // Textarea field definition
@@ -92,6 +100,7 @@ interface TextareaFieldDefinition extends BaseFieldDefinition {
   placeholder?: string
   rows?: number
   defaultValue?: string
+  variant?: DefaultVariant
 }
 
 // Date field definition
@@ -102,6 +111,7 @@ interface DateFieldDefinition extends BaseFieldDefinition {
   minDate?: Date
   maxDate?: Date
   dateFormat?: string
+  variant?: DefaultVariant
 }
 
 // File field definition
@@ -113,10 +123,11 @@ interface FileFieldDefinition extends BaseFieldDefinition {
   maxFiles?: number
   showPreviews?: boolean
   showIcons?: boolean
+  variant?: DefaultVariant
 }
 
 // OTP field definition
-interface OTPFieldDefinition extends BaseFieldDefinition {
+export interface OTPFieldDefinition extends BaseFieldDefinition {
   type: "otp"
   length?: number
   maskChar?: string
@@ -127,11 +138,13 @@ interface OTPFieldDefinition extends BaseFieldDefinition {
   autoSubmit?: boolean
   placeholder?: string
   onComplete?: (value: string) => void
+  variant?: DefaultVariant
 }
 
 // Custom field definition
 interface CustomFieldDefinition extends BaseFieldDefinition {
   type: "custom"
+  variant?: DefaultVariant
 }
 
 // Union of all field definitions
@@ -479,11 +492,11 @@ export function SmartForm({
         description: field.description,
         hint: field.hint,
         labelVariant: field.labelVariant,
-        variant: field.variant,
         error: formState.errors[field.name],
         className: cn(fieldClassName, field.className),
       }
 
+      // Handle variant prop separately for each component type
       switch (field.type) {
         case "text":
         case "email":
@@ -498,6 +511,7 @@ export function SmartForm({
               placeholder={field.placeholder}
               defaultValue={formState.values[field.name] || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
+              variant={field.variant as "default" | "pill"}
             />
           )
         case "checkbox":
@@ -516,6 +530,7 @@ export function SmartForm({
               placeholder={field.placeholder}
               defaultValue={formState.values[field.name] || ""}
               onValueChange={(value) => handleChange(field.name, value)}
+              variant={field.variant as "default" | "pill"}
             />
           )
         case "radio":
@@ -529,11 +544,13 @@ export function SmartForm({
             />
           )
         case "switch":
+          const switchVariant: "pill" | "rectangular" = field.variant === "pill" ? "pill" : "rectangular"
           return (
             <SwitchInput
               {...commonProps}
               defaultChecked={formState.values[field.name] || false}
               onCheckedChange={(checked) => handleChange(field.name, checked)}
+              variant={switchVariant}
             />
           )
         case "textarea":
@@ -544,6 +561,7 @@ export function SmartForm({
               rows={field.rows}
               defaultValue={formState.values[field.name] || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
+              variant={field.variant as "default" | "pill"}
             />
           )
         case "date":
@@ -556,6 +574,7 @@ export function SmartForm({
               maxDate={field.maxDate}
               dateFormat={field.dateFormat}
               onValueChange={(date) => handleChange(field.name, date)}
+              variant={field.variant as "default" | "pill"}
             />
           )
         case "file":
@@ -569,6 +588,7 @@ export function SmartForm({
               showPreviews={field.showPreviews}
               showIcons={field.showIcons}
               onFilesSelected={(files) => handleChange(field.name, field.multiple ? files : files[0])}
+              variant={field.variant as "default" | "pill"}
             />
           )
         case "otp":
@@ -582,16 +602,15 @@ export function SmartForm({
               autoFocus={field.autoFocus}
               separator={field.separator}
               groupSize={field.groupSize ?? 3}
-              // We handled autoSubmit in our patched fields
               autoSubmit={false}
               onChange={(value) => handleChange(field.name, value)}
               onComplete={(value) => {
                 handleChange(field.name, value);
-                // onComplete is now handled in the patched fields logic
                 if (field.onComplete) {
                   field.onComplete(value);
                 }
               }}
+              variant={field.variant as "default" | "pill"}
             />
           )
         default:
