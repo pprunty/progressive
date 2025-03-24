@@ -70,16 +70,16 @@ export function Button({
         // Primary variant styling
         variant === 'primary' && [
           'bg-primary text-primary-foreground',
-          'hover:bg-primary-hover',
+          'hover:bg-primary/90',
           'focus-visible:outline-primary/50',
           'disabled:hover:bg-primary',
         ],
 
         // Secondary variant styling
         variant === 'secondary' && [
-          'bg-secondary text-secondary-foreground',
+          'bg-background text-secondary-foreground',
           'border border-border',
-          'hover:bg-secondary-hover hover:border-border-hover',
+          'hover:bg-secondary/95 hover:border-border-hover',
           'focus-visible:outline-secondary/50',
           'disabled:hover:bg-secondary disabled:hover:border-border',
         ],
