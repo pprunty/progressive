@@ -7,10 +7,6 @@ export function ComponentPreview({ component }: { component: ComponentType }) {
   const openInV0Url = encodeURIComponent(
     `https://deltacomponents.dev/r/${component.name}.json`,
   );
-
-  console.log(
-    encodeURIComponent(`https://deltacomponents.dev/r/${component.name}.json`),
-  );
   // Get the component from the registry
   const Component = registry[component.name]?.component;
 

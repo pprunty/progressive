@@ -14,9 +14,11 @@ export const themeEffect = function () {
   ) {
     document.documentElement.classList.add('pause-transitions');
     document.documentElement.classList.add('dark');
+    // Using the dark mode background color (--background: 240 10% 3.9%)
+    // Which roughly corresponds to #09090b
     document.head
       .querySelector('meta[name=theme-color]')
-      ?.setAttribute('content', '#171717');
+      ?.setAttribute('content', '#09090b');
 
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');
@@ -25,6 +27,8 @@ export const themeEffect = function () {
   } else {
     document.documentElement.classList.add('pause-transitions');
     document.documentElement.classList.remove('dark');
+    // Using the light mode background color (--background: 0 0% 100%)
+    // Which corresponds to #ffffff
     document.head
       .querySelector('meta[name=theme-color]')
       ?.setAttribute('content', '#ffffff');

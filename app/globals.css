@@ -8,25 +8,10 @@
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
-    @apply bg-[#FFFEFC];
-    @apply text-[#111];
     --scrollbar-width: 12px;
     --webkit-overflow-scrolling: touch;
-  }
 
-  /* Dark mode settings */
-  :root.dark {
-    color-scheme: dark;
-    @apply bg-[#171717];
-    @apply text-[#FFFEFC];
-  }
-
-  /* Prevent transition delays */
-  :root.pause-transitions * {
-    transition-duration: 0ms !important;
-  }
-
-  :root {
+    /* Light mode color variables */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -62,10 +47,19 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
     --scrollbar: #c1c1c1;
     --scrollbar-hover: rgba(255, 254, 252, 0.3);
-    --scrollbar-track: #fafafa; /* New variable for scrollbar track in dark mode */
+    --scrollbar-track: #fafafa;
+
+    /* Apply background and text colors from variables */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
-  .dark {
-    --background: #171717;
+
+  /* Dark mode settings */
+  :root.dark {
+    color-scheme: dark;
+
+    /* Dark mode color variables */
+    --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -100,6 +94,15 @@
     --scrollbar: #a1a1a1;
     --scrollbar-hover: rgba(255, 254, 252, 0.3);
     --scrollbar-track: rgba(255, 254, 252, 0.1);
+
+    /* Background and text colors from variables */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Prevent transition delays */
+  :root.pause-transitions * {
+    transition-duration: 0ms !important;
   }
 
   * {
@@ -132,9 +135,6 @@
 @layer base {
   * {
     @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
 
