@@ -561,7 +561,10 @@
       "name": "otp-input",
       "type": "registry:component",
       "title": "OTP Input",
-      "badge": ["beta", "new"],
+      "badge": [
+        "beta",
+        "new"
+      ],
       "description": "A component for otp-input",
       "dependencies": [],
       "registryDependencies": [],
@@ -575,6 +578,30 @@
           "path": "delta/inputs/otp-input-demo.tsx",
           "type": "registry:component",
           "target": "delta/inputs/otp-input-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "floating-button",
+      "type": "registry:component",
+      "title": "Floating Button",
+      "description": "A customizable floating button component with positioning, tooltip, and responsive behavior.",
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "delta/components/floating-button.tsx",
+          "type": "registry:component",
+          "target": "delta/components/floating-button.tsx"
+        },
+        {
+          "path": "delta/components/floating-button-demo.tsx",
+          "type": "registry:component",
+          "target": "delta/components/floating-button-demo.tsx"
         }
       ]
     }
