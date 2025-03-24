@@ -225,14 +225,9 @@ export function OTPInput({
       validateOTP(newValue)
     }
 
-    // Check if OTP is complete
+    // Check if OTP is complete and trigger onComplete only once
     if (newOtpValue.every((v) => v) && newOtpValue.length === length) {
       onComplete?.(newValue)
-
-      // Auto-submit the form if enabled
-      if (autoSubmit && formRef.current) {
-        formRef.current.requestSubmit()
-      }
     }
   }
 

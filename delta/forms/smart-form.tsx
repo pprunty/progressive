@@ -14,6 +14,7 @@ import { FileInput } from '@/delta/inputs/file-input';
 import { OTPInput } from "@/delta/inputs/otp-input"
 import { cn } from '@/lib/utils';
 
+
 // Field types
 export type FieldType =
   | "text"
@@ -125,6 +126,7 @@ interface OTPFieldDefinition extends BaseFieldDefinition {
   groupSize?: number
   autoSubmit?: boolean
   placeholder?: string
+  onComplete?: (value: string) => void
 }
 
 // Custom field definition
@@ -166,6 +168,7 @@ export interface SmartFormProps {
   errorMessage?: string
   resetOnSuccess?: boolean
   id?: string
+  hideSubmitButton?: boolean
   // Add this new prop for custom field rendering
   renderCustomField?: (
     field: FieldDefinition,
@@ -194,10 +197,15 @@ export function SmartForm({
   errorMessage,
   resetOnSuccess = false,
   id,
+  hideSubmitButton = false,
   renderCustomField,
 }: SmartFormProps) {
   // Use a ref to store the initial defaultValues to prevent re-renders
   const initialDefaultValuesRef = React.useRef(defaultValues)
+  // Use a ref to track submission in progress to prevent duplicate submissions
+  const isSubmittingRef = React.useRef(false)
+  // Reference to the form element
+  const formRef = React.useRef<HTMLFormElement>(null)
 
   const [formState, setFormState] = React.useState<{
     values: Record<string, any>
@@ -238,6 +246,11 @@ export function SmartForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    // Prevent duplicate submissions
+    if (isSubmittingRef.current) {
+      return
+    }
+
     setFormState((prev) => ({
       ...prev,
       isSubmitting: true,
@@ -245,6 +258,9 @@ export function SmartForm({
       isSuccess: false,
       isError: false,
     }))
+    
+    // Set the ref to true to block any parallel submissions
+    isSubmittingRef.current = true
 
     try {
       // Validate form data against schema
@@ -269,6 +285,9 @@ export function SmartForm({
           isError: true,
           errorMessage: errorMessage || "Please fix the errors in the form",
         }))
+        
+        // Reset the submitting ref
+        isSubmittingRef.current = false
         return
       }
 
@@ -296,6 +315,9 @@ export function SmartForm({
         isError: true,
         errorMessage: errorMessage || "An error occurred while submitting the form",
       }))
+    } finally {
+      // Always reset the submitting ref to ensure future submissions are possible
+      isSubmittingRef.current = false
     }
   }
 
@@ -380,15 +402,47 @@ export function SmartForm({
     }
   }
 
+  // Handle OTP specific logic by patching autoSubmit
+  const patchedFields = React.useMemo(() => {
+    return fields.map(field => {
+      if (field.type === 'otp' && field.autoSubmit) {
+        // Create a safe deep clone of the field
+        const otpField = { ...field } as OTPFieldDefinition;
+        
+        // Store the original onComplete handler
+        const originalOnComplete = otpField.onComplete;
+        
+        // Create a new onComplete handler that safely submits the form
+        otpField.onComplete = (value: string) => {
+          // Call the original handler if it exists
+          if (originalOnComplete) {
+            originalOnComplete(value);
+          }
+          
+          // Only submit if not already submitting
+          if (!isSubmittingRef.current && formRef.current) {
+            // Use a short delay to allow React to process state updates
+            setTimeout(() => {
+              formRef.current?.requestSubmit();
+            }, 10);
+          }
+        };
+        
+        return otpField;
+      }
+      return field;
+    });
+  }, [fields]);
+
   // Memoize the visible fields to prevent unnecessary re-renders
   const visibleFields = React.useMemo(() => {
-    return fields.filter((field) => {
+    return patchedFields.filter((field) => {
       if (typeof field.hidden === "function") {
         return !field.hidden(formState.values)
       }
       return !field.hidden
     })
-  }, [fields, formState.values])
+  }, [patchedFields, formState.values])
 
   // Group fields by their group property
   const groupedFields = React.useMemo(() => {
@@ -408,8 +462,6 @@ export function SmartForm({
 
     return { groups, ungroupedFields }
   }, [visibleFields])
-
-  const formRef = React.useRef<HTMLFormElement>(null)
 
   // Render form fields - memoized to prevent recreating on every render
   const renderField = React.useCallback(
@@ -530,12 +582,14 @@ export function SmartForm({
               autoFocus={field.autoFocus}
               separator={field.separator}
               groupSize={field.groupSize ?? 3}
-              autoSubmit={field.autoSubmit}
+              // We handled autoSubmit in our patched fields
+              autoSubmit={false}
               onChange={(value) => handleChange(field.name, value)}
               onComplete={(value) => {
-                handleChange(field.name, value)
-                if (field.autoSubmit && formRef.current) {
-                  formRef.current.requestSubmit()
+                handleChange(field.name, value);
+                // onComplete is now handled in the patched fields logic
+                if (field.onComplete) {
+                  field.onComplete(value);
                 }
               }}
             />
@@ -552,13 +606,17 @@ export function SmartForm({
       handleChange,
       loading,
       renderCustomField,
-      schema,
-      validateField,
     ],
   )
 
   return (
-    <form id={id} onSubmit={handleSubmit} className={cn("w-full", className)} noValidate ref={formRef}>
+    <form 
+      id={id} 
+      onSubmit={handleSubmit} 
+      className={cn("w-full", className)} 
+      noValidate 
+      ref={formRef}
+    >
       {/* Form status messages */}
       {formState.isSuccess && formState.successMessage && (
         <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-md dark:bg-green-900/20 dark:border-green-800 dark:text-green-400">
@@ -626,9 +684,11 @@ export function SmartForm({
             {cancelText}
           </Button>
         )}
-        <Button type="submit" disabled={loading || formState.isSubmitting} className={submitClassName}>
-          {formState.isSubmitting ? "Submitting..." : submitText}
-        </Button>
+        {!hideSubmitButton && (
+          <Button type="submit" disabled={loading || formState.isSubmitting} className={submitClassName}>
+            {formState.isSubmitting ? "Submitting..." : submitText}
+          </Button>
+        )}
       </div>
     </form>
   )

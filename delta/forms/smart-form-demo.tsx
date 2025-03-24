@@ -581,6 +581,7 @@ function TwoFactorAuthExample() {
           submitText="Verify"
           layout="vertical"
           successMessage="Verification successful! You're now logged in."
+          hideSubmitButton={true}
         />
       </CardContent>
     </Card>
