@@ -26,7 +26,7 @@ export function PreviewContainer({
         <RestartButton onRestart={handleRestart} />
       </div>
 
-      <div className="h-full flex items-center justify-center py-8 px-2">
+      <div className="h-full flex items-center justify-center py-8">
         <React.Suspense
           fallback={
             <div className="flex items-center justify-center h-[320px]">

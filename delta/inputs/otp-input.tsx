@@ -291,10 +291,10 @@ export function OTPInput({
 
       {description && <p className="text-sm text-muted-foreground">{description}</p>}
 
-      <div className="flex items-center justify-center space-x-2">
+      <div className="flex items-center justify-center space-x-1.5 sm:space-x-2">
         {inputGroups.map((group, groupIndex) => (
           <React.Fragment key={`group-${groupIndex}`}>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1.5 sm:space-x-2">
               {group.map((index) => (
                 <div key={`input-${index}`} className="relative">
                   <input
@@ -320,7 +320,7 @@ export function OTPInput({
                     aria-required={required}
                     autoFocus={autoFocus && index === 0}
                     className={cn(
-                      "w-10 h-12 text-center text-lg font-medium",
+                      "w-8 h-10 sm:w-10 sm:h-12 text-center text-base sm:text-lg font-medium",
                       "focus:outline-none focus:ring-2 focus:ring-[#4E90F9] dark:ring-offset-black ring-offset-white",
                       // Default variant styling
                       variant === "default" &&
@@ -337,7 +337,7 @@ export function OTPInput({
               ))}
             </div>
             {separator && groupIndex < inputGroups.length - 1 && (
-              <div className="text-muted-foreground text-lg font-medium">-</div>
+              <div className="text-muted-foreground text-base sm:text-lg font-medium">-</div>
             )}
           </React.Fragment>
         ))}
