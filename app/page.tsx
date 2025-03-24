@@ -17,7 +17,7 @@ export default async function Home() {
           rel="noopener noreferrer"
           className="group w-fit flex"
         >
-          <h1 className="text-lg font-bold tracking-tight font-serif italic underline underline underline-offset-4 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary flex items-center gap-1">
+          <h1 className="text-lg font-bold tracking-tight font-serif italic underline underline-offset-4 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary flex items-center gap-1">
             {registryInfo.name} Registry
             <ArrowUpRight
               size={14}
@@ -27,7 +27,7 @@ export default async function Home() {
           </h1>
         </Link>
         <p className="text-md text-muted-foreground">
-          Components that make the difference in your users&lsquo; experience.
+          Components that make the difference.
         </p>
       </div>
 
@@ -48,9 +48,22 @@ export default async function Home() {
                     {item.title}
                   </Link>
                   {item.badge && (
-                    <Badge variant={item.badge as 'new' | 'beta'}>
-                      {item.badge}
-                    </Badge>
+                    <>
+                      {Array.isArray(item.badge) ? (
+                        item.badge.map((badgeItem) => (
+                          <Badge
+                            key={badgeItem}
+                            variant={badgeItem as 'new' | 'beta'}
+                          >
+                            {badgeItem}
+                          </Badge>
+                        ))
+                      ) : (
+                        <Badge variant={item.badge as 'new' | 'beta'}>
+                          {item.badge}
+                        </Badge>
+                      )}
+                    </>
                   )}
                 </div>
               ))}

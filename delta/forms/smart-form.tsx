@@ -1,119 +1,135 @@
-'use client';
+"use client"
 
 import * as React from 'react';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
-import { TextInput } from '@/delta/forms/text-input';
-import { CheckboxInput } from '@/delta/forms/checkbox-input';
-import { SelectInput } from '@/delta/forms/select-input';
-import { RadioInput } from '@/delta/forms/radio-input';
-import { SwitchInput } from '@/delta/forms/switch-input';
-import { TextareaInput } from '@/delta/forms/textarea-input';
-import { DateInput } from '@/delta/forms/date-input';
-import { FileInput } from '@/delta/forms/file-input';
+import { TextInput } from '@/delta/inputs/text-input';
+import { CheckboxInput } from '@/delta/inputs/checkbox-input';
+import { SelectInput } from '@/delta/inputs/select-input';
+import { RadioInput } from '@/delta/inputs/radio-input';
+import { SwitchInput } from '@/delta/inputs/switch-input';
+import { TextareaInput } from '@/delta/inputs/textarea-input';
+import { DateInput } from '@/delta/inputs/date-input';
+import { FileInput } from '@/delta/inputs/file-input';
+import { OTPInput } from "@/delta/inputs/otp-input"
 import { cn } from '@/lib/utils';
 
 // Field types
 export type FieldType =
-  | 'text'
-  | 'email'
-  | 'password'
-  | 'number'
-  | 'tel'
-  | 'url'
-  | 'checkbox'
-  | 'select'
-  | 'radio'
-  | 'switch'
-  | 'textarea'
-  | 'date'
-  | 'file';
+  | "text"
+  | "email"
+  | "password"
+  | "number"
+  | "tel"
+  | "url"
+  | "checkbox"
+  | "select"
+  | "radio"
+  | "switch"
+  | "textarea"
+  | "date"
+  | "file"
+  | "otp"
+  | "custom"
 
 // Base field definition
 interface BaseFieldDefinition {
-  name: string;
-  label: string;
-  type: FieldType;
-  required?: boolean;
-  disabled?: boolean;
-  description?: string;
-  hint?: string;
-  labelVariant?: 'default' | 'muted';
-  variant?: 'default' | 'pill';
-  className?: string;
-  hidden?: boolean | ((values: Record<string, any>) => boolean);
+  name: string
+  label: string
+  type: FieldType
+  required?: boolean
+  disabled?: boolean
+  description?: string
+  hint?: string
+  labelVariant?: "default" | "muted"
+  variant?: "default" | "pill"
+  className?: string
+  hidden?: boolean | ((values: Record<string, any>) => boolean)
   // New properties for field grouping and layout
-  group?: string;
-  width?: string | number;
+  group?: string
+  width?: string | number
 }
 
 // Text field definition
 interface TextFieldDefinition extends BaseFieldDefinition {
-  type: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
-  placeholder?: string;
-  defaultValue?: string;
+  type: "text" | "email" | "password" | "number" | "tel" | "url"
+  placeholder?: string
+  defaultValue?: string
 }
 
 // Checkbox field definition
 interface CheckboxFieldDefinition extends BaseFieldDefinition {
-  type: 'checkbox';
-  defaultChecked?: boolean;
+  type: "checkbox"
+  defaultChecked?: boolean
 }
 
 // Select field definition
 interface SelectFieldDefinition extends BaseFieldDefinition {
-  type: 'select';
-  options: { value: string; label: string; disabled?: boolean }[];
-  placeholder?: string;
-  defaultValue?: string;
+  type: "select"
+  options: { value: string; label: string; disabled?: boolean }[]
+  placeholder?: string
+  defaultValue?: string
 }
 
 // Radio field definition
 interface RadioFieldDefinition extends BaseFieldDefinition {
-  type: 'radio';
-  options: {
-    value: string;
-    label: string;
-    description?: string;
-    disabled?: boolean;
-  }[];
-  orientation?: 'vertical' | 'horizontal';
-  defaultValue?: string;
+  type: "radio"
+  options: { value: string; label: string; description?: string; disabled?: boolean }[]
+  orientation?: "vertical" | "horizontal"
+  defaultValue?: string
 }
 
 // Switch field definition
 interface SwitchFieldDefinition extends BaseFieldDefinition {
-  type: 'switch';
-  defaultChecked?: boolean;
+  type: "switch"
+  defaultChecked?: boolean
 }
 
 // Textarea field definition
 interface TextareaFieldDefinition extends BaseFieldDefinition {
-  type: 'textarea';
-  placeholder?: string;
-  rows?: number;
-  defaultValue?: string;
+  type: "textarea"
+  placeholder?: string
+  rows?: number
+  defaultValue?: string
 }
 
 // Date field definition
 interface DateFieldDefinition extends BaseFieldDefinition {
-  type: 'date';
-  placeholder?: string;
-  defaultValue?: Date;
-  minDate?: Date;
-  maxDate?: Date;
-  dateFormat?: string;
+  type: "date"
+  placeholder?: string
+  defaultValue?: Date
+  minDate?: Date
+  maxDate?: Date
+  dateFormat?: string
 }
 
 // File field definition
 interface FileFieldDefinition extends BaseFieldDefinition {
-  type: 'file';
-  accept?: string;
-  multiple?: boolean;
-  maxSize?: number;
-  maxFiles?: number;
-  showPreviews?: boolean;
-  showIcons?: boolean;
+  type: "file"
+  accept?: string
+  multiple?: boolean
+  maxSize?: number
+  maxFiles?: number
+  showPreviews?: boolean
+  showIcons?: boolean
+}
+
+// OTP field definition
+interface OTPFieldDefinition extends BaseFieldDefinition {
+  type: "otp"
+  length?: number
+  maskChar?: string
+  mask?: boolean
+  autoFocus?: boolean
+  separator?: boolean
+  groupSize?: number
+  autoSubmit?: boolean
+  placeholder?: string
+}
+
+// Custom field definition
+interface CustomFieldDefinition extends BaseFieldDefinition {
+  type: "custom"
 }
 
 // Union of all field definitions
@@ -125,43 +141,51 @@ export type FieldDefinition =
   | SwitchFieldDefinition
   | TextareaFieldDefinition
   | DateFieldDefinition
-  | FileFieldDefinition;
+  | FileFieldDefinition
+  | OTPFieldDefinition
+  | CustomFieldDefinition
 
 // Form props
 export interface SmartFormProps {
-  fields: FieldDefinition[];
-  schema: z.ZodObject<any> | z.ZodEffects<z.ZodObject<any>>;
-  onSubmit: (data: any) => Promise<void> | void;
-  submitText?: string;
-  cancelText?: string;
-  onCancel?: () => void;
-  className?: string;
-  fieldClassName?: string;
-  submitClassName?: string;
-  cancelClassName?: string;
-  layout?: 'vertical' | 'horizontal' | 'grid';
-  columns?: number;
-  gap?: number;
-  loading?: boolean;
-  defaultValues?: Record<string, any>;
-  successMessage?: string;
-  errorMessage?: string;
-  resetOnSuccess?: boolean;
-  id?: string;
+  fields: FieldDefinition[]
+  schema: z.ZodSchema<any>
+  onSubmit: (data: any) => Promise<void> | void
+  submitText?: string
+  cancelText?: string
+  onCancel?: () => void
+  className?: string
+  fieldClassName?: string
+  submitClassName?: string
+  cancelClassName?: string
+  layout?: "vertical" | "horizontal" | "grid"
+  columns?: number
+  gap?: number
+  loading?: boolean
+  defaultValues?: Record<string, any>
+  successMessage?: string
+  errorMessage?: string
+  resetOnSuccess?: boolean
+  id?: string
+  // Add this new prop for custom field rendering
+  renderCustomField?: (
+    field: FieldDefinition,
+    formState: any,
+    handleChange: (name: string, value: any) => void,
+  ) => React.ReactNode
 }
 
 export function SmartForm({
   fields,
   schema,
   onSubmit,
-  submitText = 'Submit',
-  cancelText = 'Cancel',
+  submitText = "Submit",
+  cancelText = "Cancel",
   onCancel,
   className,
   fieldClassName,
   submitClassName,
   cancelClassName,
-  layout = 'vertical',
+  layout = "vertical",
   columns = 1,
   gap = 6,
   loading = false,
@@ -170,20 +194,21 @@ export function SmartForm({
   errorMessage,
   resetOnSuccess = false,
   id,
+  renderCustomField,
 }: SmartFormProps) {
   // Use a ref to store the initial defaultValues to prevent re-renders
-  const initialDefaultValuesRef = React.useRef(defaultValues);
+  const initialDefaultValuesRef = React.useRef(defaultValues)
 
   const [formState, setFormState] = React.useState<{
-    values: Record<string, any>;
-    errors: Record<string, string>;
-    touched: Record<string, boolean>;
-    isSubmitting: boolean;
-    isSubmitted: boolean;
-    isSuccess: boolean;
-    isError: boolean;
-    errorMessage?: string;
-    successMessage?: string;
+    values: Record<string, any>
+    errors: Record<string, string>
+    touched: Record<string, boolean>
+    isSubmitting: boolean
+    isSubmitted: boolean
+    isSuccess: boolean
+    isError: boolean
+    errorMessage?: string
+    successMessage?: string
   }>({
     values: { ...initialDefaultValuesRef.current },
     errors: {},
@@ -192,29 +217,26 @@ export function SmartForm({
     isSubmitted: false,
     isSuccess: false,
     isError: false,
-  });
+  })
 
   // Only update values from defaultValues on mount or when explicitly reset
-  const resetForm = React.useCallback(
-    (newValues = initialDefaultValuesRef.current) => {
-      setFormState((prev) => ({
-        ...prev,
-        values: { ...newValues },
-        errors: {},
-        touched: {},
-        isSubmitted: false,
-        isSuccess: false,
-        isError: false,
-        errorMessage: undefined,
-        successMessage: undefined,
-      }));
-    },
-    [],
-  );
+  const resetForm = React.useCallback((newValues = initialDefaultValuesRef.current) => {
+    setFormState((prev) => ({
+      ...prev,
+      values: { ...newValues },
+      errors: {},
+      touched: {},
+      isSubmitted: false,
+      isSuccess: false,
+      isError: false,
+      errorMessage: undefined,
+      successMessage: undefined,
+    }))
+  }, [])
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     setFormState((prev) => ({
       ...prev,
@@ -222,40 +244,36 @@ export function SmartForm({
       isSubmitted: true,
       isSuccess: false,
       isError: false,
-    }));
+    }))
 
     try {
       // Validate form data against schema
-      const result = schema.safeParse(formState.values);
+      const result = schema.safeParse(formState.values)
 
       if (!result.success) {
         // Format errors
-        const formattedErrors: Record<string, string> = {};
-        const formattedError = result.error.format();
+        const formattedErrors: Record<string, string> = {}
+        const formattedError = result.error.format() as unknown as { [key: string]: { _errors: string[] } }
 
-        Object.entries(formattedError).forEach(([key, value]) => {
-          if (
-            key !== '_errors' &&
-            typeof value === 'object' &&
-            '_errors' in value &&
-            Array.isArray(value._errors)
-          ) {
-            formattedErrors[key] = value._errors[0];
+        // Extract error messages for each field
+        Object.keys(formattedError).forEach((key) => {
+          if (key !== "_errors" && formattedError[key]?._errors?.length) {
+            formattedErrors[key] = formattedError[key]._errors[0]
           }
-        });
+        })
 
         setFormState((prev) => ({
           ...prev,
           errors: formattedErrors,
           isSubmitting: false,
           isError: true,
-          errorMessage: errorMessage || 'Please fix the errors in the form',
-        }));
-        return;
+          errorMessage: errorMessage || "Please fix the errors in the form",
+        }))
+        return
       }
 
       // Call onSubmit with validated data
-      await onSubmit(result.data);
+      await onSubmit(result.data)
 
       // Update form state on success
       setFormState((prev) => ({
@@ -263,12 +281,12 @@ export function SmartForm({
         isSubmitting: false,
         isSuccess: true,
         isError: false,
-        successMessage: successMessage || 'Form submitted successfully',
-      }));
+        successMessage: successMessage || "Form submitted successfully",
+      }))
 
       // Reset form if needed
       if (resetOnSuccess) {
-        resetForm();
+        resetForm()
       }
     } catch (error) {
       // Handle submission errors
@@ -276,18 +294,17 @@ export function SmartForm({
         ...prev,
         isSubmitting: false,
         isError: true,
-        errorMessage:
-          errorMessage || 'An error occurred while submitting the form',
-      }));
+        errorMessage: errorMessage || "An error occurred while submitting the form",
+      }))
     }
-  };
+  }
 
   // Handle field change - use a memoized callback to prevent recreating on every render
   const handleChange = React.useCallback((name: string, value: any) => {
     setFormState((prev) => {
       // Only update if the value has actually changed
       if (prev.values[name] === value) {
-        return prev;
+        return prev
       }
 
       return {
@@ -300,105 +317,108 @@ export function SmartForm({
           ...prev.touched,
           [name]: true,
         },
-      };
-    });
-  }, []);
+      }
+    })
+  }, [])
 
   // Validate a single field - memoized to prevent recreating on every render
   const validateField = React.useCallback(
     (name: string, value: any) => {
       try {
-        // Get the underlying object schema if it's a ZodEffects
-        const objectSchema =
-          schema instanceof z.ZodEffects ? schema.innerType() : schema;
-
         // Create a partial schema for just this field
         const fieldSchema = z.object({
-          [name]: objectSchema.shape[name],
-        });
+          [name]: (schema as any).shape?.[name] || z.any(),
+        })
 
         // Validate the field
-        const result = fieldSchema.safeParse({ [name]: value });
+        const result = fieldSchema.safeParse({ [name]: value })
 
         if (!result.success) {
-          const error = result.error.format()[name]?._errors[0];
+          const error = result.error.format()[name]?._errors[0]
           setFormState((prev) => ({
             ...prev,
             errors: {
               ...prev.errors,
-              [name]: error || 'Invalid value',
+              [name]: error || "Invalid value",
             },
-          }));
+          }))
         } else {
           // Clear error if validation passes
           setFormState((prev) => {
             // Only update if there was an error before
             if (!prev.errors[name]) {
-              return prev;
+              return prev
             }
 
-            const newErrors = { ...prev.errors };
-            delete newErrors[name];
+            const newErrors = { ...prev.errors }
+            delete newErrors[name]
 
             return {
               ...prev,
               errors: newErrors,
-            };
-          });
+            }
+          })
         }
       } catch (error) {
         // If there's an error in validation, don't update the error state
-        console.error('Error validating field:', error);
+        console.error("Error validating field:", error)
       }
     },
     [schema],
-  );
+  )
 
   // Render form layout
   const getFormLayoutClassName = () => {
     switch (layout) {
-      case 'horizontal':
-        return 'flex flex-wrap items-start';
-      case 'grid':
-        return `grid grid-cols-1 md:grid-cols-${columns} gap-${gap}`;
-      case 'vertical':
+      case "horizontal":
+        return "flex flex-wrap items-start"
+      case "grid":
+        return `grid grid-cols-1 md:grid-cols-${columns} gap-${gap}`
+      case "vertical":
       default:
-        return 'flex flex-col space-y-6';
+        return "flex flex-col space-y-6"
     }
-  };
+  }
 
   // Memoize the visible fields to prevent unnecessary re-renders
   const visibleFields = React.useMemo(() => {
     return fields.filter((field) => {
-      if (typeof field.hidden === 'function') {
-        return !field.hidden(formState.values);
+      if (typeof field.hidden === "function") {
+        return !field.hidden(formState.values)
       }
-      return !field.hidden;
-    });
-  }, [fields, formState.values]);
+      return !field.hidden
+    })
+  }, [fields, formState.values])
 
   // Group fields by their group property
   const groupedFields = React.useMemo(() => {
-    const groups: Record<string, FieldDefinition[]> = {};
-    const ungroupedFields: FieldDefinition[] = [];
+    const groups: Record<string, FieldDefinition[]> = {}
+    const ungroupedFields: FieldDefinition[] = []
 
     visibleFields.forEach((field) => {
       if (field.group) {
         if (!groups[field.group]) {
-          groups[field.group] = [];
+          groups[field.group] = []
         }
-        groups[field.group].push(field);
+        groups[field.group].push(field)
       } else {
-        ungroupedFields.push(field);
+        ungroupedFields.push(field)
       }
-    });
+    })
 
-    return { groups, ungroupedFields };
-  }, [visibleFields]);
+    return { groups, ungroupedFields }
+  }, [visibleFields])
+
+  const formRef = React.useRef<HTMLFormElement>(null)
 
   // Render form fields - memoized to prevent recreating on every render
   const renderField = React.useCallback(
     (field: FieldDefinition) => {
+      // Handle custom field rendering if provided
+      if (field.type === "custom" && renderCustomField) {
+        return renderCustomField(field, { values: formState.values, errors: formState.errors }, handleChange)
+      }
+
       const commonProps = {
         label: field.label,
         name: field.name,
@@ -410,71 +430,71 @@ export function SmartForm({
         variant: field.variant,
         error: formState.errors[field.name],
         className: cn(fieldClassName, field.className),
-      };
+      }
 
       switch (field.type) {
-        case 'text':
-        case 'email':
-        case 'password':
-        case 'number':
-        case 'tel':
-        case 'url':
+        case "text":
+        case "email":
+        case "password":
+        case "number":
+        case "tel":
+        case "url":
           return (
             <TextInput
               {...commonProps}
               type={field.type}
               placeholder={field.placeholder}
-              defaultValue={formState.values[field.name] || ''}
+              defaultValue={formState.values[field.name] || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
             />
-          );
-        case 'checkbox':
+          )
+        case "checkbox":
           return (
             <CheckboxInput
               {...commonProps}
               defaultChecked={formState.values[field.name] || false}
               onCheckedChange={(checked) => handleChange(field.name, checked)}
             />
-          );
-        case 'select':
+          )
+        case "select":
           return (
             <SelectInput
               {...commonProps}
               options={field.options}
               placeholder={field.placeholder}
-              defaultValue={formState.values[field.name] || ''}
+              defaultValue={formState.values[field.name] || ""}
               onValueChange={(value) => handleChange(field.name, value)}
             />
-          );
-        case 'radio':
+          )
+        case "radio":
           return (
             <RadioInput
               {...commonProps}
               options={field.options}
               orientation={field.orientation}
-              defaultValue={formState.values[field.name] || ''}
+              defaultValue={formState.values[field.name] || ""}
               onValueChange={(value) => handleChange(field.name, value)}
             />
-          );
-        case 'switch':
+          )
+        case "switch":
           return (
             <SwitchInput
               {...commonProps}
               defaultChecked={formState.values[field.name] || false}
               onCheckedChange={(checked) => handleChange(field.name, checked)}
             />
-          );
-        case 'textarea':
+          )
+        case "textarea":
           return (
             <TextareaInput
               {...commonProps}
               placeholder={field.placeholder}
               rows={field.rows}
-              defaultValue={formState.values[field.name] || ''}
+              defaultValue={formState.values[field.name] || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
             />
-          );
-        case 'date':
+          )
+        case "date":
           return (
             <DateInput
               {...commonProps}
@@ -485,8 +505,8 @@ export function SmartForm({
               dateFormat={field.dateFormat}
               onValueChange={(date) => handleChange(field.name, date)}
             />
-          );
-        case 'file':
+          )
+        case "file":
           return (
             <FileInput
               {...commonProps}
@@ -496,13 +516,32 @@ export function SmartForm({
               maxFiles={field.maxFiles}
               showPreviews={field.showPreviews}
               showIcons={field.showIcons}
-              onFilesSelected={(files) =>
-                handleChange(field.name, field.multiple ? files : files[0])
-              }
+              onFilesSelected={(files) => handleChange(field.name, field.multiple ? files : files[0])}
             />
-          );
+          )
+        case "otp":
+          return (
+            <OTPInput
+              {...commonProps}
+              value={formState.values[field.name] || ""}
+              length={field.length ?? 6}
+              maskChar={field.maskChar}
+              mask={field.mask}
+              autoFocus={field.autoFocus}
+              separator={field.separator}
+              groupSize={field.groupSize ?? 3}
+              autoSubmit={field.autoSubmit}
+              onChange={(value) => handleChange(field.name, value)}
+              onComplete={(value) => {
+                handleChange(field.name, value)
+                if (field.autoSubmit && formRef.current) {
+                  formRef.current.requestSubmit()
+                }
+              }}
+            />
+          )
         default:
-          return null;
+          return null
       }
     },
     [
@@ -512,16 +551,14 @@ export function SmartForm({
       formState.values,
       handleChange,
       loading,
+      renderCustomField,
+      schema,
+      validateField,
     ],
-  );
+  )
 
   return (
-    <form
-      id={id}
-      onSubmit={handleSubmit}
-      className={cn('w-full', className)}
-      noValidate
-    >
+    <form id={id} onSubmit={handleSubmit} className={cn("w-full", className)} noValidate ref={formRef}>
       {/* Form status messages */}
       {formState.isSuccess && formState.successMessage && (
         <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-md dark:bg-green-900/20 dark:border-green-800 dark:text-green-400">
@@ -542,19 +579,12 @@ export function SmartForm({
           <div
             key={field.name}
             className={cn(
-              layout === 'horizontal' && 'mr-4 mb-4',
-              layout === 'vertical' && 'mb-0',
-              layout === 'grid' && 'mb-0',
+              layout === "horizontal" && "mr-4 mb-4",
+              layout === "vertical" && "mb-0",
+              layout === "grid" && "mb-0",
             )}
             style={
-              field.width
-                ? {
-                    width:
-                      typeof field.width === 'number'
-                        ? `${field.width}px`
-                        : field.width,
-                  }
-                : undefined
+              field.width ? { width: typeof field.width === "number" ? `${field.width}px` : field.width } : undefined
             }
           >
             {renderField(field)}
@@ -564,22 +594,14 @@ export function SmartForm({
         {/* Render grouped fields */}
         {Object.entries(groupedFields.groups).map(([groupName, fields]) => (
           <div key={groupName} className="w-full mb-6">
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-12 gap-4">
               {fields.map((field) => (
                 <div
                   key={field.name}
-                  className={cn(
-                    'flex-1',
-                    field.width ? '' : `w-full sm:w-[calc(50%-8px)]`
-                  )}
+                  className={cn("col-span-12", field.width ? "" : `sm:col-span-${Math.floor(12 / fields.length)}`)}
                   style={
                     field.width
-                      ? {
-                          width:
-                            typeof field.width === 'number'
-                              ? `${field.width}px`
-                              : field.width,
-                        }
+                      ? { width: typeof field.width === "number" ? `${field.width}px` : field.width }
                       : undefined
                   }
                 >
@@ -604,14 +626,11 @@ export function SmartForm({
             {cancelText}
           </Button>
         )}
-        <Button
-          type="submit"
-          disabled={loading || formState.isSubmitting}
-          className={submitClassName}
-        >
-          {formState.isSubmitting ? 'Submitting...' : submitText}
+        <Button type="submit" disabled={loading || formState.isSubmitting} className={submitClassName}>
+          {formState.isSubmitting ? "Submitting..." : submitText}
         </Button>
       </div>
     </form>
-  );
+  )
 }
+

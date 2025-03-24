@@ -1,19 +1,19 @@
 'use client';
 
 import * as React from 'react';
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import type { z } from 'zod';
 
-export interface TextInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  /** The label for the input field */
+export interface TextareaInputProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** The label for the textarea field */
   label: string;
-  /** The name of the input field (used for form submission) */
+  /** The name of the textarea field (used for form submission) */
   name: string;
   /** Optional description text to display below the label */
   description?: string;
-  /** Optional hint text to display below the input */
+  /** Optional hint text to display below the textarea */
   hint?: string;
   /** Error message to display (typically from Zod validation) */
   error?: string;
@@ -21,7 +21,7 @@ export interface TextInputProps
   required?: boolean;
   /** Whether the field is in a loading/pending state */
   pending?: boolean;
-  /** Default value for the input */
+  /** Default value for the textarea */
   defaultValue?: string;
   /** Container className for the entire component */
   containerClassName?: string;
@@ -29,7 +29,7 @@ export interface TextInputProps
   labelClassName?: string;
   /** Label variant - 'default' or 'muted' */
   labelVariant?: 'default' | 'muted';
-  /** Input variant - 'default' or 'pill' */
+  /** Textarea variant - 'default' or 'pill' */
   variant?: 'default' | 'pill';
   /** Whether to show a colored border (only applies to pill variant) */
   coloredBorder?: boolean;
@@ -40,9 +40,9 @@ export interface TextInputProps
 }
 
 /**
- * TextInput component that integrates with Zod validation
+ * TextareaInput component that integrates with Zod validation
  */
-export function TextInput({
+export function TextareaInput({
   label,
   name,
   description,
@@ -62,7 +62,7 @@ export function TextInput({
   id = name,
   value,
   ...props
-}: TextInputProps) {
+}: TextareaInputProps) {
   const [localError, setLocalError] = React.useState<string | undefined>(error);
   const hasError = !!localError || !!error;
   const errorId = `error-${id}`;
@@ -77,7 +77,7 @@ export function TextInput({
   }, [error]);
 
   // Handle validation with the provided schema
-  const validateInput = React.useCallback(
+  const validateTextarea = React.useCallback(
     (value: string) => {
       if (!schema) return;
 
@@ -94,13 +94,13 @@ export function TextInput({
     [schema, onValidate],
   );
 
-  // Handle input change
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle textarea change
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
 
     // If we have a schema, validate on change
     if (schema) {
-      validateInput(newValue);
+      validateTextarea(newValue);
     }
 
     // Call the original onChange if provided
@@ -108,9 +108,9 @@ export function TextInput({
   };
 
   // Handle blur event for validation
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     if (schema) {
-      validateInput(e.target.value);
+      validateTextarea(e.target.value);
     }
 
     // Call the original onBlur if provided
@@ -138,7 +138,7 @@ export function TextInput({
         <p className="text-xs text-muted-foreground">{description}</p>
       )}
 
-      <Input
+      <Textarea
         id={id}
         name={name}
         disabled={pending || props.disabled}
@@ -147,13 +147,13 @@ export function TextInput({
         aria-describedby={hint ? hintId : undefined}
         aria-required={required}
         className={cn(
+          'h-[46px] md:text-md text-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E90F9] dark:ring-offset-black ring-offset-white',
           // Default variant styling
-          'h-[46px] md:text-md text-md',
           variant === 'default' &&
-            'shadow-[0px_2px_2px_rgba(0,0,0,0.03),_0px_4px_7px_rgba(0,0,0,0.02)]',
+            'shadow-[0px_1px_1px_rgba(0,0,0,0.03),_0px_3px_6px_rgba(0,0,0,0.02)]',
 
           // Pill variant styling - less rounded
-          variant === 'pill' && 'bg-muted border-0 rounded-lg h-12 px-4',
+          variant === 'pill' && 'bg-muted border-0 rounded-lg px-4 py-3',
           variant === 'pill' && coloredBorder && 'border-2 border-primary',
           variant === 'pill' && 'placeholder:text-muted-foreground',
 

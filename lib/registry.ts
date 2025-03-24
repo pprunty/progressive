@@ -14,7 +14,7 @@ export interface ComponentType {
   dependencies?: string[];
   registryDependencies?: string[];
   files: RegistryFile[];
-  badge?: string;
+  badge?: string | string[];
   category?: string;
 }
 
@@ -27,7 +27,7 @@ export interface CategoryType {
 function formatCategoryName(category: string): string {
   // Handle special formatting patterns
   // 1. Handle parentheses - preserve case inside them: re(creations) -> Re(Creations)
-  const parenthesesPattern = /$$([^)]+)$$/g;
+  const parenthesesPattern = /\(([^)]+)\)/g;
   let formattedCategory = category.replace(parenthesesPattern, (match) => {
     // Preserve the original case of text inside parentheses
     return match.toUpperCase();
@@ -40,7 +40,7 @@ function formatCategoryName(category: string): string {
       // Check if word contains parentheses
       if (word.includes('(')) {
         // Split at the opening parenthesis
-        const parts = word.split(/($$[^)]*$$)/);
+        const parts = word.split(/(\([^)]*\))/);
         return parts
           .map(
             (part) =>
@@ -72,6 +72,26 @@ function formatCategoryName(category: string): string {
   return formattedCategory;
 }
 
+// Helper function to validate badge values
+function validateBadge(badge: unknown): string | string[] | undefined {
+  if (!badge) return undefined;
+
+  // Handle single badge string
+  if (typeof badge === 'string') {
+    return ['new', 'beta'].includes(badge) ? badge : undefined;
+  }
+
+  // Handle array of badges
+  if (Array.isArray(badge)) {
+    const validBadges = badge.filter(item =>
+      typeof item === 'string' && ['new', 'beta'].includes(item)
+    );
+    return validBadges.length > 0 ? validBadges : undefined;
+  }
+
+  return undefined;
+}
+
 // Helper function to categorize components
 function categorizeComponents(items: ComponentType[]): CategoryType[] {
   // Group components by their type or first directory in path
@@ -97,8 +117,7 @@ function categorizeComponents(items: ComponentType[]): CategoryType[] {
     // Ensure the badge is of the correct type
     const typedItem: ComponentType = {
       ...item,
-      badge:
-        item.badge === 'new' || item.badge === 'beta' ? item.badge : undefined,
+      badge: validateBadge(item.badge)
     };
 
     categories[category].push(typedItem);
@@ -126,8 +145,7 @@ export async function getAllComponents(): Promise<ComponentType[]> {
   // Cast the items to ComponentType[] after validating/transforming the badge property
   return registryData.items.map((item) => ({
     ...item,
-    badge:
-      item.badge === 'new' || item.badge === 'beta' ? item.badge : undefined,
+    badge: validateBadge(item.badge)
   })) as ComponentType[];
 }
 
@@ -142,10 +160,7 @@ export async function getComponentByName(
   // Ensure the badge is of the correct type
   return {
     ...component,
-    badge:
-      component.badge === 'new' || component.badge === 'beta'
-        ? component.badge
-        : undefined,
+    badge: validateBadge(component.badge)
   } as ComponentType;
 }
 

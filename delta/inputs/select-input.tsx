@@ -182,9 +182,8 @@ export function SelectInput({
             aria-describedby={hint ? hintId : undefined}
             aria-required={required}
             className={cn(
-              'h-[46px] md:text-md text-md',
+              'h-[46px] md:text-md text-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E90F9] dark:ring-offset-black ring-offset-white',
               'bg-muted border-0 rounded-lg px-4 w-full pr-10',
-              coloredBorder && 'border-2 border-primary',
               'text-foreground',
               'appearance-none',
               'group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive',
@@ -257,8 +256,9 @@ export function SelectInput({
         <SelectTrigger
           id={id}
           className={cn(
-             'h-[46px] md:text-md text-md',
+              'h-[46px] md:text-md text-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E90F9] dark:ring-offset-black ring-offset-white',
             'shadow-[0px_1px_1px_rgba(0,0,0,0.03),_0px_3px_6px_rgba(0,0,0,0.02)]',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E90F9] dark:ring-offset-black ring-offset-white',
             'group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive',
             selectClassName,
           )}
