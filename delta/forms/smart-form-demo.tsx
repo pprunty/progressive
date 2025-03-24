@@ -528,6 +528,7 @@ function ConditionalFieldsExample() {
 }
 
 // Two-Factor Authentication Example with native OTP support
+// Two-Factor Authentication Example with native OTP support
 function TwoFactorAuthExample() {
   // Define the form schema with OTP verification
   const twoFactorSchema = z.object({
@@ -535,6 +536,9 @@ function TwoFactorAuthExample() {
     rememberDevice: z.boolean().optional(),
   })
 
+  // Track form submission state to prevent double submission
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  
   // Define the form fields using the native OTP field type
   const twoFactorFields = [
     {
@@ -546,8 +550,9 @@ function TwoFactorAuthExample() {
       autoFocus: false,
       separator: true,
       groupSize: 3,
-      autoSubmit: true,
-      hint: "Enter the 6-digit code sent to your phone. Form will submit automatically when all digits are entered.",
+      // We'll handle autoSubmit manually to prevent duplicate submissions
+      autoSubmit: false,
+      hint: "Enter the 6-digit code sent to your phone.",
     },
     {
       name: "rememberDevice",
@@ -558,19 +563,54 @@ function TwoFactorAuthExample() {
   ]
 
   const handleSubmit = async (data: z.infer<typeof twoFactorSchema>) => {
-    // Mock API call
-    console.log("Two-factor auth data:", data)
-    alert("Verification successful: " + JSON.stringify(data, null, 2))
-    return Promise.resolve()
+    // Prevent duplicate submissions
+    if (isSubmitting) return;
+    
+    try {
+      setIsSubmitting(true);
+      
+      // Mock API call
+      console.log("Two-factor auth data:", data);
+      alert("Verification successful: " + JSON.stringify(data, null, 2));
+      
+      return Promise.resolve();
+    } finally {
+      // Reset submission state after completion
+      setIsSubmitting(false);
+    }
   }
+
+  // Create a custom handler for OTP completion
+  const handleOTPComplete = (fields: FieldDefinition[], formState: any, formRef: React.RefObject<HTMLFormElement>) => {
+    // Find the OTP field
+    const otpField = fields.find(field => field.name === "verificationCode") as OTPFieldDefinition;
+    
+    // Modify the onComplete handler
+    if (otpField) {
+      const originalOnComplete = otpField.onComplete;
+      
+      otpField.onComplete = (value: string) => {
+        // Call the original handler if it exists
+        if (originalOnComplete) {
+          originalOnComplete(value);
+        }
+        
+        // Submit the form only if we're not already submitting
+        if (!isSubmitting && formRef.current) {
+          formRef.current.requestSubmit();
+        }
+      };
+    }
+    
+    return fields;
+  };
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle>Two-Factor Authentication</CardTitle>
         <CardDescription>
-          We've sent a verification code to your phone. Enter the code to continue. The form will submit automatically
-          when all digits are entered.
+          We've sent a verification code to your phone. Enter the code to continue.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -581,10 +621,10 @@ function TwoFactorAuthExample() {
           submitText="Verify"
           layout="vertical"
           successMessage="Verification successful! You're now logged in."
-          hideSubmitButton={true}
+          // Show the submit button as a backup
+          hideSubmitButton={false}
         />
       </CardContent>
     </Card>
   )
 }
-

@@ -1,47 +1,160 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { Switch } from '@/components/ui/switch';
-import { cn } from '@/lib/utils';
-import type { z } from 'zod';
+import * as React from "react"
+import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
+import type { z } from "zod"
+
+// CustomSwitch component moved into this file
+interface CustomSwitchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  checked?: boolean
+  defaultChecked?: boolean
+  onCheckedChange?: (checked: boolean) => void
+  disabled?: boolean
+  size?: "default" | "large"
+  /** Custom color for the active/checked state (CSS color or Tailwind class) */
+  activeColor?: string
+  /** Switch shape variant */
+  variant?: "pill" | "rectangular"
+  /** Extends the clickable area beyond the visible component */
+  extendedClickArea?: boolean
+}
+
+const CustomSwitch = React.forwardRef<HTMLButtonElement, CustomSwitchProps>(
+  (
+    {
+      className,
+      checked,
+      defaultChecked,
+      onCheckedChange,
+      disabled,
+      size = "default",
+      activeColor,
+      variant = "rectangular",
+      extendedClickArea = false, // Default to true for better mobile usability
+      ...props
+    },
+    ref,
+  ) => {
+    const [isChecked, setIsChecked] = React.useState<boolean>(checked !== undefined ? checked : defaultChecked || false)
+
+    // Update checked state when controlled prop changes
+    React.useEffect(() => {
+      if (checked !== undefined) {
+        setIsChecked(checked)
+      }
+    }, [checked])
+
+    const handleClick = () => {
+      if (disabled) return
+
+      const newChecked = !isChecked
+      setIsChecked(newChecked)
+      onCheckedChange?.(newChecked)
+    }
+
+    // Custom active color style if provided
+    const activeColorStyle = activeColor && isChecked ? { backgroundColor: activeColor } : {}
+
+    // Calculate toggle position based on size and variant
+    const toggleXPosition = () => {
+      if (size === "large") {
+        return isChecked ? 24 : 2
+      }
+      return isChecked ? 20 : 2
+    }
+
+    // Default size with positioning approach
+    return (
+      <motion.button
+        type="button"
+        role="switch"
+        aria-checked={isChecked}
+        data-state={isChecked ? "checked" : "unchecked"}
+        disabled={disabled}
+        ref={ref}
+        onClick={handleClick}
+        style={activeColorStyle}
+        className={cn(
+          "relative flex shrink-0 cursor-pointer border border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
+          variant === "pill" ? "rounded-full" : "rounded-md",
+          isChecked ? (activeColor ? "" : "bg-primary") : "bg-muted",
+          size === "large" ? "h-[30px] w-[53px]" : "h-[24px] w-[44px]",
+          // Add extended click area styles
+          extendedClickArea && "before:absolute before:-inset-10 before:block before:content-['']",
+          className,
+        )}
+        {...props}
+      >
+        <motion.div
+          initial={false}
+          animate={{
+            x: toggleXPosition(),
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+          }}
+          className={cn(
+            "absolute top-0 bottom-0 left-0 m-auto shadow-md",
+            activeColor ? "bg-white" : `dark:bg-black bg-background`,
+            variant === "pill" ? "rounded-full" : "rounded-md",
+            size === "large" ? "h-6 w-6" : "h-5 w-5",
+          )}
+        />
+      </motion.button>
+    )
+  },
+)
+
+CustomSwitch.displayName = "CustomSwitch"
 
 export interface SwitchInputProps {
   /** The label for the switch */
-  label: string;
+  label: string
   /** The name of the switch field (used for form submission) */
-  name: string;
+  name: string
   /** Optional description text to display below the switch */
-  description?: string;
+  description?: string
   /** Optional hint text to display below the switch */
-  hint?: string;
+  hint?: string
   /** Error message to display (typically from Zod validation) */
-  error?: string;
+  error?: string
   /** Whether the field is required */
-  required?: boolean;
+  required?: boolean
   /** Whether the field is in a loading/pending state */
-  pending?: boolean;
+  pending?: boolean
   /** Default checked state */
-  defaultChecked?: boolean;
+  defaultChecked?: boolean
   /** Controlled checked state */
-  checked?: boolean;
+  checked?: boolean
   /** Container className for the entire component */
-  containerClassName?: string;
+  containerClassName?: string
   /** Switch className */
-  switchClassName?: string;
+  switchClassName?: string
   /** Label className */
-  labelClassName?: string;
+  labelClassName?: string
   /** Label variant - 'default' or 'muted' */
-  labelVariant?: 'default' | 'muted';
+  labelVariant?: "default" | "muted"
   /** Zod schema for validation (optional - can be handled at the form level) */
-  schema?: z.ZodType<boolean>;
+  schema?: z.ZodType<boolean>
   /** Callback when validation occurs */
-  onValidate?: (isValid: boolean, value: boolean, error?: string) => void;
+  onValidate?: (isValid: boolean, value: boolean, error?: string) => void
   /** Callback when switch state changes */
-  onCheckedChange?: (checked: boolean) => void;
+  onCheckedChange?: (checked: boolean) => void
   /** ID for the switch */
-  id?: string;
+  id?: string
   /** Whether the switch is disabled */
-  disabled?: boolean;
+  disabled?: boolean
+  /** Size of the switch - 'default' or 'large' (1.2x default size) */
+  size?: "default" | "large"
+  /** Custom color for the active/checked state (CSS color or Tailwind class) */
+  activeColor?: string
+  /** Switch shape variant - 'pill' or 'rectangular' */
+  variant?: "pill" | "rectangular"
+  /** Extends the clickable area beyond the visible component */
+  extendedClickArea?: boolean
 }
 
 /**
@@ -60,90 +173,85 @@ export function SwitchInput({
   containerClassName,
   switchClassName,
   labelClassName,
-  labelVariant = 'default',
+  labelVariant = "default",
   schema,
   onValidate,
   onCheckedChange,
   id = name,
   disabled = false,
+  size = "default",
+  activeColor,
+  variant = "rectangular",
+  extendedClickArea = false, // Default to true for better mobile usability
 }: SwitchInputProps) {
-  const [localError, setLocalError] = React.useState<string | undefined>(error);
-  const [isChecked, setIsChecked] = React.useState<boolean>(
-    checked !== undefined ? checked : defaultChecked,
-  );
-  const hasError = !!localError || !!error;
-  const errorId = `error-${id}`;
-  const hintId = `hint-${id}`;
+  const [localError, setLocalError] = React.useState<string | undefined>(error)
+  const [isChecked, setIsChecked] = React.useState<boolean>(checked !== undefined ? checked : defaultChecked)
+  const hasError = !!localError || !!error
+  const errorId = `error-${id}`
+  const hintId = `hint-${id}`
 
   // Update local error when prop changes
   React.useEffect(() => {
-    setLocalError(error);
-  }, [error]);
+    setLocalError(error)
+  }, [error])
 
   // Update checked state when controlled prop changes
   React.useEffect(() => {
     if (checked !== undefined) {
-      setIsChecked(checked);
+      setIsChecked(checked)
     }
-  }, [checked]);
+  }, [checked])
 
   // Handle validation with the provided schema
   const validateSwitch = React.useCallback(
     (value: boolean) => {
-      if (!schema) return;
+      if (!schema) return
 
-      const result = schema.safeParse(value);
+      const result = schema.safeParse(value)
       if (!result.success) {
-        const errorMessage =
-          result.error.errors[0]?.message || 'Invalid selection';
-        setLocalError(errorMessage);
-        onValidate?.(false, value, errorMessage);
+        const errorMessage = result.error.errors[0]?.message || "Invalid selection"
+        setLocalError(errorMessage)
+        onValidate?.(false, value, errorMessage)
       } else {
-        setLocalError(undefined);
-        onValidate?.(true, value);
+        setLocalError(undefined)
+        onValidate?.(true, value)
       }
     },
     [schema, onValidate],
-  );
+  )
 
   // Handle switch change
   const handleCheckedChange = (checked: boolean) => {
-    setIsChecked(checked);
+    setIsChecked(checked)
 
     // If we have a schema, validate on change
     if (schema) {
-      validateSwitch(checked);
+      validateSwitch(checked)
     }
 
     // Call the original onCheckedChange if provided
-    onCheckedChange?.(checked);
-  };
+    onCheckedChange?.(checked)
+  }
 
   return (
-    <div
-      className={cn('group/field space-y-2', containerClassName)}
-      data-invalid={hasError}
-    >
+    <div className={cn("group/field space-y-2", containerClassName)} data-invalid={hasError}>
       <div className="flex items-center justify-between space-x-2">
         <div className="space-y-1">
           <label
             htmlFor={id}
             className={cn(
-              'text-md font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive',
-              labelVariant === 'muted' && 'text-muted-foreground',
+              "text-md font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 group-data-[invalid=true]/field:text-destructive",
+              labelVariant === "muted" && "text-muted-foreground",
               labelClassName,
             )}
           >
             {label}
             {required && <span aria-hidden="true"> *</span>}
           </label>
-          {description && (
-            <p className="text-xs text-muted-foreground">{description}</p>
-          )}
+          {description && <p className="text-xs text-muted-foreground">{description}</p>}
         </div>
-        <Switch
+        <CustomSwitch
           id={id}
-          name={name}
           defaultChecked={checked === undefined ? defaultChecked : undefined}
           checked={checked !== undefined ? checked : undefined}
           disabled={pending || disabled}
@@ -152,10 +260,12 @@ export function SwitchInput({
           aria-errormessage={hasError ? errorId : undefined}
           aria-describedby={hint ? hintId : undefined}
           aria-required={required}
+          size={size}
+          activeColor={activeColor}
+          variant={variant}
+          extendedClickArea={extendedClickArea}
           className={cn(
-            'border border-input/30',
-            'data-[state=checked]:border-primary/30',
-            'group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive',
+            "group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive",
             switchClassName,
           )}
         />
@@ -174,7 +284,8 @@ export function SwitchInput({
       )}
 
       {/* Hidden input for form submission */}
-      <input type="hidden" name={name} value={isChecked ? 'true' : 'false'} />
+      <input type="hidden" name={name} value={isChecked ? "true" : "false"} />
     </div>
-  );
+  )
 }
+

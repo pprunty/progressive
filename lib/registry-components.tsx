@@ -25,6 +25,7 @@ import DateInputDemo from '@/delta/inputs/date-input-demo';
 import SmartFormDemo from '@/delta/forms/smart-form-demo';
 import OtpInputDemo from "@/delta/inputs/otp-input-demo"
 import FloatingButtonDemo from "@/delta/components/floating-button-demo"
+import VerticalSnapScrollDemo from "@/delta/layout/vertical-snap-scroll-demo"
 
 // Create a registry object that maps component names to their implementations
 export const registry: Record<string, { component: React.ComponentType }> = {
@@ -97,4 +98,7 @@ export const registry: Record<string, { component: React.ComponentType }> = {
   },
   "floating-button": {
     component: FloatingButtonDemo,
+  },
+  "vertical-snap-scroll": {
+    component: VerticalSnapScrollDemo,
   },};
