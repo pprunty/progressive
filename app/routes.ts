@@ -208,9 +208,9 @@ export const componentMetadata: Record<string, Metadata> = {
       url: `${BASE_URL}/docs/tabs`,
       images: [
         {
-          url: `${BASE_URL}/og/tabs.png`,
-          width: 1200,
-          height: 630,
+          url: `${BASE_URL}/og/tabs.gif`,
+          width: 800,
+          height: 422,
           alt: 'Tabs Component Preview',
         },
       ],

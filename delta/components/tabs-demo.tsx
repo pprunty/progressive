@@ -37,7 +37,7 @@ export function UnderlinedTabsDemo() {
         variant="underlined"
       />
 
-      <div className="mt-6 p-4 border rounded-lg">
+      <div className="mt-6 p-4">
         <TabPanel tabId="account" active={activeIndex === 0}>
           <h3 className="font-medium">Account Settings</h3>
           <p className="text-muted-foreground mt-2">
@@ -101,7 +101,7 @@ export function NotUnderlinedTabsDemo() {
         showBottomBorder={false}
       />
 
-      <div className="mt-6 p-4 border rounded-lg">
+      <div className="mt-6 p-4 ">
         <TabPanel tabId="account" active={activeIndex === 0}>
           <h3 className="font-medium">Account Settings</h3>
           <p className="text-muted-foreground mt-2">
@@ -168,7 +168,7 @@ export function PillsTabsDemo() {
         size="md"
       />
 
-      <div className="mt-6 p-4 border rounded-lg bg-card">
+      <div className="mt-6 p-4  bg-card">
         <TabPanel tabId="account" active={activeIndex === 0}>
           <h3 className="font-medium">Account Settings</h3>
           <p className="text-muted-foreground mt-2">
@@ -239,7 +239,7 @@ export function CustomPillsTabsDemo() {
         inactiveTabClassName=""
       />
 
-      <div className="mt-6 p-4 border rounded-lg bg-card">
+      <div className="mt-6 p-4  bg-card">
         <TabPanel tabId="discover" active={activeIndex === 0}>
           <h3 className="font-medium">Discover New Music</h3>
           <p className="text-muted-foreground mt-2">
