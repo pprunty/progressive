@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { clsx } from 'clsx';
 import { ClipLoader } from 'react-spinners';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'action';
+export type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'action' | 'neobrutalism';
 
 export interface ButtonProps {
   onClick?: () => void;
@@ -19,6 +19,7 @@ export interface ButtonProps {
   spinnerSize?: number; // Optional prop for spinner size
   spinnerColor?: string; // Optional prop for spinner color
   actionColor?: string; // New prop for customizing action variant color
+  neobrutalismColor?: string; // New prop for neobrutalism variant color
 }
 
 export function Button({
@@ -34,6 +35,7 @@ export function Button({
   spinnerSize = 20, // Default size
   spinnerColor, // Will use appropriate color based on variant if not specified
   actionColor, // New prop
+  neobrutalismColor = 'bg-blue-300', // Default neobrutalism color
 }: ButtonProps) {
   // Determine spinner color based on variant and theme colors
   const getSpinnerColor = () => {
@@ -127,6 +129,17 @@ export function Button({
 
         // Action variant styling with customizable color
         variant === 'action' && getActionStyles(),
+
+        // Neobrutalism variant styling
+        variant === 'neobrutalism' && [
+          'rounded-lg border-2 border-black',
+          neobrutalismColor,
+          'text-black',
+          'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.8)]',
+          'hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] dark:hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.8)]',
+          'active:translate-y-1 active:translate-x-1 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] dark:active:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.8)]',
+          'disabled:hover:translate-y-0 disabled:hover:translate-x-0 disabled:hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] dark:disabled:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.8)]',
+        ],
 
         // Add the extended click area pseudo-element styles
         extendedClickArea &&

@@ -15,6 +15,12 @@ export default function SmartFormDemo() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8 space-y-16">
       <div className="space-y-4">
+        <h2 className="text-2xl font-bold">Job Application Form</h2>
+        <p className="text-muted-foreground">A comprehensive job application form showcasing various input types with pill variant.</p>
+        <JobApplicationFormExample />
+      </div>
+
+      <div className="space-y-4">
         <h2 className="text-2xl font-bold">Basic Contact Form</h2>
         <p className="text-muted-foreground">A simple contact form with various input types in a vertical layout.</p>
         <ContactFormExample />
@@ -624,6 +630,115 @@ function TwoFactorAuthExample() {
           successMessage="Verification successful! You're now logged in."
           // Show the submit button as a backup
           hideSubmitButton={false}
+        />
+      </CardContent>
+    </Card>
+  )
+}
+
+// Job Application Form Example
+function JobApplicationFormExample() {
+  // Define the form schema
+  const jobApplicationSchema = z.object({
+    fullName: z.string().min(1, "Full name is required"),
+    email: z.string().email("Please enter a valid email address"),
+    position: z.string().min(1, "Please select a position"),
+    resume: z.any().refine((val) => val && val.length > 0, "Please upload your resume"),
+    startDate: z.date().min(new Date(), "Start date must be in the future"),
+    agreeToTerms: z.literal(true, {
+      errorMap: () => ({ message: "You must agree to the terms and conditions" }),
+    }),
+  })
+
+  // Define the form fields
+  const jobApplicationFields = [
+    {
+      name: "fullName",
+      label: "Full Name",
+      type: "text" as const,
+      required: true,
+      placeholder: "John Doe",
+      variant: "pill" as const,
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "email" as const,
+      required: true,
+      placeholder: "john@example.com",
+      variant: "pill" as const,
+    },
+    {
+      name: "position",
+      label: "Position",
+      type: "select" as const,
+      required: true,
+      options: [
+        { value: "frontend", label: "Frontend Developer" },
+        { value: "backend", label: "Backend Developer" },
+        { value: "fullstack", label: "Full Stack Developer" },
+        { value: "designer", label: "UI/UX Designer" },
+        { value: "product", label: "Product Manager" },
+      ],
+      placeholder: "Select a position",
+      variant: "pill" as const,
+    },
+    {
+      name: "resume",
+      label: "Resume",
+      type: "file" as const,
+      required: true,
+      accept: ".pdf,.doc,.docx",
+      maxSize: 5 * 1024 * 1024, // 5MB
+      maxFiles: 1,
+      showPreviews: true,
+      showIcons: true,
+      hint: "Upload your resume (PDF, DOC, or DOCX, max 5MB)",
+      variant: "pill" as const,
+    },
+    {
+      name: "startDate",
+      label: "Earliest Start Date",
+      type: "date" as const,
+      required: true,
+      placeholder: "Select a date",
+      minDate: new Date(),
+      maxDate: addDays(new Date(), 90),
+      hint: "When can you start?",
+      variant: "pill" as const,
+    },
+    {
+      name: "agreeToTerms",
+      label: "I agree to the terms and conditions",
+      type: "checkbox" as const,
+      required: true,
+      description: "By submitting this form, you agree to our privacy policy and terms of service",
+    },
+  ]
+
+  const handleSubmit = async (data: z.infer<typeof jobApplicationSchema>) => {
+    // Mock API call
+    console.log("Job application data:", data)
+    alert("Application submitted successfully! We'll contact you soon.")
+    return Promise.resolve()
+  }
+
+  return (
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle>Job Application</CardTitle>
+        <CardDescription>
+          Fill out the form below to apply for a position at our company.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <SmartForm
+          fields={jobApplicationFields}
+          schema={jobApplicationSchema}
+          onSubmit={handleSubmit}
+          submitText="Submit Application"
+          layout="vertical"
+          successMessage="Your application has been submitted successfully! We'll review it and get back to you soon."
         />
       </CardContent>
     </Card>

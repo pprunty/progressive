@@ -60,6 +60,7 @@ export default function ButtonDemo() {
     <div className="space-y-12">
       <ButtonVariantsDemo />
       <ButtonCustomActionColorsDemo />
+      <ButtonNeobrutalismDemo />
       <ButtonWithLucideIconsDemo />
       <ButtonWithPhosphorIconsDemo />
       <ButtonLoadingStatesDemo />
@@ -145,6 +146,52 @@ export function ButtonCustomActionColorsDemo() {
             title="Custom Action" 
             variant="action" 
             actionColor="#4F46E5"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ButtonNeobrutalismDemo() {
+  return (
+    <section>
+      <h2 className="text-xl font-semibold mb-4">Neobrutalism Variant</h2>
+      <p className="text-sm text-muted-foreground mb-4">
+        Inspired by the neobrutalism design movement, this variant features bold shadows, 
+        thick borders, and playful interactions. Perfect for creating eye-catching, 
+        modern interfaces.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Default Blue</h3>
+          <Button title="Neobrutalism" variant="neobrutalism" />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Pink</h3>
+          <Button 
+            title="Pink Style" 
+            variant="neobrutalism" 
+            neobrutalismColor="bg-pink-300"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Green</h3>
+          <Button 
+            title="Green Style" 
+            variant="neobrutalism" 
+            neobrutalismColor="bg-green-300"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Disabled</h3>
+          <Button 
+            title="Disabled" 
+            variant="neobrutalism" 
+            disabled
           />
         </div>
       </div>

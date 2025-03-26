@@ -35,7 +35,7 @@ const floatingButtonVariants = cva(
       {
         shape: "default",
         size: "default",
-        class: "h-15 px-3 py-3",
+        class: "h-14 px-4 py-3",
       },
       {
         shape: "default",
@@ -220,7 +220,7 @@ const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
         {...props}
       >
         <Icon {...defaultIconProps} />
-        {text && shape !== "circle" && <span className="font-semibold">{text}</span>}
+        {text && shape !== "circle" && <span className="font-medium">{text}</span>}
       </button>
     )
 
