@@ -113,38 +113,43 @@ export function ButtonCustomActionColorsDemo() {
     <section>
       <h2 className="text-xl font-semibold mb-4">Custom Action Colors</h2>
       <p className="text-sm text-muted-foreground mb-4">
-        While shadcn/ui provides a comprehensive color palette, it doesn't include a primary accent color out of the box. 
-        The action variant allows you to customize the color to match your brand or design system.
+        While shadcn/ui provides a comprehensive color palette, it doesn't
+        include a primary accent color out of the box. The action variant allows
+        you to customize the color to match your brand or design system.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-muted-foreground">Default Blue</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">
+            Default Blue
+          </h3>
           <Button title="Default Action" variant="action" />
         </div>
 
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-medium text-muted-foreground">Indigo</h3>
-          <Button 
-            title="Indigo Action" 
-            variant="action" 
+          <Button
+            title="Indigo Action"
+            variant="action"
             actionColor="bg-indigo-500"
           />
         </div>
 
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-medium text-muted-foreground">Purple</h3>
-          <Button 
-            title="Purple Action" 
-            variant="action" 
+          <Button
+            title="Purple Action"
+            variant="action"
             actionColor="bg-purple-500"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-muted-foreground">Custom Hex</h3>
-          <Button 
-            title="Custom Action" 
-            variant="action" 
+          <h3 className="text-sm font-medium text-muted-foreground">
+            Custom Hex
+          </h3>
+          <Button
+            title="Custom Action"
+            variant="action"
             actionColor="#4F46E5"
           />
         </div>
@@ -158,41 +163,41 @@ export function ButtonNeobrutalismDemo() {
     <section>
       <h2 className="text-xl font-semibold mb-4">Neobrutalism Variant</h2>
       <p className="text-sm text-muted-foreground mb-4">
-        Inspired by the neobrutalism design movement, this variant features bold shadows, 
-        thick borders, and playful interactions. Perfect for creating eye-catching, 
-        modern interfaces.
+        Inspired by the neobrutalism design movement, this variant features bold
+        shadows, thick borders, and playful interactions. Perfect for creating
+        eye-catching, modern interfaces.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-muted-foreground">Default Blue</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">
+            Default Blue
+          </h3>
           <Button title="Neobrutalism" variant="neobrutalism" />
         </div>
 
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-medium text-muted-foreground">Pink</h3>
-          <Button 
-            title="Pink Style" 
-            variant="neobrutalism" 
+          <Button
+            title="Pink Style"
+            variant="neobrutalism"
             neobrutalismColor="bg-pink-300"
           />
         </div>
 
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-medium text-muted-foreground">Green</h3>
-          <Button 
-            title="Green Style" 
-            variant="neobrutalism" 
+          <Button
+            title="Green Style"
+            variant="neobrutalism"
             neobrutalismColor="bg-green-300"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-muted-foreground">Disabled</h3>
-          <Button 
-            title="Disabled" 
-            variant="neobrutalism" 
-            disabled
-          />
+          <h3 className="text-sm font-medium text-muted-foreground">
+            Disabled
+          </h3>
+          <Button title="Disabled" variant="neobrutalism" disabled />
         </div>
       </div>
     </section>

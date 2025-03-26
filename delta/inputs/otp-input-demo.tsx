@@ -1,81 +1,97 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import { z } from "zod"
-import { Card, CardTitle, CardHeader, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { OTPInput } from "@/delta/inputs/otp-input"
+import * as React from 'react';
+import { z } from 'zod';
+import {
+  Card,
+  CardTitle,
+  CardHeader,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { OTPInput } from '@/delta/inputs/otp-input';
 
 export default function OTPInputDemo() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8 space-y-16">
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Verification Example</h2>
-        <p className="text-muted-foreground">A complete verification form with OTP input.</p>
+        <p className="text-muted-foreground">
+          A complete verification form with OTP input.
+        </p>
         <VerificationExample />
       </div>
 
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">OTP Input Variants</h2>
-        <p className="text-muted-foreground">Different styles and configurations for OTP inputs.</p>
+        <p className="text-muted-foreground">
+          Different styles and configurations for OTP inputs.
+        </p>
         <OTPVariantsExample />
       </div>
 
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Auto-Submit Example</h2>
-        <p className="text-muted-foreground">OTP input that automatically submits the form when completed.</p>
+        <p className="text-muted-foreground">
+          OTP input that automatically submits the form when completed.
+        </p>
         <AutoSubmitExample />
       </div>
     </div>
-  )
+  );
 }
 
 function VerificationExample() {
-  const [pending, setPending] = React.useState(false)
+  const [pending, setPending] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    verificationCode: "",
-  })
-  const [errors, setErrors] = React.useState<Record<string, string>>({})
-  const [success, setSuccess] = React.useState(false)
+    verificationCode: '',
+  });
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [success, setSuccess] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setPending(true)
-    setSuccess(false)
+    e.preventDefault();
+    setPending(true);
+    setSuccess(false);
 
     const result = z
       .object({
-        verificationCode: z.string().length(6, "Verification code must be 6 digits"),
+        verificationCode: z
+          .string()
+          .length(6, 'Verification code must be 6 digits'),
       })
-      .safeParse(formData)
+      .safeParse(formData);
 
     if (!result.success) {
-      const formattedErrors = result.error.format()
+      const formattedErrors = result.error.format();
       setErrors({
-        verificationCode: formattedErrors.verificationCode?._errors[0] || "",
-      })
-      setPending(false)
-      return
+        verificationCode: formattedErrors.verificationCode?._errors[0] || '',
+      });
+      setPending(false);
+      return;
     }
 
     // Simulate API call
     setTimeout(() => {
-      setPending(false)
-      setErrors({})
-      setSuccess(true)
+      setPending(false);
+      setErrors({});
+      setSuccess(true);
       // Reset form data
       setFormData({
-        verificationCode: "",
-      })
-    }, 1500)
-  }
+        verificationCode: '',
+      });
+    }, 1500);
+  };
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle>Verify Your Account</CardTitle>
         <CardDescription>
-          We've sent a 6-digit verification code to your email. Enter the code below to confirm your account.
+          We've sent a 6-digit verification code to your email. Enter the code
+          below to confirm your account.
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
@@ -98,47 +114,56 @@ function VerificationExample() {
             pending={pending}
             error={errors.verificationCode}
             value={formData.verificationCode}
-            onChange={(value) => setFormData({ ...formData, verificationCode: value })}
+            onChange={(value) =>
+              setFormData({ ...formData, verificationCode: value })
+            }
             hint="Enter the 6-digit code sent to your email. This otp is autofocused"
-            schema={z.string().length(6, "Verification code must be 6 digits")}
+            schema={z.string().length(6, 'Verification code must be 6 digits')}
           />
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
           <Button type="submit" className="w-full" disabled={pending}>
-            {pending ? "Verifying..." : "Verify Account"}
+            {pending ? 'Verifying...' : 'Verify Account'}
           </Button>
-          <Button type="button" variant="link" className="w-full" disabled={pending}>
+          <Button
+            type="button"
+            variant="link"
+            className="w-full"
+            disabled={pending}
+          >
             Didn't receive a code? Resend
           </Button>
         </CardFooter>
       </form>
     </Card>
-  )
+  );
 }
 
 function AutoSubmitExample() {
-  const [pending, setPending] = React.useState(false)
-  const [success, setSuccess] = React.useState(false)
-  const [code, setCode] = React.useState("")
+  const [pending, setPending] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const [code, setCode] = React.useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setPending(true)
-    setSuccess(false)
+    e.preventDefault();
+    setPending(true);
+    setSuccess(false);
 
     // Simulate API call
     setTimeout(() => {
-      setPending(false)
-      setSuccess(true)
-      setCode("")
-    }, 1500)
-  }
+      setPending(false);
+      setSuccess(true);
+      setCode('');
+    }, 1500);
+  };
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle>Auto-Submit OTP</CardTitle>
-        <CardDescription>Enter the complete code to automatically submit the form.</CardDescription>
+        <CardDescription>
+          Enter the complete code to automatically submit the form.
+        </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="flex flex-col gap-6">
@@ -164,16 +189,17 @@ function AutoSubmitExample() {
         </CardContent>
       </form>
     </Card>
-  )
+  );
 }
-
 
 export function OTPVariantsExample() {
   return (
     <Card className="w-full mx-auto max-w-md">
       <CardHeader>
         <CardTitle>OTP Input Variants</CardTitle>
-        <CardDescription>Different styles and configurations for OTP inputs</CardDescription>
+        <CardDescription>
+          Different styles and configurations for OTP inputs
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-8">
         <div className="space-y-2">
@@ -189,7 +215,13 @@ export function OTPVariantsExample() {
 
         <div className="space-y-2">
           <h3 className="text-sm font-medium">Pill Style</h3>
-          <OTPInput label="Pill OTP" name="pill-otp" length={6} variant="pill" hint="Rounded pill-style OTP input" />
+          <OTPInput
+            label="Pill OTP"
+            name="pill-otp"
+            length={6}
+            variant="pill"
+            hint="Rounded pill-style OTP input"
+          />
         </div>
 
         <div className="space-y-2">
@@ -206,7 +238,9 @@ export function OTPVariantsExample() {
         </div>
 
         <div className="space-y-2">
-          <h3 className="text-sm font-medium">Default Style with Colored Border</h3>
+          <h3 className="text-sm font-medium">
+            Default Style with Colored Border
+          </h3>
           <OTPInput
             label="Colored Border OTP"
             name="colored-border-otp"
@@ -231,7 +265,9 @@ export function OTPVariantsExample() {
         </div>
 
         <div className="space-y-2">
-          <h3 className="text-sm font-medium">Different Length (Default Style)</h3>
+          <h3 className="text-sm font-medium">
+            Different Length (Default Style)
+          </h3>
           <OTPInput
             label="4-Digit OTP"
             name="short-otp"
@@ -242,6 +278,5 @@ export function OTPVariantsExample() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

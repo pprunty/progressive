@@ -83,8 +83,8 @@ function validateBadge(badge: unknown): string | string[] | undefined {
 
   // Handle array of badges
   if (Array.isArray(badge)) {
-    const validBadges = badge.filter(item =>
-      typeof item === 'string' && ['new', 'beta'].includes(item)
+    const validBadges = badge.filter(
+      (item) => typeof item === 'string' && ['new', 'beta'].includes(item),
     );
     return validBadges.length > 0 ? validBadges : undefined;
   }
@@ -117,7 +117,7 @@ function categorizeComponents(items: ComponentType[]): CategoryType[] {
     // Ensure the badge is of the correct type
     const typedItem: ComponentType = {
       ...item,
-      badge: validateBadge(item.badge)
+      badge: validateBadge(item.badge),
     };
 
     categories[category].push(typedItem);
@@ -145,7 +145,7 @@ export async function getAllComponents(): Promise<ComponentType[]> {
   // Cast the items to ComponentType[] after validating/transforming the badge property
   return registryData.items.map((item) => ({
     ...item,
-    badge: validateBadge(item.badge)
+    badge: validateBadge(item.badge),
   })) as ComponentType[];
 }
 
@@ -160,7 +160,7 @@ export async function getComponentByName(
   // Ensure the badge is of the correct type
   return {
     ...component,
-    badge: validateBadge(component.badge)
+    badge: validateBadge(component.badge),
   } as ComponentType;
 }
 

@@ -4,9 +4,7 @@ import { SocialIcons } from '@/components/social-icons';
 export default function Footer() {
   return (
     <>
-      <footer
-        className={`container max-w-3xl mx-auto px-4 sm:px-12 py-12`}
-      >
+      <footer className={`container max-w-3xl mx-auto px-4 sm:px-12 py-12`}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* 3) Stay Connected (Row 2, Col 1) */}
           <div>

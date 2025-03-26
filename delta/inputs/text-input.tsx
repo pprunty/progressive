@@ -153,7 +153,8 @@ export function TextInput({
             'shadow-[0px_2px_2px_rgba(0,0,0,0.03),_0px_4px_7px_rgba(0,0,0,0.02)]',
 
           // Pill variant styling - less rounded
-          variant === 'pill' && 'bg-muted border-0 rounded-lg h-12 px-4 focus:ring-offset-2',
+          variant === 'pill' &&
+            'bg-muted border-0 rounded-lg h-12 px-4 focus:ring-offset-2',
           variant === 'pill' && coloredBorder && 'border-2 border-primary',
           variant === 'pill' && 'placeholder:text-muted-foreground',
 

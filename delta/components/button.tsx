@@ -4,7 +4,12 @@ import type { ReactNode } from 'react';
 import { clsx } from 'clsx';
 import { ClipLoader } from 'react-spinners';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'action' | 'neobrutalism';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'destructive'
+  | 'action'
+  | 'neobrutalism';
 
 export interface ButtonProps {
   onClick?: () => void;
@@ -151,10 +156,12 @@ export function Button({
       style={{
         WebkitTapHighlightColor: 'transparent',
         outline: 'none',
-        ...(variant === 'action' && actionColor && !actionColor.startsWith('bg-') && {
-          backgroundColor: actionColor,
-          '--tw-bg-opacity': 1,
-        }),
+        ...(variant === 'action' &&
+          actionColor &&
+          !actionColor.startsWith('bg-') && {
+            backgroundColor: actionColor,
+            '--tw-bg-opacity': 1,
+          }),
       }}
     >
       <div className="flex items-center justify-center gap-2">
