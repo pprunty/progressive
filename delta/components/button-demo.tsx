@@ -59,6 +59,7 @@ export default function ButtonDemo() {
   return (
     <div className="space-y-12">
       <ButtonVariantsDemo />
+      <ButtonCustomActionColorsDemo />
       <ButtonWithLucideIconsDemo />
       <ButtonWithPhosphorIconsDemo />
       <ButtonLoadingStatesDemo />
@@ -100,6 +101,51 @@ export function ButtonVariantsDemo() {
           <h3 className="text-sm font-medium text-muted-foreground">Action</h3>
           <Button title="Action Button" variant="action" />
           <Button title="Disabled" variant="action" disabled />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ButtonCustomActionColorsDemo() {
+  return (
+    <section>
+      <h2 className="text-xl font-semibold mb-4">Custom Action Colors</h2>
+      <p className="text-sm text-muted-foreground mb-4">
+        While shadcn/ui provides a comprehensive color palette, it doesn't include a primary accent color out of the box. 
+        The action variant allows you to customize the color to match your brand or design system.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Default Blue</h3>
+          <Button title="Default Action" variant="action" />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Indigo</h3>
+          <Button 
+            title="Indigo Action" 
+            variant="action" 
+            actionColor="bg-indigo-500"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Purple</h3>
+          <Button 
+            title="Purple Action" 
+            variant="action" 
+            actionColor="bg-purple-500"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-medium text-muted-foreground">Custom Hex</h3>
+          <Button 
+            title="Custom Action" 
+            variant="action" 
+            actionColor="#4F46E5"
+          />
         </div>
       </div>
     </section>

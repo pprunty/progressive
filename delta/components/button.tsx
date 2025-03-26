@@ -18,6 +18,7 @@ export interface ButtonProps {
   isLoading?: boolean; // New prop for loading state
   spinnerSize?: number; // Optional prop for spinner size
   spinnerColor?: string; // Optional prop for spinner color
+  actionColor?: string; // New prop for customizing action variant color
 }
 
 export function Button({
@@ -32,6 +33,7 @@ export function Button({
   isLoading = false, // Default to not loading
   spinnerSize = 20, // Default size
   spinnerColor, // Will use appropriate color based on variant if not specified
+  actionColor, // New prop
 }: ButtonProps) {
   // Determine spinner color based on variant and theme colors
   const getSpinnerColor = () => {
@@ -51,6 +53,36 @@ export function Button({
     }
   };
 
+  // Get action variant styles based on whether a custom color is provided
+  const getActionStyles = () => {
+    if (actionColor) {
+      // If it's a Tailwind class (starts with bg-)
+      if (actionColor.startsWith('bg-')) {
+        const baseColor = actionColor.replace('bg-', '');
+        return [
+          `${actionColor} text-white`,
+          `hover:${actionColor}/80 active:${actionColor}/80`,
+          `focus-visible:outline-${baseColor}/50`,
+          `disabled:hover:${actionColor}`,
+        ];
+      }
+      // If it's a hex color
+      return [
+        `bg-[${actionColor}] text-white`,
+        `hover:bg-[${actionColor}]/80 active:bg-[${actionColor}]/80`,
+        `focus-visible:outline-[${actionColor}]/50`,
+        `disabled:hover:bg-[${actionColor}]`,
+      ];
+    }
+
+    return [
+      'bg-blue-600 text-white',
+      'hover:bg-blue-600/80 active:bg-blue-600/80',
+      'focus-visible:outline-blue-500/50',
+      'disabled:hover:bg-blue-600',
+    ];
+  };
+
   return (
     <button
       onClick={onClick}
@@ -61,7 +93,7 @@ export function Button({
         'focus:outline-none focus:ring-0 focus-visible:ring-0',
         'focus:shadow-none focus-visible:shadow-none',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
-        'active:opacity-80 active:scale-[0.99]',
+        'active:scale-[0.99]',
         'disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100',
 
         // Add relative positioning when extended click area is enabled
@@ -70,7 +102,7 @@ export function Button({
         // Primary variant styling
         variant === 'primary' && [
           'bg-primary text-primary-foreground',
-          'hover:bg-primary/90',
+          'hover:bg-primary/80 active:bg-primary/80',
           'focus-visible:outline-primary/50',
           'disabled:hover:bg-primary',
         ],
@@ -79,7 +111,8 @@ export function Button({
         variant === 'secondary' && [
           'bg-background text-secondary-foreground',
           'border border-border',
-          'hover:bg-secondary/95 hover:border-border-hover',
+          'hover:bg-secondary/80 active:bg-secondary/80',
+          'hover:border-border-hover',
           'focus-visible:outline-secondary/50',
           'disabled:hover:bg-secondary disabled:hover:border-border',
         ],
@@ -87,18 +120,14 @@ export function Button({
         // Destructive variant styling
         variant === 'destructive' && [
           'bg-destructive text-destructive-foreground',
-          'hover:bg-destructive/90',
+          'hover:bg-destructive/80 active:bg-destructive/80',
           'focus-visible:outline-destructive/50',
           'disabled:hover:bg-destructive',
         ],
 
-        // Action variant styling (form submission)
-        variant === 'action' && [
-          'bg-action text-action-foreground',
-          'hover:bg-action-hover',
-          'focus-visible:outline-action/50',
-          'disabled:hover:bg-action',
-        ],
+        // Action variant styling with customizable color
+        variant === 'action' && getActionStyles(),
+
         // Add the extended click area pseudo-element styles
         extendedClickArea &&
           'before:absolute before:-inset-10 before:block before:content-[""]',
@@ -109,6 +138,10 @@ export function Button({
       style={{
         WebkitTapHighlightColor: 'transparent',
         outline: 'none',
+        ...(variant === 'action' && actionColor && !actionColor.startsWith('bg-') && {
+          backgroundColor: actionColor,
+          '--tw-bg-opacity': 1,
+        }),
       }}
     >
       <div className="flex items-center justify-center gap-2">
