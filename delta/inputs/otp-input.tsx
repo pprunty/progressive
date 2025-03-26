@@ -321,7 +321,7 @@ export function OTPInput({
                    aria-required={required}
                    autoFocus={autoFocus && index === 0}
                    className={cn(
-                     "w-9 h-10 sm:w-10 sm:h-12 text-center text-base sm:text-lg font-medium",
+                     "w-9 h-10 sm:w-10 sm:h-12 bg-background text-center text-base sm:text-lg font-medium",
                      "focus:outline-none focus:ring-2 focus:ring-[#4E90F9] dark:ring-offset-black ring-offset-white",
                      // Default variant styling
                      variant === "default" &&

@@ -17,7 +17,7 @@ export default async function Home() {
           rel="noopener noreferrer"
           className="group w-fit flex"
         >
-          <h1 className="text-2xl font-bold tracking-tight font-serif underline underline-offset-6 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary flex items-center gap-1">
+          <h1 className="text-xl font-bold tracking-tight font-serif underline underline-offset-6 decoration-wavy decoration-muted-foreground/30 transition-all duration-300 ease-in-out hover:decoration-primary flex items-center gap-1">
             {registryInfo.name} Registry
             <ArrowUpRight
               size={14}
