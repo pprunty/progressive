@@ -20,7 +20,7 @@ export function PreviewContainer({
   }, []);
 
   return (
-    <div className="preview-container h-full relative">
+    <div className="preview-container h-full relative px-2 sm:px-10">
       <div className="absolute top-2 right-2 z-10 flex gap-2">
         <OpenInV0Button url={openInV0Url} />
         <RestartButton onRestart={handleRestart} />

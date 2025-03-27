@@ -5,7 +5,12 @@ import { ComponentPreview } from '@/components/component-preview';
 import { ComponentCode } from '@/components/component-code';
 import { ComponentMeta } from '@/components/component-meta';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/delta/components/tabs';
 import { cn } from '@/lib/utils';
 import { ArrowBendUpLeft } from '@phosphor-icons/react/dist/ssr';
 
@@ -53,7 +58,7 @@ export default async function ComponentPage({ params }: PageProps) {
 
       <div className="mt-8">
         <Tabs defaultValue="preview">
-          <TabsList>
+          <TabsList variant="underlined" showBottomBorder={true} size="md">
             <TabsTrigger value="preview">Preview</TabsTrigger>
             <TabsTrigger value="code">Code</TabsTrigger>
             <TabsTrigger value="usage">Usage</TabsTrigger>
