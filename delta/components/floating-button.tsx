@@ -43,7 +43,7 @@ const floatingButtonVariants = cva(
       {
         shape: 'default',
         size: 'default',
-        class: 'h-14 px-4 py-3',
+        class: 'h-14 px-5 py-2',
       },
       {
         shape: 'default',

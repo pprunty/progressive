@@ -11,17 +11,37 @@ import {
 
 export default function NeobrutalismCardDemo() {
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap gap-6 justify-center">
-        <BlueCardDemo />
-        <PinkCardDemo />
-        <GreenCardDemo />
-        <YellowCardDemo />
-        <PurpleCardDemo />
-        <GrayCardDemo />
+    <div className="space-y-12">
+      <div>
+        <h3 className="text-lg font-medium mb-4">Color Variants</h3>
+        <div className="flex flex-wrap gap-6 justify-center">
+          <BlueCardDemo />
+          <PinkCardDemo />
+          <GreenCardDemo />
+          <YellowCardDemo />
+          <PurpleCardDemo />
+          <GrayCardDemo />
+          <OrangeCardDemo />
+          <RedCardDemo />
+          <MintCardDemo />
+          <CreamCardDemo />
+        </div>
       </div>
-      <div className="mt-8 flex justify-center">
-        <CompleteExampleDemo />
+
+      <div>
+        <h3 className="text-lg font-medium mb-4">Border Width Variants</h3>
+        <div className="flex flex-wrap gap-6 justify-center">
+          <ThinBorderDemo />
+          <MediumBorderDemo />
+          <ThickBorderDemo />
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-medium mb-4">Complete Example</h3>
+        <div className="flex justify-center">
+          <CompleteExampleDemo />
+        </div>
       </div>
     </div>
   );
@@ -35,7 +55,7 @@ export function BlueCardDemo() {
         <CardDescription>Default blue variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>This card has hover and active states. Click to see active state.</p>
+        <p>This card has hover and active states.</p>
       </CardContent>
     </Card>
   );
@@ -49,7 +69,7 @@ export function PinkCardDemo() {
         <CardDescription>Pink variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>A pink version with hover and active states.</p>
+        <p>A pink version with hover states.</p>
       </CardContent>
     </Card>
   );
@@ -63,7 +83,7 @@ export function GreenCardDemo() {
         <CardDescription>Green variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>A green version with hover and active states.</p>
+        <p>A green version with hover states.</p>
       </CardContent>
     </Card>
   );
@@ -71,13 +91,13 @@ export function GreenCardDemo() {
 
 export function YellowCardDemo() {
   return (
-    <Card color="yellow" className="w-64" hover={false}>
+    <Card color="yellow" className="w-64" hover={true}>
       <CardHeader>
         <CardTitle>Yellow Card</CardTitle>
         <CardDescription>Yellow variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>This card has no hover effect.</p>
+        <p>A yellow version with hover states.</p>
       </CardContent>
     </Card>
   );
@@ -91,7 +111,7 @@ export function PurpleCardDemo() {
         <CardDescription>Purple variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>This card has hover effect.</p>
+        <p>A purple version with hover states.</p>
       </CardContent>
     </Card>
   );
@@ -99,13 +119,111 @@ export function PurpleCardDemo() {
 
 export function GrayCardDemo() {
   return (
-    <Card color="gray" className="w-64" hover={false}>
+    <Card color="gray" className="w-64" hover={true}>
       <CardHeader>
         <CardTitle>Gray Card</CardTitle>
         <CardDescription>Gray variant</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>This card has no hover states.</p>
+        <p>A gray version with hover states.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function OrangeCardDemo() {
+  return (
+    <Card color="orange" className="w-64" hover={true}>
+      <CardHeader>
+        <CardTitle>Orange Card</CardTitle>
+        <CardDescription>Orange variant</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A vibrant orange version with hover states.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function RedCardDemo() {
+  return (
+    <Card color="red" className="w-64" hover={true}>
+      <CardHeader>
+        <CardTitle>Red Card</CardTitle>
+        <CardDescription>Red variant</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A soft red version with hover states.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function MintCardDemo() {
+  return (
+    <Card color="mint" className="w-64" hover={true}>
+      <CardHeader>
+        <CardTitle>Mint Card</CardTitle>
+        <CardDescription>Mint variant</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A fresh mint version with hover states.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function CreamCardDemo() {
+  return (
+    <Card color="cream" className="w-64" hover={true}>
+      <CardHeader>
+        <CardTitle>Cream Card</CardTitle>
+        <CardDescription>Cream variant</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A subtle cream version with hover states.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function ThinBorderDemo() {
+  return (
+    <Card color="blue" className="w-64" hover={true} borderWidth="thin">
+      <CardHeader>
+        <CardTitle>Thin Border</CardTitle>
+        <CardDescription>1px border width</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A card with thin border styling.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function MediumBorderDemo() {
+  return (
+    <Card color="pink" className="w-64" hover={true} borderWidth="medium">
+      <CardHeader>
+        <CardTitle>Medium Border</CardTitle>
+        <CardDescription>2px border width (default)</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A card with medium border styling.</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function ThickBorderDemo() {
+  return (
+    <Card color="mint" className="w-64" hover={true} borderWidth="thick">
+      <CardHeader>
+        <CardTitle>Thick Border</CardTitle>
+        <CardDescription>4px border width</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>A card with thick border styling.</p>
       </CardContent>
     </Card>
   );
@@ -113,8 +231,13 @@ export function GrayCardDemo() {
 
 export function CompleteExampleDemo() {
   return (
-    <div className="w-full flex justify-center">
-      <Card color="blue" className="w-full max-w-sm" hover={false}>
+    <div className="w-full flex justify-center p-6">
+      <Card
+        color="blue"
+        className="w-full max-w-sm"
+        hover={false}
+        borderWidth="medium"
+      >
         <CardHeader>
           <CardTitle>Create project</CardTitle>
           <CardDescription>
@@ -143,6 +266,10 @@ export function CompleteExampleDemo() {
                   className="flex h-10 w-full appearance-none rounded-md border-2 border-black bg-white px-3 py-2 text-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)]"
                 >
                   <option>Select</option>
+                  <option>Next.js</option>
+                  <option>SvelteKit</option>
+                  <option>Astro</option>
+                  <option>Nuxt</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3">
                   <svg

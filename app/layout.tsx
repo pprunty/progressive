@@ -46,7 +46,10 @@ export const metadata: Metadata = {
     'Modern UI',
     'Web components',
   ],
-  manifest: process.env.NODE_ENV === 'production' ? '/manifest.prod.json' : '/manifest.json',
+  manifest:
+    process.env.NODE_ENV === 'production'
+      ? '/manifest.prod.json'
+      : '/manifest.json',
   alternates: {
     canonical: config.url,
   },

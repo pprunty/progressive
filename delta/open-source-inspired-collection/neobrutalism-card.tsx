@@ -2,12 +2,33 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 type CardProps = React.HTMLAttributes<HTMLDivElement> & {
-  color?: 'blue' | 'pink' | 'green' | 'yellow' | 'purple' | 'gray';
+  color?:
+    | 'blue'
+    | 'pink'
+    | 'green'
+    | 'yellow'
+    | 'purple'
+    | 'gray'
+    | 'orange'
+    | 'red'
+    | 'mint'
+    | 'cream';
   hover?: boolean;
+  borderWidth?: 'thin' | 'medium' | 'thick';
 };
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, color = 'blue', hover = false, children, ...props }, ref) => {
+  (
+    {
+      className,
+      color = 'blue',
+      hover = false,
+      borderWidth = 'medium',
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const colorStyles = {
       blue: 'bg-blue-300',
       pink: 'bg-pink-300',
@@ -15,13 +36,26 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       yellow: 'bg-yellow-300',
       purple: 'bg-purple-300',
       gray: 'bg-gray-300',
+      orange: 'bg-[#FFB347]',
+      red: 'bg-[#FF7F7F]',
+      mint: 'bg-[#98FF98]',
+      cream: 'bg-[#F4E3CC]',
+    };
+
+    const borderWidthStyles = {
+      thin: 'border-[1px]',
+      medium: 'border-2',
+      thick: 'border-4',
     };
 
     return (
       <div
         ref={ref}
         className={cn(
-          'rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.8)] border-2 border-black',
+          'rounded-lg',
+          'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.8)]',
+          borderWidthStyles[borderWidth],
+          'border-black',
           colorStyles[color],
           'text-black',
           hover &&
