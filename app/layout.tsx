@@ -90,7 +90,13 @@ export const metadata: Metadata = {
     icon: [
       { url: '/icons/16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/icons/32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/72x72.png', sizes: '72x72', type: 'image/png' },
+      { url: '/icons/96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/icons/128x128.png', sizes: '128x128', type: 'image/png' },
+      { url: '/icons/144x144.png', sizes: '144x144', type: 'image/png' },
+      { url: '/icons/152x152.png', sizes: '152x152', type: 'image/png' },
       { url: '/icons/192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/384x384.png', sizes: '384x384', type: 'image/png' },
       { url: '/icons/512x512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
@@ -136,7 +142,8 @@ export default function RootLayout({
             __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
           }}
         />
-        <link rel="icon" href="/icons/32x32.png" sizes="any" />
+        <link rel="icon" href="/icons/16x16.png" sizes="16x16" type="image/png" />
+        <link rel="mask-icon" href="/icons/16x16.png" color="#4E90F9" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
